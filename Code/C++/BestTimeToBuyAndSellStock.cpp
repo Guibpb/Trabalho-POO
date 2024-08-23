@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 
+//mudança no codigo teste
+
 using namespace std;
 
 class Solution{
@@ -27,6 +29,8 @@ int main(){
     vector <int> prices = {7,1,5,3,6,4};
 
     Solution solucao;
+
+    cout << teste << endl;
 
     cout << solucao.maxProfit(prices) << endl;
 
