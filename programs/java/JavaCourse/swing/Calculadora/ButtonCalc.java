@@ -9,8 +9,8 @@ public class ButtonCalc extends JButton{
         this.setText(text);
         this.setFocusable(false);
         this.setBackground(new Color(0, 0, 0));
-        this.setForeground(new Color(250, 251, 250));
-        this.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.setForeground(new Color(250, 250, 250));
+        this.setFont(new Font("Arial", Font.PLAIN, 20));
 
         JButton btn = this;
 
