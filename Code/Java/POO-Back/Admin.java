@@ -9,7 +9,9 @@ public class Admin {
     private static void setUsuario(String inputUsuario, String inputSenha) throws FileNotFoundException{ 
         File arquivo = new File("/home/guilherme/Code/Java/POO-Back/teste.csv");
 
-        try(Scanner scanArquivo = new Scanner(arquivo)){//boas praticas pra fechar o scanner    
+        try(Scanner scanArquivo = new Scanner(arquivo)){//boas praticas pra fechar o scanner
+            boolean usuarioValido = false;
+            
             while(scanArquivo.hasNextLine()){ //loop para separar o usuario e a senha do csv
                 String usuarioAtual = scanArquivo.nextLine();
                 int index = usuarioAtual.indexOf(',');
@@ -19,8 +21,12 @@ public class Admin {
                 if(inputUsuario.equals(usuarioAtual) && inputSenha.equals(senhaAtual)){
                     usuario = inputUsuario;
                     senha = inputSenha;
-                }
+                    System.out.println(usuario + senha);
+                    usuarioValido = true;
+                }  
             }
+            if(!usuarioValido)
+                System.out.println("Erro! Usuário não reconhecido, por favor tente novamente.");
         }
     }
 
@@ -29,10 +35,10 @@ public class Admin {
         String inputSenha;
         
         try(Scanner scanf = new Scanner(System.in)){
-            System.out.println("Insira seu usuário: ");
+            System.out.print("Insira seu usuário: ");
             inputUsuario = scanf.nextLine();
 
-            System.out.println("Insira sua senha: ");
+            System.out.print("Insira sua senha: ");
             inputSenha = scanf.nextLine();            
         }
 
@@ -41,7 +47,5 @@ public class Admin {
 
     public static void main(String[] args) throws FileNotFoundException {
         receberInput();
-
-        System.out.println(usuario + senha);
     }
 }
