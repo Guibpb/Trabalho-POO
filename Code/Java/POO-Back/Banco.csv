@@ -1,6 +1,8 @@
-usuario, email, senha
-admin, admin@usp.br, 123
-gui, gui@usp.br, 123
-daniel, daniel@usp.br, 456
-mikhael, mikhael@usp.br,789
+usuario,email, senha
+admin,admin@usp.br, 123
+gui,gui@usp.br, 123
+daniel,daniel@usp.br, 456
+mikhael,mikhael@usp.br,789
 pedro,pedro@usp.br,000
+gabriel,gabriel@usp.br,002
+gui2,gui@ufmg.br,123

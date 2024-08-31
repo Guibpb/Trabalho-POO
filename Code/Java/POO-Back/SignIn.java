@@ -20,7 +20,7 @@ public class SignIn {
     }
 
     private static void setUsuario(String usuarioInput, String senhaInput) throws FileNotFoundException{ 
-        File arquivo = new File("/home/guilherme/Code/Java/POO-Back/Banco.csv");
+        File arquivo = new File("POO-Back/Banco.csv");
 
         try(Scanner scanArquivo = new Scanner(arquivo)){//boas praticas pra fechar o scanner
             boolean usuarioValido = false;

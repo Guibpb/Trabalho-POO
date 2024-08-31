@@ -3,7 +3,7 @@ import java.io.IOException;
 
 public class RecordUsuario {
     public static void escreverArq(String dados) {
-        try (FileWriter escreverArq = new FileWriter("/home/guilherme/Code/Java/POO-Back/Banco.csv", true)){
+        try (FileWriter escreverArq = new FileWriter("POO-Back/Banco.csv", true)){
             escreverArq.append(dados);
             escreverArq.close();
         } catch (IOException e) {
