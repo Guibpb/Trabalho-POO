@@ -11,7 +11,7 @@ public class GerenciamentoUsuario {
     }
 
     private static void verUsuarios() throws FileNotFoundException{//feature de adm
-        File arquivo = new File("POO-Back/Banco.csv");
+        File arquivo = new File("Banco.csv");
 
         try(Scanner scanArquivo = new Scanner(arquivo)){
             String firstlineuseless = scanArquivo.nextLine();
@@ -20,7 +20,7 @@ public class GerenciamentoUsuario {
                 String inputInfo = scanArquivo.nextLine();
                 String usuarioInfo[] = inputInfo.split(",");
 
-                for(int i = 0; i < usuarioInfo.length; i += 3)
+                for(int i = 1; i < usuarioInfo.length; i += 3)
                     System.out.println("Nome de usuário: " + usuarioInfo[i] + "\nE-mail: " + usuarioInfo[i+1] + "\n");   
             }
         }

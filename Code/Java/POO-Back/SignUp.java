@@ -6,9 +6,11 @@ public class SignUp {
     private static String usuario;
     private static String email;
     private static String senha;
+    private static int idAtual;
 
     public static void signUp() throws FileNotFoundException{
         try(Scanner scanf = new Scanner(System.in)){
+            String senha2;
             do{
                 System.out.print("Insira seu nome de usuário: ");
                 usuario = scanf.nextLine();
@@ -18,28 +20,32 @@ public class SignUp {
 
                 System.out.print("Insira sua senha: ");
                 senha = scanf.nextLine();
-            }while(compararUsuarios() == false);
+                System.out.print("Confirme a senha: ");
+                senha2 = scanf.nextLine();
+            }while(compararUsuarios(senha2) == false);
         }
 
-        String dados = String.format("\n%s,%s,%s", usuario, email, senha);
+        idAtual++;
+        String dados = String.format("\n%d,%s,%s,%s", idAtual,usuario, email, senha);
         RecordUsuario.escreverArq(dados);
     }
 
-    private static boolean compararUsuarios() throws FileNotFoundException{
-        File arquivo = new File("POO-Back/Banco.csv");
+    private static boolean compararUsuarios(String senha2) throws FileNotFoundException{
+        File arquivo = new File("Banco.csv");
         boolean compararUsuarios = true;
 
         try(Scanner scanArquivo = new Scanner(arquivo)){
+            String usuarioInfo[] = null;
             while(scanArquivo.hasNextLine() && compararUsuarios){ //pega somente o nome e o email dos user
                 String inputInfo = scanArquivo.nextLine();
-                String usuarioInfo[] = inputInfo.split(",");
+                usuarioInfo = inputInfo.split(",");
 
-                if(usuarioInfo[0].equals(usuario)){
+                if(usuarioInfo[1].equals(usuario)){
                    System.out.println("Esse usuário já existe.");
                     compararUsuarios = false;
                 }
                 
-                if(usuarioInfo[1].equals(email)){
+                if(usuarioInfo[2].equals(email)){
                     System.out.println("Esse e-mail já está cadastrado.");
                     compararUsuarios = false;
                 }
@@ -58,6 +64,16 @@ public class SignUp {
                     System.out.println("Formato de senha inválida.");
                     compararUsuarios = false;
                 }
+                
+                if(!senha.equals(senha2)){
+                    System.out.println("Senhas incompatíveis.");
+                    compararUsuarios = false;
+                }
+            }
+            try {
+                idAtual = Integer.parseInt(usuarioInfo[usuarioInfo.length - 4]);
+            } catch (NumberFormatException e) {
+                System.out.println("deu pau garaikkkk // numero invalido parsao");
             }
         }
         return compararUsuarios;

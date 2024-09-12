@@ -20,7 +20,7 @@ public class SignIn {
     }
 
     private static void setUsuario(String usuarioInput, String senhaInput) throws FileNotFoundException{ 
-        File arquivo = new File("POO-Back/Banco.csv");
+        File arquivo = new File("Banco.csv");
 
         try(Scanner scanArquivo = new Scanner(arquivo)){//boas praticas pra fechar o scanner
             boolean usuarioValido = false;
@@ -29,9 +29,9 @@ public class SignIn {
             while(run && scanArquivo.hasNextLine()){ //loop para separar o usuario e a senha do csv
                 String inputInfo = scanArquivo.nextLine();
                 String usuarioInfo[] = inputInfo.split(",");
-                String usuarioAtual = usuarioInfo[0];
-                String emailAtual = usuarioInfo[1];
-                String senhaAtual = usuarioInfo[2];
+                String usuarioAtual = usuarioInfo[1];
+                String emailAtual = usuarioInfo[2];
+                String senhaAtual = usuarioInfo[3];
 
                 if((usuarioInput.equals(usuarioAtual) || usuarioInput.equals(emailAtual)) && senhaInput.equals(senhaAtual)){
                     usuario = usuarioAtual;
