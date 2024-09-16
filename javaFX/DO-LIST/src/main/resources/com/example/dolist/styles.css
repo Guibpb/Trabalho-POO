@@ -1,0 +1,36 @@
+#btnAdd{
+    -fx-background-color: #078a85;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+#btnAdd:hover{
+    -fx-scale-y: 1.1;
+    -fx-scale-x: 1.1;
+}
+
+#btnRemove{
+    -fx-background-color: #e81e4a;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-font-family: "Arial";
+    -fx-min-width: 90;
+    -fx-min-height: 47;
+    -fx-text-fill: white;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+#btnRemove:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#defaultLabel{
+    -fx-font-weight: bold;
+    -fx-font-size: 40;
+    -fx-font-family: "Arial";
+    -fx-min-width: 69;
+    -fx-min-height: 16;
+    -fx-text-fill: #413f3f;
+}

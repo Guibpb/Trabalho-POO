@@ -1,0 +1,16 @@
+#anchorPanePrincipal{
+    -fx-background-color: black;
+}
+
+#btnPlay{
+    -fx-background-color: transparent;
+}
+
+#escolherMusicaBtn{
+    -fx-background-color: white;
+    -fx-border-radius: 50px;
+}
+#escolherMusicaBtn:hover{
+    -fx-background-color: #D3D3D3;
+    -fx-border-radius: 50px;
+}
