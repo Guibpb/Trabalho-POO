@@ -8,7 +8,14 @@ public class RecordUsuario {
             escreverArq.close();
         } catch (IOException e) {
             System.out.println("Erro! Arquivo não encontrado.");
-            e.printStackTrace();
+        }
+    }
+    public static void substituirArq(String dados) {
+        try (FileWriter escreverArq = new FileWriter("Banco.csv")){
+            escreverArq.append(dados);
+            escreverArq.close();
+        } catch (IOException e) {
+            System.out.println("Erro! Arquivo não encontrado.");
         }
     }
 }

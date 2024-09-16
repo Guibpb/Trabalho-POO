@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -9,32 +8,35 @@ public class SignUp {
     private static int idAtual;
 
     public static void signUp() throws FileNotFoundException{
-        try(Scanner scanf = new Scanner(System.in)){
-            String senha2;
-            do{
-                System.out.print("Insira seu nome de usuário: ");
-                usuario = scanf.nextLine();
+        String senha2;
+        do{
+            System.out.print("Insira seu nome de usuário: ");
+            usuario = Main.scan.nextLine();
                 
-                System.out.print("Insira seu e-mail: ");
-                email = scanf.nextLine();
+            System.out.print("Insira seu e-mail: ");
+            email = Main.scan.nextLine();
 
-                System.out.print("Insira sua senha: ");
-                senha = scanf.nextLine();
-                System.out.print("Confirme a senha: ");
-                senha2 = scanf.nextLine();
-            }while(compararUsuarios(senha2) == false);
-        }
+            System.out.print("Insira sua senha: ");
+            senha = Main.scan.nextLine();
+            System.out.print("Confirme a senha: ");
+            senha2 = Main.scan.nextLine();
+        }while(!compararUsuarios(senha2));
 
-        idAtual++;
-        String dados = String.format("\n%d,%s,%s,%s", idAtual,usuario, email, senha);
-        RecordUsuario.escreverArq(dados);
+        System.out.println("Deseja se cadastrar como usuário comum ou artista?");
+        
+        if(Main.scan.nextLine().equals("artista")){
+            String dados = String.format("\n%d,%s,%s,%s,artista", idAtual,usuario, email, senha);
+            RecordUsuario.escreverArq(dados);
+        }else{//arrumar validações
+            String dados = String.format("\n%d,%s,%s,%s,comum", idAtual,usuario, email, senha);
+            RecordUsuario.escreverArq(dados);
+        } 
     }
 
     private static boolean compararUsuarios(String senha2) throws FileNotFoundException{
-        File arquivo = new File("Banco.csv");
         boolean compararUsuarios = true;
 
-        try(Scanner scanArquivo = new Scanner(arquivo)){
+        try(Scanner scanArquivo = new Scanner(Main.arquivo);){
             String usuarioInfo[] = null;
             while(scanArquivo.hasNextLine() && compararUsuarios){ //pega somente o nome e o email dos user
                 String inputInfo = scanArquivo.nextLine();
@@ -51,7 +53,7 @@ public class SignUp {
                 }
                 
                 if(usuario.contains(",")){
-                    System.out.println("Formato de usuário inválido");
+                    System.out.println("Formato de usuário inválido(caracter inapropriado).");
                     compararUsuarios = false;
                 }
                 
@@ -61,7 +63,7 @@ public class SignUp {
                 }
 
                 if(senha.contains(",")){
-                    System.out.println("Formato de senha inválida.");
+                    System.out.println("Formato de senha inválida(caracter inapropriado).");
                     compararUsuarios = false;
                 }
                 
@@ -71,7 +73,7 @@ public class SignUp {
                 }
             }
             try {
-                idAtual = Integer.parseInt(usuarioInfo[usuarioInfo.length - 4]);
+                idAtual = Integer.parseInt(usuarioInfo[0]) + 1;
             } catch (NumberFormatException e) {
                 System.out.println("deu pau garaikkkk // numero invalido parsao");
             }
