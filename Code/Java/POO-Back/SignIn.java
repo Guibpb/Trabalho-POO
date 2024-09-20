@@ -13,6 +13,18 @@ public class SignIn {
         return dados;
     }
 
+    public static void setUsuario(String dadoNovo){
+        usuario = dadoNovo;
+    }
+
+    public static void setSenha(String dadoNovo){
+        senha = dadoNovo;
+    }
+
+    public static void setEmail(String dadoNovo){
+        email = dadoNovo;
+    }
+
     public static String getUsuario(){
         return usuario;
     }
@@ -29,7 +41,7 @@ public class SignIn {
         return senha;
     }
 
-    private static void setUsuario(String usuarioInput, String senhaInput) throws FileNotFoundException{ 
+    private static void signIn(String usuarioInput, String senhaInput) throws FileNotFoundException{ 
         try(Scanner scanArquivo = new Scanner(Main.arquivo)){//boas praticas pra fechar o scanner
             boolean usuarioValido = false;
             boolean run = true;
@@ -67,6 +79,6 @@ public class SignIn {
         System.out.print("Insira sua senha: ");
         senhaInput = Main.scan.nextLine();            
 
-        setUsuario(usuarioInput, senhaInput);
+        signIn(usuarioInput, senhaInput);
     }
 }

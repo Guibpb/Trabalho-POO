@@ -2,13 +2,14 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class SignUp {
-    private static String usuario;
-    private static String email;
-    private static String senha;
     private static int idAtual;
 
     public static void signUp() throws FileNotFoundException{
+        String usuario;
+        String email;
+        String senha;
         String senha2;
+
         do{
             System.out.print("Insira seu nome de usuário: ");
             usuario = Main.scan.nextLine();
@@ -20,7 +21,8 @@ public class SignUp {
             senha = Main.scan.nextLine();
             System.out.print("Confirme a senha: ");
             senha2 = Main.scan.nextLine();
-        }while(!compararUsuarios(senha2));
+
+        }while(!compararUsuarios(usuario, email, senha, senha2));
 
         System.out.println("Deseja se cadastrar como usuário comum ou artista?");
         
@@ -33,7 +35,7 @@ public class SignUp {
         } 
     }
 
-    private static boolean compararUsuarios(String senha2) throws FileNotFoundException{
+    private static boolean compararUsuarios(String usuario, String email, String senha, String senha2) throws FileNotFoundException{
         boolean compararUsuarios = true;
 
         try(Scanner scanArquivo = new Scanner(Main.arquivo);){
@@ -75,7 +77,7 @@ public class SignUp {
             try {
                 idAtual = Integer.parseInt(usuarioInfo[0]) + 1;
             } catch (NumberFormatException e) {
-                System.out.println("deu pau garaikkkk // numero invalido parsao");
+                //System.out.println("deu pau garaikkkk // numero invalido parsao");
             }
         }
         return compararUsuarios;

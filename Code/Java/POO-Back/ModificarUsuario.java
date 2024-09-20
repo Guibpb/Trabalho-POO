@@ -17,6 +17,20 @@ public class ModificarUsuario {
     public static void deleteSelf() throws FileNotFoundException{
         modUsuario(SignIn.getDados(), "");
     }
+    
+    public static void editSelf() throws FileNotFoundException{//função comum
+        String contAnt = SignIn.getDados();
+        System.out.println("Qual dado você desejaria mudar?");
+        String input = Main.scan.nextLine();
+
+        switch (input){
+            case "usuario":
+
+            case "senha":
+
+            case "email":
+        }
+    }
 
     private static void verUsuarios() throws FileNotFoundException{//feature de adm
         try(Scanner scanArquivo = new Scanner(Main.arquivo)){
