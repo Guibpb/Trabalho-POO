@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.example.dolist.ToDoListMain
-Class-Path: javafx-graphics-22.0.1-win.jar javafx-base-22.0.1-win.jar ja
- vafx-controls-22.0.1-win.jar javafx-fxml-22.0.1.jar javafx-fxml-22.0.1-
- win.jar javafx-controls-22.0.1.jar javafx-graphics-22.0.1.jar javafx-ba
- se-22.0.1.jar
-

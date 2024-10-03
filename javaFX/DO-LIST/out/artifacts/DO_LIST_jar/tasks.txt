@@ -1,3 +1,0 @@
-Terminar Lista de Cálculo;
-Estudar OCD;
-Fazer trabalho JavaFX;
