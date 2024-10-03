@@ -2,25 +2,26 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ModificarUsuario {
-    private static String contArquivo = "";
 
-    private static void modUsuario(String contAntigo, String contNovo) throws FileNotFoundException{//feature de adm
-        try(Scanner scanArquivo = new Scanner(Main.arquivo)){
-            while(scanArquivo.hasNextLine()){
-                contArquivo += scanArquivo.nextLine() + '\n';
-            }
-            contArquivo = contArquivo.replace(contAntigo, contNovo);
-            RecordUsuario.substituirArq(contArquivo);
-        }
+    private static void modUsuario(String contAnt, String contNovo) throws FileNotFoundException{
+        /*contAnt representa os dados antigos e 
+         * contNovo são os que substituirão eles*/
+
+        String contArquivo = InfoArquivo.getDadosBrutos();
+        contArquivo = contArquivo.replace(contAnt,contNovo);
+
+        RecordUsuario.substituirArq(contArquivo);
     }
 
     public static void deleteSelf() throws FileNotFoundException{
-        modUsuario(SignIn.getDados(), "");
+        modUsuario(LogIn.getDadosFormat(), ""); 
+        /*apaga os dados no arquivo substituindo por uma String vazia */
     }
     
     public static void editSelf() throws FileNotFoundException{//função comum
-        String contAnt = SignIn.getDados();
-        System.out.println("Qual dado você desejaria mudar?");
+        String dados = LogIn.getDadosFormat();
+        String usuarioInfo[] = LogIn.getDados();
+        System.out.println("Qual dado você desejaria mudar? (somente usuario/senha)");
         String input = Main.scan.nextLine();
 
         switch (input){
@@ -28,7 +29,6 @@ public class ModificarUsuario {
 
             case "senha":
 
-            case "email":
         }
     }
 
@@ -48,7 +48,7 @@ public class ModificarUsuario {
     }
 
     public static void deleteAny() throws FileNotFoundException{ //função de ADM
-        if(SignIn.getCargo().equals("gerente")){
+        if(LogIn.getCargo().equals("gerente")){
             System.out.print("Deseja ver a lista de usuários? (y/n): ");
             if(Main.scan.nextLine().equals("y"))
                 verUsuarios();
@@ -77,11 +77,11 @@ public class ModificarUsuario {
         }
     }
 
-    public static void createAny(){//advinha? função de adm.
-        if(SignIn.getCargo().equals("gerente")){
+    /*public static void createAny(){//advinha? função de adm.
+        if(LogIn.getCargo().equals("gerente")){
             System.out.println();
         }else{
             System.out.println("Acesso negado. Necessário cargo de gerente.");
         }
-    }
+    }*/
 }

@@ -7,5 +7,4 @@ id,usuario,email,senha,cargo
 6,gabriel,gabriel@usp.br,002,comum
 7,johnlennon,johnlennon@beatles.com,Yoko123,artista
 8,gui2,gui2@usp.br,gui2,comum
-9,Paul_McCartney,paulmccartney@beatles.com,John123,comum
-10,leno_brega,lenobrega@cuiaba.com,leno123,artista
+9,Paul_McCartney,paulmccartney@beatles.com,John123,artista

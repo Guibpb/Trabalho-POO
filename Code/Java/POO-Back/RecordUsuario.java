@@ -1,21 +1,31 @@
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class RecordUsuario {
-    public static void escreverArq(String dados) {
+    public void escreverArq(String dadosFormat) throws FileNotFoundException{
+
         try (FileWriter escreverArq = new FileWriter("Banco.csv", true)){
-            escreverArq.append(dados);
+            escreverArq.append(dadosFormat);//escreve no arquivo os dados formatados
             escreverArq.close();
-        } catch (IOException e) {
-            System.out.println("Erro! Arquivo não encontrado.");
+            InfoArquivo.infoArquivo(); //atualiza os dados no ArrayList
+        } 
+        
+        catch (IOException e) {
+            //erro de arquivo nao encontrado
         }
     }
-    public static void substituirArq(String dados) {
+
+    public static void substituirArq(String dadosBrutos) throws FileNotFoundException{
+
         try (FileWriter escreverArq = new FileWriter("Banco.csv")){
-            escreverArq.append(dados);
-            escreverArq.close();
-        } catch (IOException e) {
-            System.out.println("Erro! Arquivo não encontrado.");
+            escreverArq.append(dadosBrutos); //substitui no arquivo
+            escreverArq.close();    
+            InfoArquivo.infoArquivo();//Atualiza os dados no Arraylist 
+        } 
+        
+        catch (IOException e) {
+            //erro de arquivo nao encontrado
         }
     }
 }
