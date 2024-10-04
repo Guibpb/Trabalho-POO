@@ -63,10 +63,13 @@ public class telaRegistroController {
             tipoUsuario = "comum";
         }
 
-        if (true) {
+        int confirmacao = SignUp.signUp(nomeRegistro.getText(), emailRegistro.getText(), senhaRegistro.getText(), tipoUsuario);
+        if (confirmacao == 0) {
             this.nomeRegistro.clear();
             this.senhaRegistro.clear();
             this.emailRegistro.clear();
+            this.checkBoxArtista.setSelected(false);
+            this.checkBoxUsuario.setSelected(false);
         } else {
             System.out.println("Error");
         }

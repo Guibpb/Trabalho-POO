@@ -1,57 +1,33 @@
 package com.example.trabalho;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class RecordUsuario {
-    public RecordUsuario() {
-    }
+    public void escreverArq(String dadosFormat) throws FileNotFoundException{
 
-    public static void escreverArq(String dados) {
-        try {
-            FileWriter escreverArq = new FileWriter("Banco.csv", true);
-
-            try {
-                escreverArq.append(dados);
-                escreverArq.close();
-            } catch (Throwable var5) {
-                try {
-                    escreverArq.close();
-                } catch (Throwable var4) {
-                    var5.addSuppressed(var4);
-                }
-
-                throw var5;
-            }
-
+        try (FileWriter escreverArq = new FileWriter("Banco.csv", true)){
+            escreverArq.append(dadosFormat);//escreve no arquivo os dados formatados
             escreverArq.close();
-        } catch (IOException var6) {
-            System.out.println("Erro! Arquivo não encontrado.");
+            InfoArquivo.infoArquivo(); //atualiza os dados no ArrayList
         }
 
+        catch (IOException e) {
+            //erro de arquivo nao encontrado
+        }
     }
 
-    public static void substituirArq(String dados) {
-        try {
-            FileWriter escreverArq = new FileWriter("Banco.csv");
+    public static void substituirArq(String dadosBrutos) throws FileNotFoundException{
 
-            try {
-                escreverArq.append(dados);
-                escreverArq.close();
-            } catch (Throwable var5) {
-                try {
-                    escreverArq.close();
-                } catch (Throwable var4) {
-                    var5.addSuppressed(var4);
-                }
-
-                throw var5;
-            }
-
+        try (FileWriter escreverArq = new FileWriter("Banco.csv")){
+            escreverArq.append(dadosBrutos); //substitui no arquivo
             escreverArq.close();
-        } catch (IOException var6) {
-            System.out.println("Erro! Arquivo não encontrado.");
+            InfoArquivo.infoArquivo();//Atualiza os dados no Arraylist
         }
 
+        catch (IOException e) {
+            //erro de arquivo nao encontrado
+        }
     }
 }
