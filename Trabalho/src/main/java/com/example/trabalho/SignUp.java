@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class SignUp {
-    private static int idAtual;
+    private static int idAtual = 0;
 
     public static void setId(int idNovo){
         idAtual = idNovo;
@@ -15,7 +15,7 @@ public class SignUp {
 
         if(numErro == 0){
             RecordUsuario novoUsuario = new RecordUsuario();
-            String dados = String.format("\n%s,%s,%s,%s", usuario, email, senha, tipoUsuario);
+            String dados = String.format("\n%d,%s,%s,%s,%s", idAtual, usuario, email, senha, tipoUsuario);
             novoUsuario.escreverArq(dados);
         }else{
             //mensagem de erro

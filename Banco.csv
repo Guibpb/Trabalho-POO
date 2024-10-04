@@ -1,3 +1,4 @@
-Daniel,danielbrito@hotmail.com,123,comum
-Daniel,daniel@hotmail.com,123,comum
-Daniel,danielbrito@hotmail.com,123,comum
+id,usuario,email,senha,cargo
+1,admin,admin@usp.br,123,gerente
+0,Daniel,daniel@usp.br,123,comum
+0,guilherme,guilherme@gmail.com,123,comum
