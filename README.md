@@ -1,1 +1,0 @@
-# Parte  dedicada ao FrontEnd
