@@ -6,10 +6,10 @@ public class LogIn {
 
     private static void logIn(String usuarioInput, String senhaInput) throws FileNotFoundException{ 
         int i = 0;
-        int tamanho = InfoArquivo.getMatrixSize();
         String usuarioInfo[];
 
         ArrayList<String[]> matrixInfo = InfoArquivo.getMatrixInfo();
+        int tamanho = InfoArquivo.getMatrixSize();
         
         while(i < tamanho){ //loop para iterar por todos os usuarios
             usuarioInfo = matrixInfo.get(i);

@@ -2,18 +2,16 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class SignUp {
-    private static int idAtual;
+    private static int idAtual = 0;
 
-    public static void setId(int idNovo){
-        idAtual = idNovo;
-    }
+    public static void setId(int idNovo){ idAtual = idNovo; }
 
-    public int signUp(String usuario, String email, String senha, String tipoUsuario) throws FileNotFoundException {
+    public int signUp(String usuario, String email, String senha, String cargo) throws FileNotFoundException {
         int numErro = compararUsuarios(usuario, email, senha, senha);
 
         if(numErro == 0){
             RecordUsuario novoUsuario = new RecordUsuario();
-            String dados = String.format("\n%d,%s,%s,%s,%s", idAtual, usuario, email, senha, tipoUsuario);
+            String dados = String.format("\n%d,%s,%s,%s,%s", idAtual, usuario, email, senha, cargo);
             novoUsuario.escreverArq(dados);
         }else{
             //mensagem de erro
@@ -24,8 +22,8 @@ public class SignUp {
 
     private static int compararUsuarios(String usuario, String email, String senha, String senha2) throws FileNotFoundException{
         int i = 0;
+        ArrayList<String[]> matrixInfo = InfoArquivo.infoArquivo();
         int tamanho = InfoArquivo.getMatrixSize();
-        ArrayList<String[]> matrixInfo = InfoArquivo.getMatrixInfo();
 
         while(i < tamanho) {
             String usuarioInfo[] = matrixInfo.get(i);
@@ -58,7 +56,6 @@ public class SignUp {
                 int novoId = Integer.parseInt(usuarioInfo[0]) + 1;
                 SignUp.setId(novoId);
             } catch (NumberFormatException e) {
-                SignUp.setId(1);
                 //mensagem de erro de formatação de inteiro
             }
 
