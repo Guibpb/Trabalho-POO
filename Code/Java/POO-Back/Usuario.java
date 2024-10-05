@@ -11,6 +11,16 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public String getDadosFormat(){
+        String dados = String.format("\n%s,%s,%s,%s", id, nome, email, senha);
+        return dados;
+    }
+
+    public String[] getDados(){
+        String dados[] = {id,nome,email,senha};
+        return dados;
+    }
+
     public String getId(){return this.id;}
 
     public String getNome(){return this.nome;}
@@ -18,4 +28,6 @@ public class Usuario {
     public String getEmail(){return this.email;}
 
     public String getSenha(){return this.senha;}
+
+    public String getCargo(){return "";}
 }

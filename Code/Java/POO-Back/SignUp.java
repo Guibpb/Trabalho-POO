@@ -13,7 +13,7 @@ public class SignUp {
 
         if(numErro == 0){
             RecordUsuario novoUsuario = new RecordUsuario();
-            String dados = String.format("\n%s,%s,%s,%s", usuario, email, senha, tipoUsuario);
+            String dados = String.format("\n%d,%s,%s,%s,%s", idAtual, usuario, email, senha, tipoUsuario);
             novoUsuario.escreverArq(dados);
         }else{
             //mensagem de erro
@@ -58,6 +58,7 @@ public class SignUp {
                 int novoId = Integer.parseInt(usuarioInfo[0]) + 1;
                 SignUp.setId(novoId);
             } catch (NumberFormatException e) {
+                SignUp.setId(1);
                 //mensagem de erro de formatação de inteiro
             }
 

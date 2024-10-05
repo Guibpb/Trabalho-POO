@@ -1,5 +1,5 @@
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class ModificarUsuario {
 
@@ -14,15 +14,13 @@ public class ModificarUsuario {
     }
 
     public static void deleteSelf() throws FileNotFoundException{
-        modUsuario(LogIn.getDadosFormat(), ""); 
+        modUsuario(LogIn.usuario.getDadosFormat(), ""); 
         /*apaga os dados no arquivo substituindo por uma String vazia */
     }
     
-    public static void editSelf() throws FileNotFoundException{//função comum
-        String dados = LogIn.getDadosFormat();
-        String usuarioInfo[] = LogIn.getDados();
-        System.out.println("Qual dado você desejaria mudar? (somente usuario/senha)");
-        String input = Main.scan.nextLine();
+    /*public static void editSelf() throws FileNotFoundException{//função comum
+        String dados = LogIn.usuario.getDadosFormat();
+        String usuarioInfo[] = LogIn.usuario.getDados();
 
         switch (input){
             case "usuario":
@@ -30,9 +28,9 @@ public class ModificarUsuario {
             case "senha":
 
         }
-    }
+    }*/
 
-    private static void verUsuarios() throws FileNotFoundException{//feature de adm
+    /*private static void verUsuarios() throws FileNotFoundException{//feature de adm
         try(Scanner scanArquivo = new Scanner(Main.arquivo)){
             @SuppressWarnings("unused")
             String firstlineuseless = scanArquivo.nextLine();
@@ -45,36 +43,31 @@ public class ModificarUsuario {
                 System.out.println("Nome de usuário: " + usuarioInfo[1] + "\nE-mail: " + usuarioInfo[2] + "\nCargo: " + usuarioInfo[4] + "\n");   
             }
         }
-    }
+    }*/
 
-    public static void deleteAny() throws FileNotFoundException{ //função de ADM
-        if(LogIn.getCargo().equals("gerente")){
-            System.out.print("Deseja ver a lista de usuários? (y/n): ");
-            if(Main.scan.nextLine().equals("y"))
-                verUsuarios();
-
-            System.out.print("Insira o usuário a ser deletado: ");
-            String input = Main.scan.nextLine();      
+    public static boolean deleteAny(String usuarioASerDeletado) throws FileNotFoundException{ //função de ADM
+        if(LogIn.usuario.getCargo().equals("gerente")){
+            int i = 0;
+            int tamanho = InfoArquivo.getMatrixSize();
+            ArrayList<String[]> matrixInfo = InfoArquivo.getMatrixInfo();  
             
-            try(Scanner scanArquivo = new Scanner(Main.arquivo)){
-                String usuarioInfo[];
-                boolean run = true;
+            while(i < tamanho){
+                String usuarioInfo[] = matrixInfo.get(i);
 
-                while(scanArquivo.hasNextLine() && run){
-                    String inputInfo = scanArquivo.nextLine();
-                    usuarioInfo = inputInfo.split(",");
-
-                    if(usuarioInfo[1].equals(input)){
-                        run = false;
-                        String dados = String.format("\n%s,%s,%s,%s,%s", usuarioInfo[0], usuarioInfo[1], usuarioInfo[2], usuarioInfo[3], usuarioInfo[4]);
-                        modUsuario(dados, "");
-                        System.out.println("Usuário " + input + " deletado com sucesso.");
-                    }
+                if(usuarioInfo[1].equals(usuarioASerDeletado)){
+                    String dados = String.format("\n%s,%s,%s,%s,%s", usuarioInfo[0], usuarioInfo[1], usuarioInfo[2], usuarioInfo[3], usuarioInfo[4]);
+                    modUsuario(dados, "");
+                    return true;
                 }
             }
-        }else{
-            System.out.println("Acesso negado. Necessário cargo de gerente.");
         }
+        
+        else{
+            return false;
+            //mensagem de erro
+        }
+
+        return false; //deu errado por algum motivo
     }
 
     /*public static void createAny(){//advinha? função de adm.

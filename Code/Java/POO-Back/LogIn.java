@@ -2,6 +2,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class LogIn {
+    public static Usuario usuario;
+
     private static void logIn(String usuarioInput, String senhaInput) throws FileNotFoundException{ 
         int i = 0;
         int tamanho = InfoArquivo.getMatrixSize();
@@ -16,7 +18,7 @@ public class LogIn {
             String senhaAtual = usuarioInfo[3];
 
             if((usuarioInput.equals(usuarioAtual) || usuarioInput.equals(emailAtual)) && senhaInput.equals(senhaAtual)){
-                Main.defUsuario(usuarioInfo); //cria o objeto com os dados do user na Main
+                defUsuario(usuarioInfo); //cria o objeto com os dados do user na Main
                 //retorna true ou false se conseguir fazer o login
                   
                 break; //termina o loop quando o usuario certo é encontrado
@@ -24,5 +26,31 @@ public class LogIn {
                 
             i++;
         }
+    }
+
+    public static boolean defUsuario(String [] usuarioInfo){
+        boolean success = false;
+
+        switch (usuarioInfo[4]) {
+            case "comum" -> {
+                usuario = new UsuarioComum(usuarioInfo[0], usuarioInfo[1], usuarioInfo[2], usuarioInfo[3]);
+                success = true;
+            }
+
+            case "gerente" -> {
+                usuario = new UsuarioAdm(usuarioInfo[0], usuarioInfo[1], usuarioInfo[2], usuarioInfo[3]);
+                success = true;
+            }
+
+            case "artista" -> {
+                usuario = new UsuarioArtista(usuarioInfo[0], usuarioInfo[1], usuarioInfo[2], usuarioInfo[3]);
+                success = true;
+            }
+
+            default -> {//mensagem de erro nao conseguiu achar o cargo
+            }
+        }
+
+        return success; //retorna se conseguiu fazer o login
     }
 }
