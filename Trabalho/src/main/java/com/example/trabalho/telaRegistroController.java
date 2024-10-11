@@ -26,6 +26,12 @@ public class telaRegistroController {
     @FXML
     private CheckBox checkBoxArtista;
 
+
+    @FXML
+    public void initialize() {
+        checkBoxUsuario.setSelected(true);
+    }
+
     public telaRegistroController() {
     }
 
@@ -42,6 +48,8 @@ public class telaRegistroController {
     public void checkBoxUsuarioClicked(ActionEvent e) {
         if (this.checkBoxUsuario.isSelected()) {
             this.checkBoxArtista.setSelected(false);
+        }else{
+            this.checkBoxArtista.setSelected(true);
         }
 
     }
@@ -50,6 +58,8 @@ public class telaRegistroController {
     public void checkBoxArtistaClicked(ActionEvent e) {
         if (this.checkBoxArtista.isSelected()) {
             this.checkBoxUsuario.setSelected(false);
+        }else{
+            this.checkBoxUsuario.setSelected(true);
         }
 
     }

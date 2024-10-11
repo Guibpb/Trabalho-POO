@@ -7,42 +7,35 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="862.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.telaRegistroController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="862.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.telaRegistroController">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#903ca1" height="625.0" stroke="#1b1a1a" strokeType="INSIDE" width="423.0" />
-        <Label alignment="CENTER" layoutX="42.0" layoutY="156.0" prefHeight="120.0" prefWidth="341.0" text="USPfy" textFill="#393636">
+        <Label fx:id="titleRegister" alignment="CENTER" layoutX="263.0" layoutY="14.0" prefHeight="147.0" prefWidth="336.0" text="USPfy" textFill="#ac12c7">
             <font>
-                <Font name="Trebuchet MS" size="88.0" />
+                <Font name="Noto Sans Inscriptional Pahlavi Regular" size="88.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="449.0" layoutY="33.0" prefHeight="65.0" prefWidth="379.0" text="TELA DE REGISTRO" textFill="WHITE">
-            <font>
-                <Font name="Tw Cen MT Condensed" size="49.0" />
-            </font>
-        </Label>
-        <Label alignment="CENTER" layoutX="117.0" layoutY="301.0" prefHeight="87.0" prefWidth="192.0" text="Conecte-se já" textFill="WHITE">
+        <Label alignment="CENTER" layoutX="349.0" layoutY="150.0" prefHeight="33.0" prefWidth="163.0" text="Conecte-se já" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="22.0" />
             </font>
         </Label>
-        <TextField id="userRegistro" fx:id="nomeRegistro" layoutX="584.0" layoutY="152.0" prefHeight="33.0" prefWidth="232.0">
+        <TextField id="userRegistro" fx:id="nomeRegistro" layoutX="314.0" layoutY="229.0" prefHeight="33.0" prefWidth="232.0">
             <font>
                 <Font size="15.0" />
             </font></TextField>
-        <Label layoutX="474.0" layoutY="132.0" prefHeight="73.0" prefWidth="86.0" text="Nome:" textFill="WHITE">
+        <Label layoutX="228.0" layoutY="229.0" prefHeight="42.0" prefWidth="67.0" text="Nome:" textFill="#fff7fd">
             <font>
-                <Font name="Ebrima" size="20.0" />
+                <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <Label layoutX="477.0" layoutY="276.0" prefHeight="73.0" prefWidth="86.0" text="Senha:" textFill="WHITE">
+        <Label layoutX="225.0" layoutY="340.0" prefHeight="40.0" prefWidth="75.0" text="Senha:" textFill="WHITE">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
-        <Button fx:id="registrarBtn" layoutX="552.0" layoutY="456.0" mnemonicParsing="false" onAction="#registrar" prefHeight="57.0" prefWidth="173.0" stylesheets="@styleTelaRegistro.css" text="Registrar" textFill="#fff1f1">
+        <Button fx:id="registrarBtn" layoutX="343.0" layoutY="488.0" mnemonicParsing="false" onAction="#registrar" prefHeight="57.0" prefWidth="173.0" stylesheets="@styleTelaRegistro.css" text="Registrar" textFill="#fff1f1">
             <font>
                 <Font name="Lato Regular" size="29.0" />
             </font>
@@ -50,7 +43,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="loginBtn" layoutX="540.0" layoutY="572.0" mnemonicParsing="false" onAction="#switchToSceneLogin" prefHeight="39.0" prefWidth="198.0" stylesheets="@styleTelaRegistro.css" text="Já tenho uma conta" textFill="WHITE">
+        <Button fx:id="loginBtn" layoutX="333.0" layoutY="573.0" mnemonicParsing="false" onAction="#switchToSceneLogin" prefHeight="34.0" prefWidth="195.0" stylesheets="@styleTelaRegistro.css" text="Já tenho uma conta" textFill="WHITE">
             <font>
                 <Font size="18.0" />
             </font>
@@ -58,27 +51,27 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Label layoutX="474.0" layoutY="203.0" prefHeight="73.0" prefWidth="86.0" text="E-mail:" textFill="WHITE">
+        <Label layoutX="225.0" layoutY="283.0" prefHeight="41.0" prefWidth="74.0" text="E-mail:" textFill="WHITE">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
-        <TextField fx:id="emailRegistro" layoutX="584.0" layoutY="223.0" prefHeight="33.0" prefWidth="232.0">
+        <TextField fx:id="emailRegistro" layoutX="314.0" layoutY="287.0" prefHeight="33.0" prefWidth="232.0">
             <font>
                 <Font size="15.0" />
             </font>
         </TextField>
-        <CheckBox fx:id="checkBoxUsuario" layoutX="513.0" layoutY="388.0" mnemonicParsing="false" onAction="#checkBoxUsuarioClicked" text="Usuário" textFill="WHITE">
+        <CheckBox fx:id="checkBoxUsuario" layoutX="283.0" layoutY="414.0" mnemonicParsing="false" onAction="#checkBoxUsuarioClicked" text="Usuário" textFill="WHITE">
             <font>
                 <Font size="18.0" />
             </font>
         </CheckBox>
-        <CheckBox fx:id="checkBoxArtista" layoutX="696.0" layoutY="388.0" mnemonicParsing="false" onAction="#checkBoxArtistaClicked" text="Artista" textFill="#fffbfb">
+        <CheckBox fx:id="checkBoxArtista" layoutX="503.0" layoutY="414.0" mnemonicParsing="false" onAction="#checkBoxArtistaClicked" text="Artista" textFill="#fffbfb">
             <font>
                 <Font size="18.0" />
             </font>
         </CheckBox>
-        <PasswordField fx:id="senhaRegistro" layoutX="584.0" layoutY="296.0" prefHeight="33.0" prefWidth="232.0">
+        <PasswordField fx:id="senhaRegistro" layoutX="315.0" layoutY="343.0" prefHeight="33.0" prefWidth="232.0">
             <font>
                 <Font size="15.0" />
             </font>
