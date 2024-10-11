@@ -11,21 +11,15 @@ public class InfoArquivo {
     private static ArrayList<String[]> matrixInfo = new ArrayList<>(); //array list dividida
     private static String dadosBrutos = ""; //String com tudo
 
-    public static String getDadosBrutos(){
-        return dadosBrutos;
-    }
+    public static String getDadosBrutos(){ return dadosBrutos; }
 
-    public static ArrayList<String[]> getMatrixInfo(){
-        return matrixInfo;
-    }
+    public static ArrayList <String[]> getMatrixInfo() { return matrixInfo; }
 
-    public static int getMatrixSize(){
-        return matrixInfo.size();
-    }
+    public static int getMatrixSize(){ return matrixInfo.size(); }
 
-    public static void infoArquivo()throws FileNotFoundException{
+    public static ArrayList <String[]> infoArquivo()throws FileNotFoundException{
 
-        try(Scanner scanArquivo = new Scanner(Main.arquivo)){
+        try(Scanner scanArquivo = new Scanner(App.arquivo)){
             dadosBrutos = scanArquivo.nextLine() + '\n';
 
             while(scanArquivo.hasNextLine()){ //loop para percorrer cada linha do arquivo
@@ -37,5 +31,7 @@ public class InfoArquivo {
                 matrixInfo.add(usuarioInfo); //append no arraylist
             }
         }
+
+        return matrixInfo;
     }
 }
