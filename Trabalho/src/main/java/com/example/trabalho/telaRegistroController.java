@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -20,7 +22,9 @@ public class telaRegistroController {
     @FXML
     private TextField emailRegistro;
     @FXML
-    private TextField senhaRegistro;
+    private PasswordField senhaRegistro;
+    @FXML
+    private PasswordField senhaConfirmacao;
     @FXML
     private CheckBox checkBoxUsuario;
     @FXML
@@ -77,12 +81,44 @@ public class telaRegistroController {
         if (confirmacao == 0) {
             this.nomeRegistro.clear();
             this.senhaRegistro.clear();
+            this.senhaConfirmacao.clear();
             this.emailRegistro.clear();
             this.checkBoxArtista.setSelected(false);
             this.checkBoxUsuario.setSelected(false);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Registro");
+            alert.setContentText("Seu registro foi efetuado com sucesso!");
+            alert.setHeaderText(null);
+            alert.showAndWait();
         } else {
-            System.out.println("Error");
-        }
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText(null);
 
+            switch (confirmacao){
+                case 1:
+                    alert.setContentText("Esse nome de usuário já existe");
+                    alert.showAndWait();
+                    break;
+                case 2:
+                    alert.setContentText("Esse e-mail já está cadastrado");
+                    alert.showAndWait();
+                    break;
+                case 3:
+                    alert.setContentText("Formato de usuário inválido");
+                    alert.showAndWait();
+                    break;
+                case 4:
+                    alert.setContentText("Formato de e-mail inválido");
+                    alert.showAndWait();
+                    break;
+                case 5:
+                    alert.setContentText("Formato de senha inválido");
+                    alert.showAndWait();
+                case 6:
+                    alert.setContentText("Senhas incompatíveis");
+                    alert.showAndWait();
+            }
+        }
     }
 }
