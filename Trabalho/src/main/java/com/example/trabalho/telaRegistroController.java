@@ -31,14 +31,13 @@ public class telaRegistroController {
     private CheckBox checkBoxArtista;
 
 
+    //funcao para inicializar uma checkbox como true, para impedir erros
     @FXML
     public void initialize() {
         checkBoxUsuario.setSelected(true);
     }
 
-    public telaRegistroController() {
-    }
-
+    //funcao para mudar para a tela de login
     @FXML
     public void switchToSceneLogin(ActionEvent e) throws IOException {
         this.root = (Parent)FXMLLoader.load(this.getClass().getResource("telaLogin.fxml"));
@@ -48,6 +47,7 @@ public class telaRegistroController {
         this.stage.show();
     }
 
+    //funcao para impedir que o usuario selecione duas checkbox simultaneamente ou nenhuma
     @FXML
     public void checkBoxUsuarioClicked(ActionEvent e) {
         if (this.checkBoxUsuario.isSelected()) {
@@ -58,6 +58,7 @@ public class telaRegistroController {
 
     }
 
+    //funcao para impedir que o usuario selecione duas checkbox simultaneamente ou nenhuma
     @FXML
     public void checkBoxArtistaClicked(ActionEvent e) {
         if (this.checkBoxArtista.isSelected()) {
@@ -70,6 +71,8 @@ public class telaRegistroController {
 
     @FXML
     public void registrar(ActionEvent e) throws IOException {
+
+        //checkbox para definir o tipo de usuário (obrigatoriamente um estará escolhido para evitar erros)
         String tipoUsuario = "";
         if (this.checkBoxArtista.isSelected()) {
             tipoUsuario = "artista";
@@ -77,6 +80,7 @@ public class telaRegistroController {
             tipoUsuario = "comum";
         }
 
+        //funcao chamada para efetuar o registro ou retornar possíveis erros
         int confirmacao = SignUp.signUp(nomeRegistro.getText(), emailRegistro.getText(), senhaRegistro.getText(), tipoUsuario);
         if (confirmacao == 0) {
             this.nomeRegistro.clear();
@@ -95,6 +99,7 @@ public class telaRegistroController {
             alert.setTitle("Erro");
             alert.setHeaderText(null);
 
+            //pop-ups de erros que podem ocorrer no registro
             switch (confirmacao){
                 case 1:
                     alert.setContentText("Esse nome de usuário já existe");

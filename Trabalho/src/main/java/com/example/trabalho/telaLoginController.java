@@ -14,15 +14,22 @@ public class telaLoginController {
     private Scene scene;
     private Parent root;
 
-    public telaLoginController() {
-    }
-
     @FXML
     public void switchToSceneRegister(ActionEvent e) throws IOException {
         this.root = (Parent)FXMLLoader.load(this.getClass().getResource("telaRegistro.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
+        this.stage.show();
+    }
+
+    @FXML
+    public void loginSucesso(ActionEvent e) throws IOException {
+        this.root = (Parent)FXMLLoader.load(this.getClass().getResource("telaPrincipal.fxml"));
+        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        this.scene = new Scene(this.root);
+        this.stage.setScene(this.scene);
+        this.stage.centerOnScreen();
         this.stage.show();
     }
 }

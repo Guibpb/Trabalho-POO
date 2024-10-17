@@ -29,7 +29,7 @@
                 <Font name="Tahoma Bold" size="20.0" />
             </font>
         </Label>
-        <Button fx:id="loginBtn" layoutX="345.0" layoutY="460.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="173.0" stylesheets="@styleTelaLogin.css" text="Login" textFill="WHITE">
+        <Button fx:id="loginBtn" layoutX="345.0" layoutY="460.0" mnemonicParsing="false" onAction="#loginSucesso" prefHeight="57.0" prefWidth="173.0" stylesheets="@styleTelaLogin.css" text="Login" textFill="WHITE">
             <font>
                 <Font name="Lato Regular" size="29.0" />
             </font>
