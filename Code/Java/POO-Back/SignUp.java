@@ -2,41 +2,41 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class SignUp {
-    private static int idAtual = 0;
+    private static int currentId = 0;
 
-    public static void setId(int idNovo){ idAtual = idNovo; }
+    public static void setId(int newId){ currentId = newId; }
 
-    public int signUp(String usuario, String email, String senha, String cargo, String senha2) throws FileNotFoundException {
-        int numErro = compararUsuarios(usuario, email, senha, senha2);
+    public int signUp(String user, String email, String password, String role, String password2) throws FileNotFoundException {
+        int errorNum = userCompare(user, email, password, password2);
 
-        if(numErro == 0){
-            RecordUsuario novoUsuario = new RecordUsuario();
-            String dados = String.format("\n%d,%s,%s,%s,%s", idAtual, usuario, email, senha, cargo);
-            novoUsuario.escreverArq(dados);
+        if(errorNum == 0){
+            RecordUser newUser = new RecordUser();
+            String data = String.format("\n%d,%s,%s,%s,%s", currentId, user, email, password, role);
+            newUser.writeInFile(data);
         }else{
             //mensagem de erro
         }
 
-        return numErro;
+        return errorNum;
     }
 
-    private static int compararUsuarios(String usuario, String email, String senha, String senha2) throws FileNotFoundException{
+    private static int userCompare(String user, String email, String password, String password2) throws FileNotFoundException{
         int i = 0;
-        ArrayList<String[]> matrixInfo = InfoArquivo.infoArquivo();
-        int tamanho = InfoArquivo.getMatrixSize();
+        ArrayList<String[]> matrixInfo = FileInfo.fileInfo();
+        int size = FileInfo.getMatrixSize();
 
-        while(i < tamanho) {
-            String usuarioInfo[] = matrixInfo.get(i);
+        while(i < size) {
+            String userInfo[] = matrixInfo.get(i);
 
-            if(usuarioInfo[1].equals(usuario)){
+            if(userInfo[1].equals(user)){
                 return 1; //Esse usuário já existe.
             }
                      
-            if(usuarioInfo[2].equals(email)){
+            if(userInfo[2].equals(email)){
                 return 2; //Esse e-mail já está cadastrado.
             }
                      
-            if(usuario.contains(",")){
+            if(user.contains(",")){
                 return 3; //Formato de usuário inválido(caracter inapropriado).
             }
                      
@@ -44,17 +44,17 @@ public class SignUp {
                 return 4; //Formato de e-mail inválido
             }
      
-            if(senha.contains(",")){
-                return 5; //Formato de senha inválida(caracter inapropriado)
+            if(password.contains(",")){
+                return 5; //Formato de password inválida(caracter inapropriado)
             }
                      
-            if(!senha.equals(senha2)){
-                return 6; //Senhas incompatíveis
+            if(!password.equals(password2)){
+                return 6; //passwords incompatíveis
             }
 
             try {
-                int novoId = Integer.parseInt(usuarioInfo[0]) + 1;
-                SignUp.setId(novoId);
+                int newId = Integer.parseInt(userInfo[0]) + 1;
+                SignUp.setId(newId);
             } catch (NumberFormatException e) {
                 //mensagem de erro de formatação de inteiro
             }

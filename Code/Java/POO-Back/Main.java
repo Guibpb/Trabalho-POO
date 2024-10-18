@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main{
-    public static File arquivo = new File("Banco.csv");
+    public static File file = new File("Banco.csv");
     public static Scanner scan = new Scanner(System.in);
     
 

@@ -2,23 +2,23 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class LogIn {
-    public static Usuario usuario;
+    public static User user;
 
-    private static void logIn(String usuarioInput, String senhaInput) throws FileNotFoundException{ 
+    private static void logIn(String userInput, String passwordInput) throws FileNotFoundException{ 
         int i = 0;
-        String usuarioInfo[];
+        String userInfo[];
 
-        ArrayList<String[]> matrixInfo = InfoArquivo.getMatrixInfo();
-        int tamanho = InfoArquivo.getMatrixSize();
+        ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo();
+        int size = FileInfo.getMatrixSize();
         
-        while(i < tamanho){ //loop para iterar por todos os usuarios
-            usuarioInfo = matrixInfo.get(i);
-            String usuarioAtual = usuarioInfo[1];
-            String emailAtual = usuarioInfo[2];
-            String senhaAtual = usuarioInfo[3];
+        while(i < size){ //loop para iterar por todos os usuarios
+            userInfo = matrixInfo.get(i);
+            String currentUser = userInfo[1];
+            String currentEmail = userInfo[2];
+            String currentPassword = userInfo[3];
 
-            if((usuarioInput.equals(usuarioAtual) || usuarioInput.equals(emailAtual)) && senhaInput.equals(senhaAtual)){
-                defUsuario(usuarioInfo); //cria o objeto com os dados do user na Main
+            if((userInput.equals(currentUser) || userInput.equals(currentEmail)) && passwordInput.equals(currentPassword)){
+                defUser(userInfo); //cria o objeto com os dados do user na Main
                 //retorna true ou false se conseguir fazer o login
                   
                 break; //termina o loop quando o usuario certo é encontrado
@@ -28,22 +28,22 @@ public class LogIn {
         }
     }
 
-    public static boolean defUsuario(String [] usuarioInfo){
+    public static boolean defUser(String [] userInfo){
         boolean success = false;
 
-        switch (usuarioInfo[4]) {
+        switch (userInfo[4]) {
             case "comum" -> {
-                usuario = new UsuarioComum(usuarioInfo[0], usuarioInfo[1], usuarioInfo[2], usuarioInfo[3]);
+                user = new PublicUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
                 success = true;
             }
 
             case "gerente" -> {
-                usuario = new UsuarioAdm(usuarioInfo[0], usuarioInfo[1], usuarioInfo[2], usuarioInfo[3]);
+                user = new AdmUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
                 success = true;
             }
 
             case "artista" -> {
-                usuario = new UsuarioArtista(usuarioInfo[0], usuarioInfo[1], usuarioInfo[2], usuarioInfo[3]);
+                user = new ArtistUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
                 success = true;
             }
 
