@@ -6,8 +6,8 @@ public class SignUp {
 
     public static void setId(int idNovo){ idAtual = idNovo; }
 
-    public int signUp(String usuario, String email, String senha, String cargo) throws FileNotFoundException {
-        int numErro = compararUsuarios(usuario, email, senha, senha);
+    public int signUp(String usuario, String email, String senha, String cargo, String senha2) throws FileNotFoundException {
+        int numErro = compararUsuarios(usuario, email, senha, senha2);
 
         if(numErro == 0){
             RecordUsuario novoUsuario = new RecordUsuario();
