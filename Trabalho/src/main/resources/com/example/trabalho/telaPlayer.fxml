@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.telaPlayerController">
+   <children>
+      <Pane layoutY="653.0" prefHeight="149.0" prefWidth="1200.0" style="-fx-background-color: #f0f0f0;">
+         <children>
+            <Button layoutX="550.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnClick" prefHeight="76.0" prefWidth="106.0" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fx:id="imgButton" fitHeight="67.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagens/btnPlay.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
