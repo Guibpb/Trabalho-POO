@@ -20,9 +20,15 @@ public class App extends Application {
         FXMLLoader fxmlLoaderLogin = new FXMLLoader(App.class.getResource("loginScreen.fxml"));
         Scene sceneLogin = new Scene((Parent)fxmlLoaderLogin.load());
         sceneLogin.getStylesheets().add(this.getClass().getResource("styleLoginScreen.css").toExternalForm());
-        FXMLLoader fxmlLoaderRegistro = new FXMLLoader(App.class.getResource("registerScreen.fxml"));
-        Scene sceneRegistro = new Scene((Parent)fxmlLoaderRegistro.load());
-        sceneRegistro.getStylesheets().add(this.getClass().getResource("styleRegisterScreen.css").toExternalForm());
+
+        FXMLLoader fxmlLoaderRegister = new FXMLLoader(App.class.getResource("registerScreen.fxml"));
+        Scene sceneRegister = new Scene((Parent) fxmlLoaderRegister.load());
+        sceneRegister.getStylesheets().add(this.getClass().getResource("styleRegisterScreen.css").toExternalForm());
+
+        FXMLLoader fxmlLoaderPlaylist = new FXMLLoader(App.class.getResource("playlistScreen.fxml"));
+        Scene scenePlaylist = new Scene((Parent)fxmlLoaderPlaylist.load());
+        scenePlaylist.getStylesheets().add(this.getClass().getResource("stylePlaylistScreen.css").toExternalForm());
+
         stage.setResizable(false);
         stage.setTitle("USPfy");
         stage.setScene(sceneLogin);

@@ -1,0 +1,7 @@
+
+#songBox{
+    -fx-background-color: none;
+}
+#songBox:hover{
+    -fx-background-color: #616161;
+}
