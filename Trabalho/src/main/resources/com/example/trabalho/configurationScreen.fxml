@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.configurationScreenController">
+   <ImageView fitHeight="220.0" fitWidth="188.0" layoutX="177.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@imagens/imgIcon.png" />
+   </ImageView>
+   <Label alignment="CENTER" layoutX="429.0" layoutY="86.0" prefHeight="96.0" prefWidth="342.0" text="Nome do usuário" textFill="#f2f2f2">
+      <font>
+         <Font size="30.0" />
+      </font>
+   </Label>
+   <TextField focusTraversable="false" layoutX="459.0" layoutY="254.0" prefHeight="41.0" prefWidth="282.0" promptText="Nome do Usuário" />
+   <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToInitialScreen" prefHeight="49.0" prefWidth="54.0" style="-fx-background-color: none;">
+      <graphic>
+         <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@imagens/goBack.png" />
+         </ImageView>
+      </graphic>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </Button>
+   <Label layoutX="459.0" layoutY="227.0" prefHeight="30.0" prefWidth="150.0" text="Username" textFill="WHITE">
+      <font>
+         <Font size="19.0" />
+      </font>
+   </Label>
+   <PasswordField layoutX="459.0" layoutY="430.0" prefHeight="41.0" prefWidth="282.0" />
+   <Label layoutX="459.0" layoutY="400.0" prefHeight="30.0" prefWidth="150.0" text="Nova senha" textFill="WHITE">
+      <font>
+         <Font size="19.0" />
+      </font>
+   </Label>
+   <PasswordField layoutX="459.0" layoutY="517.0" prefHeight="41.0" prefWidth="282.0" />
+   <Label layoutX="459.0" layoutY="487.0" prefHeight="30.0" prefWidth="240.0" text="Confirmar nova senha" textFill="WHITE">
+      <font>
+         <Font size="19.0" />
+      </font>
+   </Label>
+   <Button layoutX="621.0" layoutY="629.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="150.0" style="-fx-background-color: #4fe831;" text="Aplicar mudanças">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
+   <Button layoutX="417.0" layoutY="629.0" mnemonicParsing="false" onAction="#switchToInitialScreen" prefHeight="41.0" prefWidth="117.0" style="-fx-background-color: #f51d3a;" text="Descartar">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
+   <TextField focusTraversable="false" layoutX="459.0" layoutY="336.0" prefHeight="41.0" prefWidth="282.0" promptText="emaildousuario@usp.br" />
+   <Label layoutX="459.0" layoutY="306.0" prefHeight="30.0" prefWidth="150.0" text="E-mail" textFill="WHITE">
+      <font>
+         <Font size="19.0" />
+      </font>
+   </Label>
+</AnchorPane>

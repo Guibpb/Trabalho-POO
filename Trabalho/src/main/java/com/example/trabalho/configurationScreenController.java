@@ -6,31 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class playlistScreenController {
+public class configurationScreenController {
     private Stage stage;
     private Parent root;
     private Scene scene;
-
-    private Image btnPauseImage = new Image(getClass().getResourceAsStream("/com/example/trabalho/imagens/btnPause.png"));
-    private Image btnPlayImage = new Image(getClass().getResourceAsStream("/com/example/trabalho/imagens/btnPlay.png"));
-
-    @FXML
-    private ImageView imgButton;
-
-    @FXML
-    public void btnPlayerOnClick(ActionEvent event) {
-        if(imgButton.getImage().equals(btnPlayImage)) {
-            imgButton.setImage(btnPauseImage);
-        }else{
-            imgButton.setImage(btnPlayImage);
-        }
-    }
 
     @FXML
     public void switchToInitialScreen(ActionEvent e) throws IOException {
@@ -40,5 +23,4 @@ public class playlistScreenController {
         this.stage.setScene(this.scene);
         this.stage.show();
     }
-
 }
