@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.telaPlayerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.playlistScreenController">
    <children>
       <Pane layoutY="653.0" prefHeight="149.0" prefWidth="1200.0" style="-fx-background-color: #f0f0f0;">
          <children>
-            <Button layoutX="547.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnPlayerClick" prefHeight="76.0" prefWidth="106.0" style="-fx-background-color: none;">
+            <Button layoutX="547.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnPlayerOnClick" prefHeight="76.0" prefWidth="106.0" style="-fx-background-color: none;">
                <graphic>
                   <ImageView fx:id="imgButton" fitHeight="67.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -136,7 +136,7 @@
          <graphic>
             <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@imagens/pesquisa.png" />
+                  <Image url="@imagens/searchIcon.png" />
                </image>
             </ImageView>
          </graphic>

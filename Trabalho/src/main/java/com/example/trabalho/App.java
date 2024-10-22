@@ -17,12 +17,12 @@ public class App extends Application {
     }
 
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoaderLogin = new FXMLLoader(App.class.getResource("telaLogin.fxml"));
+        FXMLLoader fxmlLoaderLogin = new FXMLLoader(App.class.getResource("loginScreen.fxml"));
         Scene sceneLogin = new Scene((Parent)fxmlLoaderLogin.load());
-        sceneLogin.getStylesheets().add(this.getClass().getResource("styleTelaLogin.css").toExternalForm());
-        FXMLLoader fxmlLoaderRegistro = new FXMLLoader(App.class.getResource("telaRegistro.fxml"));
+        sceneLogin.getStylesheets().add(this.getClass().getResource("styleLoginScreen.css").toExternalForm());
+        FXMLLoader fxmlLoaderRegistro = new FXMLLoader(App.class.getResource("registerScreen.fxml"));
         Scene sceneRegistro = new Scene((Parent)fxmlLoaderRegistro.load());
-        sceneRegistro.getStylesheets().add(this.getClass().getResource("styleTelaRegistro.css").toExternalForm());
+        sceneRegistro.getStylesheets().add(this.getClass().getResource("styleRegisterScreen.css").toExternalForm());
         stage.setResizable(false);
         stage.setTitle("USPfy");
         stage.setScene(sceneLogin);

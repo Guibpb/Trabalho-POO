@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="862.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.telaLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="862.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.loginScreenController">
     <children>
         <Label alignment="CENTER" layoutX="261.0" layoutY="32.0" prefHeight="84.0" prefWidth="341.0" text="USPfy" textFill="#ac12c7">
             <font>
@@ -29,7 +29,7 @@
                 <Font name="Tahoma Bold" size="20.0" />
             </font>
         </Label>
-        <Button fx:id="loginBtn" layoutX="345.0" layoutY="460.0" mnemonicParsing="false" onAction="#loginSucesso" prefHeight="57.0" prefWidth="173.0" stylesheets="@styleTelaLogin.css" text="Login" textFill="WHITE">
+        <Button fx:id="loginBtn" layoutX="345.0" layoutY="460.0" mnemonicParsing="false" onAction="#sucessLogin" prefHeight="57.0" prefWidth="173.0" stylesheets="@styleLoginScreen.css" text="Login" textFill="WHITE">
             <font>
                 <Font name="Lato Regular" size="29.0" />
             </font>
@@ -37,7 +37,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="registerBtn" layoutX="359.0" layoutY="573.0" mnemonicParsing="false" onAction="#switchToSceneRegister" prefHeight="31.0" prefWidth="144.0" stylesheets="@styleTelaLogin.css" text="Registre-se" textFill="WHITE">
+        <Button fx:id="registerBtn" layoutX="359.0" layoutY="573.0" mnemonicParsing="false" onAction="#switchToSceneRegister" prefHeight="31.0" prefWidth="144.0" stylesheets="@styleLoginScreen.css" text="Registre-se" textFill="WHITE">
             <font>
                 <Font name="Arial Rounded MT Bold" size="18.0" />
             </font>

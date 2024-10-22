@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.telaPrincipalController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.initialScreenController">
    <children>
       <Pane layoutX="1011.0" layoutY="14.0" prefHeight="39.0" prefWidth="167.0">
          <children>
@@ -41,7 +41,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="214.0" prefWidth="341.0" spacing="20.0">
                <children>
-                  <ImageView fx:id="top10" fitHeight="134.0" fitWidth="225.0" onMouseClicked="#trocarParaPlayer" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="top10" fitHeight="134.0" fitWidth="225.0" onMouseClicked="#switchToScenePlaylist" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@imagens/empty_image.jpg" />
                      </image>

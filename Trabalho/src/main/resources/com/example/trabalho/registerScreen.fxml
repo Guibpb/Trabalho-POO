@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="862.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.telaRegistroController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="862.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.registerScreenController">
     <children>
         <Label fx:id="titleRegister" alignment="CENTER" layoutX="263.0" layoutY="7.0" prefHeight="105.0" prefWidth="336.0" text="USPfy" textFill="#ac12c7">
             <font>
@@ -21,7 +21,7 @@
                 <Font name="System Bold" size="22.0" />
             </font>
         </Label>
-        <TextField id="userRegistro" fx:id="nomeRegistro" layoutX="316.0" layoutY="185.0" prefHeight="22.0" prefWidth="232.0">
+        <TextField id="userRegistro" fx:id="registerName" layoutX="316.0" layoutY="185.0" prefHeight="22.0" prefWidth="232.0">
             <font>
                 <Font name="Verdana" size="14.0" />
             </font></TextField>
@@ -30,7 +30,7 @@
                 <Font name="Tahoma Bold" size="16.0" />
             </font>
         </Label>
-        <Button fx:id="registrarBtn" layoutX="345.0" layoutY="496.0" mnemonicParsing="false" onAction="#registrar" prefHeight="57.0" prefWidth="173.0" stylesheets="@styleTelaRegistro.css" text="Registrar" textFill="WHITE">
+        <Button fx:id="registrarBtn" layoutX="345.0" layoutY="496.0" mnemonicParsing="false" onAction="#register" prefHeight="57.0" prefWidth="173.0" stylesheets="@styleRegisterScreen.css" text="Registrar" textFill="WHITE">
             <font>
                 <Font name="Lato Regular" size="29.0" />
             </font>
@@ -38,7 +38,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="loginBtn" layoutX="325.0" layoutY="577.0" mnemonicParsing="false" onAction="#switchToSceneLogin" prefHeight="34.0" prefWidth="210.0" stylesheets="@styleTelaRegistro.css" text="Já tenho uma conta" textFill="WHITE">
+        <Button fx:id="loginBtn" layoutX="325.0" layoutY="577.0" mnemonicParsing="false" onAction="#switchToSceneLogin" prefHeight="34.0" prefWidth="210.0" stylesheets="@styleRegisterScreen.css" text="Já tenho uma conta" textFill="WHITE">
             <font>
                 <Font name="Arial Rounded MT Bold" size="18.0" />
             </font>
@@ -51,22 +51,22 @@
                 <Font name="Tahoma Bold" size="16.0" />
             </font>
         </Label>
-        <TextField fx:id="emailRegistro" layoutX="316.0" layoutY="254.0" prefHeight="18.0" prefWidth="232.0">
+        <TextField fx:id="registerEmail" layoutX="316.0" layoutY="254.0" prefHeight="18.0" prefWidth="232.0">
             <font>
                 <Font name="Verdana" size="14.0" />
             </font>
         </TextField>
-        <CheckBox fx:id="checkBoxUsuario" layoutX="278.0" layoutY="442.0" mnemonicParsing="false" onAction="#checkBoxUsuarioClicked" text="Usuário" textFill="WHITE">
+        <CheckBox fx:id="userCheckbox" layoutX="278.0" layoutY="442.0" mnemonicParsing="false" onAction="#userCheckboxOnClick" text="Usuário" textFill="WHITE">
             <font>
                 <Font size="18.0" />
             </font>
         </CheckBox>
-        <CheckBox fx:id="checkBoxArtista" layoutX="506.0" layoutY="442.0" mnemonicParsing="false" onAction="#checkBoxArtistaClicked" text="Artista" textFill="#fffbfb">
+        <CheckBox fx:id="artistCheckbox" layoutX="506.0" layoutY="442.0" mnemonicParsing="false" onAction="#artistCheckboxOnClick" text="Artista" textFill="#fffbfb">
             <font>
                 <Font size="18.0" />
             </font>
         </CheckBox>
-        <PasswordField fx:id="senhaRegistro" layoutX="314.0" layoutY="319.0" prefHeight="9.0" prefWidth="232.0">
+        <PasswordField fx:id="registerPassword" layoutX="314.0" layoutY="319.0" prefHeight="9.0" prefWidth="232.0">
             <font>
                 <Font size="14.0" />
             </font>
@@ -76,7 +76,7 @@
             <Font name="Tahoma Bold" size="16.0" />
          </font>
       </Label>
-      <PasswordField fx:id="senhaConfirmacao" layoutX="314.0" layoutY="384.0" prefHeight="14.0" prefWidth="232.0">
+      <PasswordField fx:id="registerPasswordConfirm" layoutX="314.0" layoutY="384.0" prefHeight="14.0" prefWidth="232.0">
          <font>
             <Font size="14.0" />
          </font>

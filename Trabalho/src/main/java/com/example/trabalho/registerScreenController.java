@@ -13,34 +13,34 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class telaRegistroController {
+public class registerScreenController {
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
-    private TextField nomeRegistro;
+    private TextField registerName;
     @FXML
-    private TextField emailRegistro;
+    private TextField registerEmail;
     @FXML
-    private PasswordField senhaRegistro;
+    private PasswordField registerPassword;
     @FXML
-    private PasswordField senhaConfirmacao;
+    private PasswordField registerPasswordConfirm;
     @FXML
-    private CheckBox checkBoxUsuario;
+    private CheckBox userCheckbox;
     @FXML
-    private CheckBox checkBoxArtista;
+    private CheckBox artistCheckbox;
 
 
     //funcao para inicializar uma checkbox como true, para impedir erros
     @FXML
     public void initialize() {
-        checkBoxUsuario.setSelected(true);
+        userCheckbox.setSelected(true);
     }
 
     //funcao para mudar para a tela de login
     @FXML
     public void switchToSceneLogin(ActionEvent e) throws IOException {
-        this.root = (Parent)FXMLLoader.load(this.getClass().getResource("telaLogin.fxml"));
+        this.root = (Parent)FXMLLoader.load(this.getClass().getResource("loginScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
@@ -49,46 +49,46 @@ public class telaRegistroController {
 
     //funcao para impedir que o usuario selecione duas checkbox simultaneamente ou nenhuma
     @FXML
-    public void checkBoxUsuarioClicked(ActionEvent e) {
-        if (this.checkBoxUsuario.isSelected()) {
-            this.checkBoxArtista.setSelected(false);
+    public void userCheckboxOnClick(ActionEvent e) {
+        if (this.userCheckbox.isSelected()) {
+            this.artistCheckbox.setSelected(false);
         }else{
-            this.checkBoxArtista.setSelected(true);
+            this.artistCheckbox.setSelected(true);
         }
 
     }
 
     //funcao para impedir que o usuario selecione duas checkbox simultaneamente ou nenhuma
     @FXML
-    public void checkBoxArtistaClicked(ActionEvent e) {
-        if (this.checkBoxArtista.isSelected()) {
-            this.checkBoxUsuario.setSelected(false);
+    public void artistCheckboxOnClick(ActionEvent e) {
+        if (this.artistCheckbox.isSelected()) {
+            this.userCheckbox.setSelected(false);
         }else{
-            this.checkBoxUsuario.setSelected(true);
+            this.userCheckbox.setSelected(true);
         }
 
     }
 
     @FXML
-    public void registrar(ActionEvent e) throws IOException {
+    public void register(ActionEvent e) throws IOException {
 
         //checkbox para definir o tipo de usuário (obrigatoriamente um estará escolhido para evitar erros)
         String tipoUsuario = "";
-        if (this.checkBoxArtista.isSelected()) {
+        if (this.artistCheckbox.isSelected()) {
             tipoUsuario = "artista";
         } else {
             tipoUsuario = "comum";
         }
 
         //funcao chamada para efetuar o registro ou retornar possíveis erros
-        int confirmacao = SignUp.signUp(nomeRegistro.getText(), emailRegistro.getText(), senhaRegistro.getText(), tipoUsuario);
+        int confirmacao = SignUp.signUp(registerName.getText(), registerEmail.getText(), registerPassword.getText(), tipoUsuario);
         if (confirmacao == 0) {
-            this.nomeRegistro.clear();
-            this.senhaRegistro.clear();
-            this.senhaConfirmacao.clear();
-            this.emailRegistro.clear();
-            this.checkBoxArtista.setSelected(false);
-            this.checkBoxUsuario.setSelected(false);
+            this.registerName.clear();
+            this.registerPassword.clear();
+            this.registerPasswordConfirm.clear();
+            this.registerEmail.clear();
+            this.artistCheckbox.setSelected(false);
+            this.userCheckbox.setSelected(false);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Registro");
             alert.setContentText("Seu registro foi efetuado com sucesso!");

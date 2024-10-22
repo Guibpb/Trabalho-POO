@@ -9,14 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class telaLoginController {
+public class loginScreenController {
     private Stage stage;
     private Scene scene;
     private Parent root;
 
     @FXML
     public void switchToSceneRegister(ActionEvent e) throws IOException {
-        this.root = (Parent)FXMLLoader.load(this.getClass().getResource("telaRegistro.fxml"));
+        this.root = (Parent)FXMLLoader.load(this.getClass().getResource("registerScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
@@ -24,8 +24,8 @@ public class telaLoginController {
     }
 
     @FXML
-    public void loginSucesso(ActionEvent e) throws IOException {
-        this.root = (Parent)FXMLLoader.load(this.getClass().getResource("telaPrincipal.fxml"));
+    public void sucessLogin(ActionEvent e) throws IOException {
+        this.root = (Parent)FXMLLoader.load(this.getClass().getResource("initialScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
