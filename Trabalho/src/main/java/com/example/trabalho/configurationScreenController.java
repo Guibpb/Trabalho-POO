@@ -50,13 +50,13 @@ public class configurationScreenController {
     @FXML
     public void editUsername(ActionEvent e) throws IOException {
         username.setEditable(true);
-        username.setOpacity(1);
+        username.setDisable(false);
     }
 
     @FXML
     public void editEmail(ActionEvent e) throws IOException {
         email.setEditable(true);
-        email.setOpacity(1);
+        email.setDisable(false);
     }
 
     @FXML
@@ -65,7 +65,7 @@ public class configurationScreenController {
         password.setText("");
         password.setEditable(true);
         passwordConfirm.setEditable(true);
-        password.setOpacity(1);
+        password.setDisable(false);
         passwordConfirm.setOpacity(1);
     }
 

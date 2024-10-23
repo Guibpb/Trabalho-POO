@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.configurationScreenController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.configurationScreenController">
    <ImageView id="userIcon" fx:id="userIcon" fitHeight="220.0" fitWidth="188.0" layoutX="177.0" layoutY="86.0" onMouseClicked="#editIcon" pickOnBounds="true" preserveRatio="true">
       <Image url="@imagens/imgIcon.png" />
       <cursor>
@@ -23,7 +23,7 @@
          <Font size="30.0" />
       </font>
    </Label>
-   <TextField fx:id="username" editable="false" focusTraversable="false" layoutX="459.0" layoutY="254.0" prefHeight="41.0" prefWidth="282.0" style="-fx-opacity: 0.6;" text="Nome do Usuario" />
+   <TextField fx:id="username" disable="true" editable="false" focusTraversable="false" layoutX="459.0" layoutY="254.0" prefHeight="41.0" prefWidth="282.0" text="Nome do Usuario" />
    <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToInitialScreen" prefHeight="49.0" prefWidth="54.0" style="-fx-background-color: none;">
       <graphic>
          <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
@@ -39,7 +39,7 @@
          <Font size="19.0" />
       </font>
    </Label>
-   <PasswordField fx:id="password" editable="false" layoutX="459.0" layoutY="430.0" prefHeight="41.0" prefWidth="282.0" style="-fx-opacity: 0.6;" text="Senha do usuario" />
+   <PasswordField fx:id="password" disable="true" editable="false" layoutX="459.0" layoutY="430.0" prefHeight="41.0" prefWidth="282.0" text="Senha do usuario" />
    <Label layoutX="459.0" layoutY="400.0" prefHeight="30.0" prefWidth="150.0" text="Senha" textFill="WHITE">
       <font>
          <Font size="19.0" />
@@ -53,7 +53,7 @@
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-   <TextField fx:id="email" editable="false" focusTraversable="false" layoutX="459.0" layoutY="344.0" prefHeight="41.0" prefWidth="282.0" style="-fx-opacity: 0.6;" text="emaildousuario@usp.br" />
+   <TextField fx:id="email" disable="true" editable="false" focusTraversable="false" layoutX="459.0" layoutY="344.0" prefHeight="41.0" prefWidth="282.0" text="emaildousuario@usp.br" />
    <Label layoutX="459.0" layoutY="319.0" prefHeight="30.0" prefWidth="150.0" text="E-mail" textFill="WHITE">
       <font>
          <Font size="19.0" />
@@ -106,7 +106,7 @@
    </Button>
    <Pane fx:id="confirmPasswordPane" layoutX="459.0" layoutY="479.0" prefHeight="77.0" prefWidth="284.0" visible="false">
       <children>
-         <PasswordField fx:id="passwordConfirm" editable="false" layoutY="34.0" prefHeight="41.0" prefWidth="282.0" style="-fx-opacity: 0.6;" />
+         <PasswordField fx:id="passwordConfirm" editable="false" layoutY="34.0" prefHeight="41.0" prefWidth="282.0" />
          <Label layoutY="6.0" prefHeight="32.0" prefWidth="283.0" text="Confirmar nova senha" textFill="WHITE">
             <font>
                <Font size="19.0" />
