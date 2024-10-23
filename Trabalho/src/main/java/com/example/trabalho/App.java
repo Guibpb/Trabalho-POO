@@ -29,6 +29,10 @@ public class App extends Application {
         Scene scenePlaylist = new Scene((Parent)fxmlLoaderPlaylist.load());
         scenePlaylist.getStylesheets().add(this.getClass().getResource("stylePlaylistScreen.css").toExternalForm());
 
+        FXMLLoader fxmlLoaderConfiguration = new FXMLLoader(App.class.getResource("configurationScreen.fxml"));
+        Scene sceneConfiguration= new Scene((Parent)fxmlLoaderConfiguration.load());
+        sceneConfiguration.getStylesheets().add(this.getClass().getResource("styleConfigurationScreen.css").toExternalForm());
+
         stage.setResizable(false);
         stage.setTitle("USPfy");
         stage.setScene(sceneLogin);

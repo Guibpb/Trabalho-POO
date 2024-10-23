@@ -1,0 +1,8 @@
+#userIcon{
+    -fx-opacity: 1;
+}
+
+#userIcon:hover{
+    -fx-opacity: 0.6;
+}
+
