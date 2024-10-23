@@ -8,7 +8,9 @@ public class Main{
     
 
     public static void main(String[] args) throws FileNotFoundException{
-        //nada pra testar aqui mlk kkkkk vaza
+        //ModifyUser.deleteAny("johnlennon"); // ta funcionando
+        LogIn.logIn("gui", "123");
+        ModifyUser.createAny("George Harrison", "George@beatles.com", "123", "123", "artista");
         scan.close();
     }
 }

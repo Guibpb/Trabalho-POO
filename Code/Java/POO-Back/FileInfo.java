@@ -11,7 +11,12 @@ public class FileInfo {
 
     public static String getRawData(){ return rawData; }
 
-    public static ArrayList <String[]> getMatrixInfo() { return matrixInfo; }
+    public static ArrayList <String[]> getMatrixInfo() throws FileNotFoundException{
+        if(matrixInfo.isEmpty())
+            return fileInfo();
+
+        return matrixInfo; 
+    }
 
     public static int getMatrixSize(){ return matrixInfo.size(); }
 

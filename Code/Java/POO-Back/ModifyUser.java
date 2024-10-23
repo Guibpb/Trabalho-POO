@@ -4,9 +4,6 @@ import java.util.ArrayList;
 public class ModifyUser {
 
     private static void modUser(String oldContent, String newContet) throws FileNotFoundException{
-        /*oldContent representa os data antigos e 
-         * newContet são os que substituirão eles*/
-
         String fileContent = FileInfo.getRawData();
         fileContent = fileContent.replace(oldContent,newContet);
 
@@ -18,32 +15,20 @@ public class ModifyUser {
         /*apaga os data no arquivo substituindo por uma String vazia */
     }
     
-    /*public static void editSelf() throws FileNotFoundException{//função comum
-        String data = LogIn.usuario.getdataFormat();
-        String userInfo[] = LogIn.usuario.getdata();
-
-        switch (input){
-            case "usuario":
-
-            case "senha":
-
+    public static void editSelf(String newName, String newEmail, String newPassword, String newPassword2, String newRole) throws FileNotFoundException{//função comum
+        int numErro = SignUp.userCompare(newName, newEmail, newPassword, newPassword2);
+        if(numErro != 0){
+            //mensagem de erro de acordo com o retorno
+            return;
         }
-    }*/
+            
+        String oldData = LogIn.user.getFormatData();
+        String oldUserInfo[] = LogIn.user.getData();
+        String newId = oldUserInfo[0];
 
-    /*private static void verUsuarios() throws FileNotFoundException{//feature de adm
-        try(Scanner scanArquivo = new Scanner(Main.arquivo)){
-            @SuppressWarnings("unused")
-            String firstlineuseless = scanArquivo.nextLine();
-
-            while(scanArquivo.hasNextLine()){ //pega somente o nome e o email dos user
-                String inputInfo = scanArquivo.nextLine();
-                String userInfo[] = inputInfo.split(",");
-
-                
-                System.out.println("Nome de usuário: " + userInfo[1] + "\nE-mail: " + userInfo[2] + "\nCargo: " + userInfo[4] + "\n");   
-            }
-        }
-    }*/
+        String newUserData = String.format("\n%s,%s,%s,%s,%s", newId, newName, newEmail, newPassword, newRole);
+        modUser(oldData, newUserData);
+    }
 
     public static boolean deleteAny(String userToBeDeleted) throws FileNotFoundException{ //função de ADM
         if(LogIn.user.getRole().equals("gerente")){
@@ -60,20 +45,17 @@ public class ModifyUser {
                 }
             }
         }
-        
-        else{
-            return false;
-            //mensagem de erro
-        }
 
-        return false; //deu errado por algum motivo
+        return false; //mensagem de erro
     }
 
-    /*public static void createAny(){//advinha? função de adm.
-        if(LogIn.getCargo().equals("gerente")){
-            System.out.println();
-        }else{
-            System.out.println("Acesso negado. Necessário cargo de gerente.");
+    public static boolean createAny(String name, String email, String password, String password2, String role) throws FileNotFoundException{
+        if(LogIn.user.getRole().equals("gerente")){
+            SignUp newUser = new SignUp();
+            newUser.signUp(name, email, password, password2, role);
+            return true;
         }
-    }*/
+
+        return false; //mensagem de erro de permissão
+    }
 }

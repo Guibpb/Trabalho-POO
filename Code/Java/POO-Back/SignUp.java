@@ -6,7 +6,7 @@ public class SignUp {
 
     public static void setId(int newId){ currentId = newId; }
 
-    public int signUp(String user, String email, String password, String role, String password2) throws FileNotFoundException {
+    public int signUp(String user, String email, String password, String password2, String role) throws FileNotFoundException {
         int errorNum = userCompare(user, email, password, password2);
 
         if(errorNum == 0){
@@ -20,9 +20,9 @@ public class SignUp {
         return errorNum;
     }
 
-    private static int userCompare(String user, String email, String password, String password2) throws FileNotFoundException{
+    public static int userCompare(String user, String email, String password, String password2) throws FileNotFoundException{
         int i = 0;
-        ArrayList<String[]> matrixInfo = FileInfo.fileInfo();
+        ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo();
         int size = FileInfo.getMatrixSize();
 
         while(i < size) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class LogIn {
     public static User user;
 
-    private static void logIn(String userInput, String passwordInput) throws FileNotFoundException{ 
+    public static void logIn(String userInput, String passwordInput) throws FileNotFoundException{ 
         int i = 0;
         String userInfo[];
 
