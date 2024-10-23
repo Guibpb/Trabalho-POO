@@ -4,6 +4,15 @@ public class User {
     protected String email;
     protected String password;
 
+    /**
+     * Classe que representa o usuário dentro de um aplicativo.
+     * @author Guilherme
+     * @param id
+     * @param name
+     * @param email
+     * @param password
+     */
+
     public User (String id, String name, String email, String password){
         this.id = id;
         this.name = name;
