@@ -146,7 +146,7 @@
       </GridPane>
       <Pane layoutY="187.0" prefHeight="373.0" prefWidth="90.0">
          <children>
-            <Button layoutX="12.0" layoutY="24.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="62.0" style="-fx-background-color: none;">
+            <Button layoutX="12.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToSceneFriends" prefHeight="46.0" prefWidth="62.0" style="-fx-background-color: none;">
                <graphic>
                   <ImageView fitHeight="48.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
