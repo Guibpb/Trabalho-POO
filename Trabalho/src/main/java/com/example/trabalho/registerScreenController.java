@@ -81,7 +81,7 @@ public class registerScreenController {
         }
 
         //funcao chamada para efetuar o registro ou retornar possíveis erros
-        int confirmacao = SignUp.signUp(registerName.getText(), registerEmail.getText(), registerPassword.getText(), tipoUsuario);
+        int confirmacao = SignUp.signUp(registerName.getText(), registerEmail.getText(), registerPassword.getText(), registerPasswordConfirm.getText(), tipoUsuario);
         if (confirmacao == 0) {
             this.registerName.clear();
             this.registerPassword.clear();

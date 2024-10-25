@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    public static File arquivo = new File("Banco.csv");
+    public static File file = new File("Banco.csv");
     public static Scanner scan;
 
     public App() {
