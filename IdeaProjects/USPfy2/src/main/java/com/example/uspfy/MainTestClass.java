@@ -15,8 +15,12 @@ public class MainTestClass {
         //teste
         List<String[]> temp;
         temp = MusicDatabase.getMusicCSVFile(CSVFile);
-        temp.get(1)[0] = "12";
+
         temp.get(2)[1] = "lil jon";
+
+        File testmusic = new File("Rap do Ban (Nanatsu no Taizai) _ Tauz RapTributo 50.mp3");
+        MusicOptions.uploadMusic(temp, "Tauz","Rap do Ban",testmusic);
+
         MusicDatabase.updateMusicCSVFile(temp);
 
 
