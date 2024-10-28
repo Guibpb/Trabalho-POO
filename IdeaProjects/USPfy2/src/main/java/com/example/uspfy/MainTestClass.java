@@ -8,22 +8,23 @@ import java.util.List;
 public class MainTestClass {
     public static void main(String[] args) {
 
-        File musicDirectory = new File("Musics");
         File CSVFile = new File("musics.csv");
-        File[] musicFiles = musicDirectory.listFiles();
 
         //teste
         List<String[]> temp;
         temp = MusicDatabase.getMusicCSVFile(CSVFile);
 
-        temp.get(2)[1] = "lil jon";
 
-        File testmusic = new File("Rap do Ban (Nanatsu no Taizai) _ Tauz RapTributo 50.mp3");
-        MusicOptions.uploadMusic(temp, "Tauz","Rap do Ban",testmusic);
+        //temp.get(1)[1] = "everest";
 
-        MusicDatabase.updateMusicCSVFile(temp);
+        File testmusic = new File("Rap do Dark Souls _ Tauz RapGame 33.mp3");
+        MusicOptions.uploadMusic(temp, "Tauz","Rap do Dark Souls","rap",testmusic);
+
+        //MusicOptions.editMusic(temp, "3", "funkdogoku","funk");
+
+        //MusicOptions.deleteMusic(temp, "7");
 
 
-
+        //MusicDatabase.updateMusicCSVFile(temp);
     }
 }

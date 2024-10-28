@@ -27,7 +27,7 @@ public class MusicDatabase {
         try {
             PrintWriter writer = new PrintWriter(new FileWriter("musics.csv"));
             for(String[] data : musicCSVFileList){
-                writer.printf("%s,%s,%s,%s,%s\n", data[0], data[1], data[2], data[3], data[4]);
+                writer.printf("%s,%s,%s,%s,%s,%s\n", data[0], data[1], data[2], data[3], data[4], data[5]);
             }
             writer.close();
         } catch (IOException e){

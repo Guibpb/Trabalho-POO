@@ -1,6 +1,4 @@
-songId,artistName,songName,songViews,fileName
-1,mikeon,rap do ban,12,rapdoban.mp3
-2,lil jon,hungry,203245,hungry.mp3
-3,gui,rap do nagato,0,rapnagato.mp3
-4,sde,rap meu,2,rapmeu.mp4
-5,Tauz,Rap do Ban,0,Rap do Ban (Nanatsu no Taizai) _ Tauz RapTributo 50.mp3
+ID,Artist,Name,Views,Genre,File
+1,everest,rap do minato,0,rap,rapminato.mp3
+3,goku,funkdogoku,0,funk,funkgoku.mp3
+4,Tauz,Rap do Dark Souls,0,rap,Rap do Dark Souls _ Tauz RapGame 33.mp3
