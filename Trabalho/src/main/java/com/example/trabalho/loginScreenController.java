@@ -45,7 +45,7 @@ public class loginScreenController {
             this.stage.centerOnScreen();
             this.stage.show();
         }else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login");
             alert.setContentText("Usuário ou senha incorretos");
             alert.setHeaderText(null);

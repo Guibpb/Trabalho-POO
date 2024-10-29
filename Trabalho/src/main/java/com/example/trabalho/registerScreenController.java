@@ -94,6 +94,7 @@ public class registerScreenController {
             alert.setContentText("Seu registro foi efetuado com sucesso!");
             alert.setHeaderText(null);
             alert.showAndWait();
+            switchToSceneLogin(e);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
