@@ -4,10 +4,11 @@ package com.example.uspfy;
 import java.io.File;
 import java.util.List;
 
-public class MainTestClass {
+public class MusicPlaylistTestMain {
     public static void main(String[] args) {
 
 
+        /* TESTE DE MUSIC DATABASE E MUSIC OPTIONS
         List<String[]> temp;
         temp = MusicDatabase.getMusicCSVFile();
 
@@ -23,5 +24,10 @@ public class MainTestClass {
         //teste de deletar
         //MusicOptions.deleteMusic(temp, testmusic);
 
+         */
+
+        //TESTE DE PLAYLIST DATABASE E PLAYLIST OPTIONS
+        List<List<String>> plTest = PlaylistDatabase.getPlaylistCSVFile();
+        PlaylistDatabase.updatePlaylistCSVFile(plTest);
     }
 }
