@@ -50,4 +50,16 @@ public class initialScreenController {
         this.stage.setScene(this.scene);
         this.stage.show();
     }
+
+    @FXML
+    public void switchToSceneCreatePlaylist(ActionEvent e) throws IOException {
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("createPlaylistScreen.fxml"));
+        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        this.scene = new Scene(this.root);
+        this.stage.setScene(this.scene);
+        this.stage.setWidth(600);
+        this.stage.setHeight(400);
+        this.stage.centerOnScreen();
+        this.stage.show();
+    }
 }

@@ -48,11 +48,17 @@
    <Button layoutX="623.0" layoutY="583.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="118.0" style="-fx-background-color: #4CAF50;" text="Aplicar" textFill="#1b1c1f">
       <cursor>
          <Cursor fx:constant="HAND" />
-      </cursor></Button>
+      </cursor>
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font></Button>
    <Button layoutX="459.0" layoutY="583.0" mnemonicParsing="false" onAction="#switchToInitialScreen" prefHeight="43.0" prefWidth="118.0" style="-fx-background-color: #F44336;" text="Descartar" textFill="#1b1c1f">
       <cursor>
          <Cursor fx:constant="HAND" />
-      </cursor></Button>
+      </cursor>
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font></Button>
    <TextField fx:id="email" disable="true" editable="false" focusTraversable="false" layoutX="459.0" layoutY="344.0" prefHeight="41.0" prefWidth="282.0" text="emaildousuario@usp.br" />
    <Label layoutX="459.0" layoutY="319.0" prefHeight="30.0" prefWidth="150.0" text="E-mail" textFill="WHITE">
       <font>

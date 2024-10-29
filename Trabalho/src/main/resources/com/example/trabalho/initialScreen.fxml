@@ -116,7 +116,7 @@
       </Button>
       <ScrollPane layoutX="110.0" layoutY="168.0" style="-fx-background-color: #1b1c1f;">
          <content>
-            <VBox prefHeight="204.0" prefWidth="978.0" style="-fx-background-color: #1b1c1f;">
+            <VBox alignment="CENTER" prefHeight="270.0" prefWidth="978.0" spacing="30.0" style="-fx-background-color: #1b1c1f;">
                <children>
                   <HBox alignment="CENTER" prefHeight="204.0" prefWidth="958.0" spacing="10.0">
                      <children>
@@ -171,6 +171,15 @@
                               </Label>
                            </children>
                         </Pane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#switchToSceneCreatePlaylist" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #62f576;" text="Criar nova playlist">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
                      </children>
                   </HBox>
                </children>
