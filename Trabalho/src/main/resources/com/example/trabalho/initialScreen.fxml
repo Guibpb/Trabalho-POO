@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.initialScreenController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.initialScreenController">
    <children>
       <Pane layoutX="934.0" layoutY="14.0" prefHeight="39.0" prefWidth="252.0">
          <children>
@@ -114,11 +115,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ScrollPane layoutX="110.0" layoutY="168.0" style="-fx-background-color: #1b1c1f;">
+      <ScrollPane layoutX="138.0" layoutY="168.0" style="-fx-background-color: #1b1c1f;">
          <content>
-            <VBox alignment="CENTER" prefHeight="270.0" prefWidth="978.0" spacing="30.0" style="-fx-background-color: #1b1c1f;">
+            <VBox alignment="CENTER" spacing="30.0" style="-fx-background-color: #1b1c1f;">
                <children>
-                  <HBox alignment="CENTER" prefHeight="204.0" prefWidth="958.0" spacing="10.0">
+                  <HBox alignment="CENTER" spacing="10.0">
                      <children>
                         <Pane>
                            <children>
@@ -173,9 +174,9 @@
                         </Pane>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#switchToSceneCreatePlaylist" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #62f576;" text="Criar nova playlist">
+                        <Button mnemonicParsing="false" onAction="#switchToSceneCreatePlaylist" prefHeight="46.0" prefWidth="157.0" style="-fx-background-color: #62f576;" text="Criar nova playlist">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -185,6 +186,9 @@
                </children>
             </VBox>
          </content>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
       </ScrollPane>
    </children>
 </AnchorPane>

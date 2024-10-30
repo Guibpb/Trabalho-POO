@@ -6,8 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +25,10 @@ public class playlistScreenController {
 
     @FXML
     private ImageView imgButton;
+    @FXML
+    private Slider durationSlider;
+    @FXML
+    private ProgressBar durationProgressBar;
 
     @FXML
     public void btnPlayerOnClick(ActionEvent event) {
@@ -39,6 +46,13 @@ public class playlistScreenController {
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
         this.stage.show();
+    }
+
+    @FXML
+    public void sliderClcik(MouseEvent e) {
+        double progress = durationSlider.getValue();
+        System.out.println(progress);
+        durationProgressBar.setProgress(progress/100);
     }
 
 }

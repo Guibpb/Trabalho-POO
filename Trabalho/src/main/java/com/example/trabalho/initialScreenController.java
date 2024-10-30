@@ -1,5 +1,6 @@
 package com.example.trabalho;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,8 +58,11 @@ public class initialScreenController {
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
-        this.stage.setWidth(600);
-        this.stage.setHeight(400);
+        Platform.runLater(() -> {
+            this.stage.setWidth(600);
+            this.stage.setHeight(400);
+            this.stage.sizeToScene();
+        });
         this.stage.centerOnScreen();
         this.stage.show();
     }

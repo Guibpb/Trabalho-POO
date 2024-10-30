@@ -1,5 +1,6 @@
 package com.example.trabalho;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,16 +16,18 @@ public class createPlaylistScreenController{
     private Parent root;
     private Scene scene;
 
-    @FXML
+    @FXML //Função para voltar para a tela inicial
     public void goBack(ActionEvent e) throws IOException {
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("initialScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
-        this.stage.setWidth(1200);
-        this.stage.setHeight(800);
+        Platform.runLater(() -> {
+            this.stage.setWidth(1200);
+            this.stage.setHeight(800);
+            this.stage.sizeToScene();
+        });;
         this.stage.centerOnScreen();
         this.stage.show();
     }
-
 }

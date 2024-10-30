@@ -1,6 +1,8 @@
 package com.example.trabalho;
 
 import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,8 +42,11 @@ public class loginScreenController {
             this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
             this.scene = new Scene(this.root);
             this.stage.setScene(this.scene);
-            this.stage.setWidth(1200);
-            this.stage.setHeight(800);
+            Platform.runLater(() -> {
+                this.stage.setWidth(1200);
+                this.stage.setHeight(800);
+                this.stage.sizeToScene();
+            });
             this.stage.centerOnScreen();
             this.stage.show();
         }else{

@@ -4,3 +4,15 @@
 #songBox:hover{
     -fx-background-color: #616161;
 }
+.slider .track {
+    -fx-background-color: none; /* Cor da trilha */
+}
+
+.slider .thumb {
+    -fx-background-color: #0b0b0b; /* Cor do polegar */
+}
+
+
+
+
+
