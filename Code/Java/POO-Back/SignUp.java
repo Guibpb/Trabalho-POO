@@ -1,17 +1,42 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * Classe que representa a ação de registrar uma nova conta.
+ * @author Guilherme
+ */
+
 public class SignUp {
     private static int currentId = 0;
 
     public static void setId(int newId){ currentId = newId; }
 
-    public int signUp(String user, String email, String password, String password2, String role) throws FileNotFoundException {
+    /**Método realiza o registro de uma conta com dados válidos, 
+     * escreve no arquivo e constrói o objeto específico da classe User.
+     * <p>
+     * Após a construção do objeto, utiliza um método específico dele para receber 
+     * as informações formatadas em uma string específica para registrar no arquivo.
+     * 
+     * @author Guilherme
+     * @param user
+     * @param email
+     * @param password
+     * @param password2
+     * @param role
+     * @return Sucesso na ação.
+     * @throws FileNotFoundException
+     */
+
+    public static int signUp(String user, String email, String password, String password2, String role) throws FileNotFoundException {
         int errorNum = userCompare(user, email, password, password2);
 
         if(errorNum == 0){
+            String id = Integer.toString(currentId);
+            String userInfo[] = {id, user, email, password, role};
+            LogIn.defUser(userInfo);
+
             RecordUser newUser = new RecordUser();
-            String data = String.format("\n%d,%s,%s,%s,%s", currentId, user, email, password, role);
+            String data = LogIn.user.getFormatData();
             newUser.writeInFile(data);
         }else{
             //mensagem de erro
@@ -20,8 +45,18 @@ public class SignUp {
         return errorNum;
     }
 
+    /**Compara e valida as informações da conta a ser registrada.
+     * @author Guilherme
+     * @param user
+     * @param email
+     * @param password
+     * @param password2
+     * @return Número de erro específico.
+     * @throws FileNotFoundException
+     */
+
     public static int userCompare(String user, String email, String password, String password2) throws FileNotFoundException{
-        int i = 0;
+        int i = 0, newId;
         ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo();
         int size = FileInfo.getMatrixSize();
 
@@ -53,7 +88,7 @@ public class SignUp {
             }
 
             try {
-                int newId = Integer.parseInt(userInfo[0]) + 1;
+                newId = Integer.parseInt(userInfo[0]) + 1;
                 SignUp.setId(newId);
             } catch (NumberFormatException e) {
                 //mensagem de erro de formatação de inteiro

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class LogIn {
     public static User user;
 
-    public static void logIn(String userInput, String passwordInput) throws FileNotFoundException{ 
+    public static boolean logIn(String userInput, String passwordInput) throws FileNotFoundException{ 
         int i = 0;
         String userInfo[];
 
@@ -18,14 +18,13 @@ public class LogIn {
             String currentPassword = userInfo[3];
 
             if((userInput.equals(currentUser) || userInput.equals(currentEmail)) && passwordInput.equals(currentPassword)){
-                defUser(userInfo); //cria o objeto com os dados do user na Main
+                return defUser(userInfo); //cria o objeto com os dados do user na Main
                 //retorna true ou false se conseguir fazer o login
-                  
-                break; //termina o loop quando o usuario certo é encontrado
             }
                 
             i++;
         }
+        return false;
     }
 
     public static boolean defUser(String [] userInfo){
