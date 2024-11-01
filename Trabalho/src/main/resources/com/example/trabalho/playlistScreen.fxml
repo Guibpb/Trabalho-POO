@@ -43,7 +43,8 @@
                         <Image url="@imagens/volumeIcon.png" />
                      </image>
                   </ImageView>
-                  <Slider layoutX="63.0" layoutY="15.0" prefHeight="15.0" prefWidth="160.0" stylesheets="@stylePlaylistScreen.css" value="75.0" />
+                  <ProgressBar fx:id="volumeProgressBar" layoutX="63.0" layoutY="13.0" prefHeight="20.0" prefWidth="160.0" progress="0.5" />
+                  <Slider fx:id="volumeSlider" layoutX="63.0" layoutY="15.0" onMouseReleased="#volumeSliderClcik" prefHeight="15.0" prefWidth="160.0" style="-fx-background-color: none;" stylesheets="@stylePlaylistScreen.css" value="50.0" />
                </children>
             </Pane>
             <Pane layoutX="395.0" layoutY="12.0" prefHeight="107.0" prefWidth="411.0">
@@ -75,8 +76,8 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ProgressBar fx:id="durationProgressBar" layoutX="34.0" layoutY="84.0" prefHeight="20.0" prefWidth="345.0" progress="0.0" />
-                  <Slider fx:id="durationSlider" layoutX="34.0" layoutY="86.0" onMouseReleased="#sliderClcik" prefHeight="15.0" prefWidth="345.0" stylesheets="@stylePlaylistScreen.css" />
+                  <ProgressBar fx:id="durationProgressBar" layoutX="34.0" layoutY="83.0" prefHeight="20.0" prefWidth="340.0" progress="0.0" />
+                  <Slider fx:id="durationSlider" layoutX="28.0" layoutY="85.0" onMouseReleased="#durationSliderClcik" prefHeight="15.0" prefWidth="345.0" stylesheets="@stylePlaylistScreen.css" />
                </children>
             </Pane>
          </children>
@@ -89,24 +90,24 @@
       <Label alignment="CENTER" layoutX="383.0" layoutY="90.0" prefHeight="25.0" prefWidth="148.0" text="Nome do dono" textFill="WHITE" />
       <VBox layoutX="283.0" layoutY="142.0" prefHeight="488.0" prefWidth="706.0">
          <children>
-            <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
+            <Pane id="songBox" onMouseClicked="#musicClick" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
                <children>
-                  <ImageView fitHeight="56.0" fitWidth="60.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagens/empty_image.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" layoutX="101.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="371.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Autor" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="469.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Artista" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" layoutX="610.0" layoutY="19.0" prefHeight="46.0" prefWidth="74.0" text="00:00" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="283.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Gênero" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -115,22 +116,22 @@
             </Pane>
             <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
                <children>
-                  <ImageView fitHeight="56.0" fitWidth="60.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagens/empty_image.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" layoutX="101.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="371.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Autor" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="469.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Artista" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" layoutX="610.0" layoutY="19.0" prefHeight="46.0" prefWidth="74.0" text="00:00" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="283.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Gênero" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -139,22 +140,22 @@
             </Pane>
             <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
                <children>
-                  <ImageView fitHeight="56.0" fitWidth="60.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagens/empty_image.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" layoutX="101.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="371.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Autor" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="469.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Artista" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" layoutX="610.0" layoutY="19.0" prefHeight="46.0" prefWidth="74.0" text="00:00" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="283.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Gênero" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -163,22 +164,22 @@
             </Pane>
             <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
                <children>
-                  <ImageView fitHeight="56.0" fitWidth="60.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagens/empty_image.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" layoutX="101.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="371.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Autor" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="469.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Artista" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" layoutX="610.0" layoutY="19.0" prefHeight="46.0" prefWidth="74.0" text="00:00" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="283.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Gênero" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
