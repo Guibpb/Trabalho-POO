@@ -3,9 +3,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class RecordUser {
-    public void writeInFile(String formatData) throws FileNotFoundException{
-
-        try (FileWriter writeInFile = new FileWriter("Banco.csv", true)){
+    public void writeInFile(String formatData, String fileName) throws FileNotFoundException{
+        try (FileWriter writeInFile = new FileWriter(fileName, true)){
             writeInFile.append(formatData);//escreve no arquivo os dados formatados
             writeInFile.close();
             FileInfo.fileInfo(); //atualiza os dados no ArrayList

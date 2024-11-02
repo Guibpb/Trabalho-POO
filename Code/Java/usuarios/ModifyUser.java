@@ -51,8 +51,7 @@ public class ModifyUser {
 
     public static boolean createAny(String name, String email, String password, String password2, String role) throws FileNotFoundException{
         if(LogIn.user.getRole().equals("gerente")){
-            SignUp newUser = new SignUp();
-            newUser.signUp(name, email, password, password2, role);
+            SignUp.signUp(name, email, password, password2, role);
             return true;
         }
 

@@ -6,12 +6,16 @@
  * @param email
  * @param password
  */
+import java.io.File;
+import java.io.FileNotFoundException;
 
-public class User {
+public class User implements Followable{
     protected String id;
     protected String name;
     protected String email;
     protected String password;
+    private final String FILE_NAME = String.format("User%sFriends.csv", id);
+    public File userFile = new File(FILE_NAME);
 
     public User (String id, String name, String email, String password){
         this.id = id;
@@ -47,4 +51,16 @@ public class User {
     public String getPassword(){return this.password;}
 
     public String getRole(){return "";}
+
+    public boolean followUser(String userFollowing, String userToBeFollowed, String idUserToBeFollowed) throws FileNotFoundException{
+        RecordUser newFriend = new RecordUser();
+        String formatData = String.format("\n%s,%s,",userToBeFollowed, idUserToBeFollowed);
+        newFriend.writeInFile(formatData, FILE_NAME);
+        return false;
+    }
+
+    public boolean unfollowUser(String userUnfollowing, String userToBeUnfollowed){
+        //;
+        return false;
+    }
 }

@@ -1,4 +1,4 @@
-public class AdmUser extends User implements Commandable{
+public class AdmUser extends User implements Commandable, Addable{
     public AdmUser(String id, String name, String email, String password){
         super(id, name, email, password);
     }
@@ -21,10 +21,13 @@ public class AdmUser extends User implements Commandable{
         return data;
     }
 
-    public boolean deleteAny(){\\};
-    public boolean createAny(){\\};
-    public boolean seeAllUsers(){\\};
-    public boolean seeAllArtists(){\\};
-    public boolean seeAllMusics(){\\};
-    public boolean seeAllPlaylists(){\\};
+    public boolean deleteAny(){return false;}
+    public boolean createAny(){return false;}
+    public boolean seeAllUsers(){return false;}
+    public boolean seeAllArtists(){return false;}
+    public boolean seeAllMusics(){return false;}
+    public boolean seeAllPlaylists(){return false;}
+    public boolean generateTop10Playlist(String a){return false;}
+    public boolean deleteMusic(){return false;}
+    public boolean registerNewMusic(){return false;}
 }

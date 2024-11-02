@@ -6,7 +6,6 @@ public interface Commandable {
     boolean seeAllArtists();
     boolean seeAllMusics();
     boolean seeAllPlaylists();
-
+    boolean generateTop10Playlist(String a);
     //GERAR RELATORIOS ESTATISTICOS SOBRE DADOS DE USUARIOS
-    
 }

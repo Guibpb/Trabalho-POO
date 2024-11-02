@@ -37,7 +37,7 @@ public class SignUp {
 
             RecordUser newUser = new RecordUser();
             String data = LogIn.user.getFormatData();
-            newUser.writeInFile(data);
+            newUser.writeInFile(data, "Banco.csv");
         }else{
             //mensagem de erro
         }
