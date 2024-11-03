@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.createPlaylistScreenController">
    <children>
       <TextField layoutX="139.0" layoutY="104.0" prefHeight="48.0" prefWidth="322.0" promptText="Nome da playlist">
@@ -35,12 +34,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <RadioButton layoutX="139.0" layoutY="177.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Público" textFill="#ebebeb">
+      <RadioButton fx:id="publicRadioBtn" layoutX="139.0" layoutY="177.0" mnemonicParsing="false" onAction="#publicRadioBtnOnClick" prefHeight="27.0" prefWidth="101.0" text="Público" textFill="#ebebeb">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="360.0" layoutY="177.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Privado" textFill="#ebebeb">
+      <RadioButton fx:id="privateRadioBtn" layoutX="360.0" layoutY="177.0" mnemonicParsing="false" onAction="#privateRadioBtnOnClick" prefHeight="27.0" prefWidth="101.0" text="Privado" textFill="#ebebeb">
          <font>
             <Font size="18.0" />
          </font>

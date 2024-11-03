@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TrabalhoPOO.iml" filepath="$PROJECT_DIR$/.idea/TrabalhoPOO.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../Downloads/javafx-sdk-23/lib/lib.iml" filepath="$PROJECT_DIR$/../Downloads/javafx-sdk-23/lib/lib.iml" />
     </modules>
   </component>
 </project>

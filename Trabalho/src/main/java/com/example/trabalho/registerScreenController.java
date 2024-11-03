@@ -55,7 +55,6 @@ public class registerScreenController {
         }else{
             this.artistCheckbox.setSelected(true);
         }
-
     }
 
     //funcao para impedir que o usuario selecione duas checkbox simultaneamente ou nenhuma
@@ -66,7 +65,6 @@ public class registerScreenController {
         }else{
             this.userCheckbox.setSelected(true);
         }
-
     }
 
     @FXML

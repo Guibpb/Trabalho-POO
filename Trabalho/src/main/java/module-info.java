@@ -3,6 +3,7 @@ module com.example.trabalho {
     requires javafx.fxml;
     requires java.desktop;
     requires javafx.swt;
+    requires javafx.media;
 
 
     opens com.example.trabalho to javafx.fxml;

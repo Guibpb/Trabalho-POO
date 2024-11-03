@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.playlistScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.playlistScreenController">
    <children>
       <Pane id="songBox" layoutY="671.0" prefHeight="129.0" prefWidth="1200.0" style="-fx-background-color: #e3e3e3;">
          <children>
@@ -44,7 +44,10 @@
                      </image>
                   </ImageView>
                   <ProgressBar fx:id="volumeProgressBar" layoutX="63.0" layoutY="13.0" prefHeight="20.0" prefWidth="160.0" progress="0.5" />
-                  <Slider fx:id="volumeSlider" layoutX="63.0" layoutY="15.0" onMouseReleased="#volumeSliderClcik" prefHeight="15.0" prefWidth="160.0" style="-fx-background-color: none;" stylesheets="@stylePlaylistScreen.css" value="50.0" />
+                  <Slider fx:id="volumeSlider" layoutX="63.0" layoutY="15.0" onMouseReleased="#volumeSliderClcik" prefHeight="15.0" prefWidth="160.0" style="-fx-background-color: none;" stylesheets="@stylePlaylistScreen.css" value="50.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Slider>
                </children>
             </Pane>
             <Pane layoutX="395.0" layoutY="12.0" prefHeight="107.0" prefWidth="411.0">
@@ -57,8 +60,11 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button layoutX="259.0" layoutY="-6.0" mnemonicParsing="false" onAction="#btnPlayerOnClick" prefHeight="76.0" prefWidth="106.0" style="-fx-background-color: none;">
+                  <Button layoutX="259.0" layoutY="-6.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="106.0" style="-fx-background-color: none;">
                      <graphic>
                         <ImageView fx:id="imgButton1" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -66,8 +72,11 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button layoutX="47.0" layoutY="-6.0" mnemonicParsing="false" onAction="#btnPlayerOnClick" prefHeight="76.0" prefWidth="106.0" style="-fx-background-color: none;">
+                  <Button layoutX="47.0" layoutY="-6.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="106.0" style="-fx-background-color: none;">
                      <graphic>
                         <ImageView fx:id="imgButton2" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -75,9 +84,15 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <ProgressBar fx:id="durationProgressBar" layoutX="34.0" layoutY="83.0" prefHeight="20.0" prefWidth="340.0" progress="0.0" />
-                  <Slider fx:id="durationSlider" layoutX="28.0" layoutY="85.0" onMouseReleased="#durationSliderClcik" prefHeight="15.0" prefWidth="345.0" stylesheets="@stylePlaylistScreen.css" />
+                  <Slider fx:id="durationSlider" layoutX="28.0" layoutY="85.0" onMouseReleased="#durationSliderClcik" prefHeight="15.0" prefWidth="345.0" stylesheets="@stylePlaylistScreen.css">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Slider>
                </children>
             </Pane>
          </children>
@@ -113,6 +128,9 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
             <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
                <children>
@@ -137,6 +155,9 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
             <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
                <children>
@@ -161,6 +182,9 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
             <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
                <children>
@@ -185,6 +209,9 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
          </children>
       </VBox>
@@ -213,5 +240,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button layoutX="88.0" layoutY="553.0" mnemonicParsing="false" onAction="#chooseSong" prefHeight="34.0" prefWidth="120.0" text="escolher musica" />
    </children>
 </AnchorPane>
