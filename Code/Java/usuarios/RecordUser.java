@@ -7,7 +7,6 @@ public class RecordUser {
         try (FileWriter writeInFile = new FileWriter(fileName, true)){
             writeInFile.append(formatData);//escreve no arquivo os dados formatados
             writeInFile.close();
-            FileInfo.fileInfo(); //atualiza os dados no ArrayList
         } 
         
         catch (IOException e) {
@@ -15,12 +14,10 @@ public class RecordUser {
         }
     }
 
-    public static void replaceInFile(String rawData) throws FileNotFoundException{
-
-        try (FileWriter writeInFile = new FileWriter("Banco.csv")){
+    public static void replaceInFile(String rawData, String fileName) throws FileNotFoundException{
+        try (FileWriter writeInFile = new FileWriter(fileName)){
             writeInFile.append(rawData); //substitui no arquivo
             writeInFile.close();    
-            FileInfo.fileInfo();//Atualiza os dados no Arraylist 
         } 
         
         catch (IOException e) {

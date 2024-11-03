@@ -27,15 +27,18 @@ public class SignUp {
      * @throws FileNotFoundException
      */
 
-    public static int signUp(String user, String email, String password, String password2, String role) throws FileNotFoundException {
+    public static int signUp(String user, String email, String password, String password2, String role, boolean selfMade) throws FileNotFoundException {
         int errorNum = userCompare(user, email, password, password2);
 
         if(errorNum == 0){
             String id = Integer.toString(currentId);
             String userInfo[] = {id, user, email, password, role};
-            LogIn.defUser(userInfo);
+
+            if(selfMade)
+                LogIn.defUser(userInfo);
 
             RecordUser newUser = new RecordUser();
+
             String data = LogIn.user.getFormatData();
             newUser.writeInFile(data, "Banco.csv");
         }else{
@@ -57,8 +60,8 @@ public class SignUp {
 
     public static int userCompare(String user, String email, String password, String password2) throws FileNotFoundException{
         int i = 0, newId;
-        ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo();
-        int size = FileInfo.getMatrixSize();
+        ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo("Banco.csv");
+        int size = matrixInfo.size();
 
         while(i < size) {
             String userInfo[] = matrixInfo.get(i);

@@ -1,11 +1,10 @@
-public class ArtistUser extends User implements Addable{
+public class ArtistUser extends User implements Customizable{
     private final String ROLE = "artista";
     
     public ArtistUser(String id, String name, String email, String password){
         super(id, name, email, password);
     }
 
-    @Override
     public String getRole(){
         return ROLE;
     }

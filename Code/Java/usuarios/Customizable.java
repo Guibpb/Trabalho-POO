@@ -1,4 +1,4 @@
-interface Addable {
+interface Customizable {
     boolean registerNewMusic();
     boolean deleteMusic();
 }

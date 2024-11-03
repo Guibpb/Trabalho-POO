@@ -9,13 +9,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class User implements Followable{
+public abstract class User implements Followable{
     protected String id;
     protected String name;
     protected String email;
     protected String password;
-    private final String FILE_NAME = String.format("User%sFriends.csv", id);
-    public File userFile = new File(FILE_NAME);
 
     public User (String id, String name, String email, String password){
         this.id = id;
@@ -50,17 +48,49 @@ public class User implements Followable{
 
     public String getPassword(){return this.password;}
 
-    public String getRole(){return "";}
-
-    public boolean followUser(String userFollowing, String userToBeFollowed, String idUserToBeFollowed) throws FileNotFoundException{
+    @Override
+    public boolean followUser(String userToBeFollowed, String idUserToBeFollowed) throws FileNotFoundException{
+        final String FOLLOWINGS_FILE_NAME = String.format("Followings/FollowingsOfUser\"%s\".csv", id);
+        File followingsFile = new File(FOLLOWINGS_FILE_NAME);
         RecordUser newFriend = new RecordUser();
-        String formatData = String.format("\n%s,%s,",userToBeFollowed, idUserToBeFollowed);
-        newFriend.writeInFile(formatData, FILE_NAME);
+        String formatData;
+
+        if(followingsFile.exists())
+            formatData = String.format("\n%s,%s,",userToBeFollowed, idUserToBeFollowed);
+
+        else
+            formatData = String.format("Seguindo,Id,\n%s,%s,",userToBeFollowed, idUserToBeFollowed);    
+        
+        newFriend.writeInFile(formatData, FOLLOWINGS_FILE_NAME);
+
+
+        final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser\"%s\".csv", idUserToBeFollowed);
+        File followersFile = new File(FOLLOWERS_FILE_NAME);
+
+        if(followersFile.exists())
+            formatData = String.format("\n%s,%s",name, id);
+
+        else
+            formatData = String.format("Seguidores,Id,\n%s,%s",name, id); 
+        
+        newFriend.writeInFile(formatData, FOLLOWERS_FILE_NAME);
+
         return false;
     }
 
-    public boolean unfollowUser(String userUnfollowing, String userToBeUnfollowed){
-        //;
+    @Override
+    public boolean unfollowUser(String userToBeUnfollowed, String idUserToBeUnfollowed) throws FileNotFoundException{
+        final String FOLLOWINGS_FILE_NAME = String.format("Followings/FollowingsOfUser\"%s\".csv", id);
+
+        String formatData;
+        formatData = String.format("\n%s,%s",userToBeUnfollowed, idUserToBeUnfollowed); 
+        ModifyUser.modUser(FileInfo.getRawData(FOLLOWINGS_FILE_NAME), formatData, "", FOLLOWINGS_FILE_NAME);
+
+        final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser\"%s\".csv", idUserToBeUnfollowed);
+        formatData = String.format("\n%s,%s",name, id);
+        
+        ModifyUser.modUser(FileInfo.getRawData(FOLLOWERS_FILE_NAME), formatData, "", FOLLOWERS_FILE_NAME);
+        
         return false;
     }
 }
