@@ -75,11 +75,6 @@ public class playlistScreenController {
     @FXML
     public void initialize() throws IOException {
         imgButton.setImage(btnPlayImage);
-        Scene scene = anchorPane.getScene();
-        if(scene != null) {
-            scene.getStylesheets().add(getClass().getResource("stylePlaylistScreen").toExternalForm());
-        }
-
     }
 
     @FXML
