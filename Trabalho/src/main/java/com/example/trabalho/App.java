@@ -25,9 +25,6 @@ public class App extends Application {
         Scene sceneRegister = new Scene((Parent) fxmlLoaderRegister.load());
         sceneRegister.getStylesheets().add(this.getClass().getResource("styleRegisterScreen.css").toExternalForm());
 
-        FXMLLoader fxmlLoaderPlaylist = new FXMLLoader(App.class.getResource("playlistScreen.fxml"));
-        Scene scenePlaylist = new Scene((Parent)fxmlLoaderPlaylist.load());
-        scenePlaylist.getStylesheets().add(this.getClass().getResource("stylePlaylistScreen.css").toExternalForm());
 
         FXMLLoader fxmlLoaderConfiguration = new FXMLLoader(App.class.getResource("configurationScreen.fxml"));
         Scene sceneConfiguration= new Scene((Parent)fxmlLoaderConfiguration.load());

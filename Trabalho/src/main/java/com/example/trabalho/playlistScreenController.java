@@ -1,19 +1,31 @@
 package com.example.trabalho;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -42,6 +54,8 @@ public class playlistScreenController {
     File musicFile;
 
     @FXML
+    private AnchorPane anchorPane;
+    @FXML
     private ImageView imgButton;
     @FXML
     private Slider durationSlider;
@@ -55,10 +69,17 @@ public class playlistScreenController {
     private MediaPlayer mediaPlayer;
     @FXML
     private Media media;
+    @FXML
+    VBox vboxSongs;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws IOException {
         imgButton.setImage(btnPlayImage);
+        Scene scene = anchorPane.getScene();
+        if(scene != null) {
+            scene.getStylesheets().add(getClass().getResource("stylePlaylistScreen").toExternalForm());
+        }
+
     }
 
     @FXML
@@ -137,6 +158,68 @@ public class playlistScreenController {
                 }
             });
         }
+    }
+
+    @FXML
+    public void addSong(ActionEvent e) {
+        Pane pane = new Pane();
+        Label songName = new Label("Nome da Música");
+        Label genre = new Label("Gênero");
+        Label artistName = new Label("Artista");
+        Label songDuration = new Label("00:00");
+
+        pane.setPrefHeight(84);
+        pane.setPrefWidth(706);
+
+        pane.setOnMouseEntered(mouseEvent -> {
+            pane.setStyle("-fx-background-color: #616161");
+        });
+        pane.setOnMouseExited(mouseEvent -> {
+            pane.setStyle("-fx-background-color: none");
+        });
+
+        pane.setOnMouseClicked(mouseEvent -> {
+            try {
+                musicClick(mouseEvent);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        pane.setCursor(Cursor.HAND);
+
+        songName.setPrefWidth(258);
+        songName.setPrefHeight(46);
+        songName.setLayoutX(14);
+        songName.setLayoutY(19);
+        songName.setTextFill(Color.WHITE);
+        songName.setFont(new Font("Arial", 14));
+
+        genre.setPrefWidth(141);
+        genre.setPrefHeight(46);
+        genre.setLayoutX(283);
+        genre.setLayoutY(19);
+        genre.setTextFill(Color.WHITE);
+        genre.setFont(new Font("Arial", 14));
+        genre.setAlignment(Pos.CENTER);
+
+        artistName.setPrefWidth(141);
+        artistName.setPrefHeight(46);
+        artistName.setLayoutX(469);
+        artistName.setLayoutY(19);
+        artistName.setTextFill(Color.WHITE);
+        artistName.setFont(new Font("Arial", 14));
+        artistName.setAlignment(Pos.CENTER);
+
+        songDuration.setPrefWidth(74);
+        songDuration.setPrefHeight(46);
+        songDuration.setLayoutX(610);
+        songDuration.setLayoutY(19);
+        songDuration.setTextFill(Color.WHITE);
+        songDuration.setFont(new Font("System", 14));
+        songDuration.setAlignment(Pos.CENTER);
+
+        pane.getChildren().addAll(songName, genre, artistName, songDuration);
+        vboxSongs.getChildren().add(pane);
     }
 
     public void changeSongVolume(double volume) {

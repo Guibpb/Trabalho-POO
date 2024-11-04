@@ -1,15 +1,22 @@
-#songBox{
-    -fx-background-color: none;
-}
-#songBox:hover{
-    -fx-background-color: #616161;
-}
 .slider .track {
-    -fx-background-color: none; /* Cor da trilha */
+    -fx-background-color: none;
 }
 
 .slider .thumb {
-    -fx-background-color: #0b0b0b; /* Cor do polegar */
+    -fx-background-color: #0b0b0b;
+}
+
+.scroll-pane .scroll-bar:vertical{
+    -fx-background-color:  #1b1c1f;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb{
+    -fx-background-color: #4a4a4a;
+}
+
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
 }
 
 
