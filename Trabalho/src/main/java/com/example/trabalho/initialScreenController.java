@@ -1,5 +1,6 @@
 package com.example.trabalho;
 
+import com.example.trabalho.BackEnd.LogIn;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,8 +24,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
-import static java.awt.Font.*;
-
 public class initialScreenController {
     private Stage stage;
     private Parent root;
@@ -33,6 +32,13 @@ public class initialScreenController {
 
     @FXML
     VBox vbox;
+    @FXML
+    Label username;
+
+    @FXML
+    public void initialize() {
+        username.setText(LogIn.user.getName());
+    }
 
     @FXML
     public void switchToScenePlaylist(javafx.scene.input.MouseEvent e) throws IOException {

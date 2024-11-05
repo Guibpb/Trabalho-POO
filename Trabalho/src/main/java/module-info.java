@@ -1,4 +1,4 @@
-module com.example.trabalho {
+module com.example.trabalho{
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;

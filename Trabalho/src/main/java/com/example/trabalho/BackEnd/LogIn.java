@@ -1,20 +1,17 @@
-package com.example.trabalho;
+package com.example.trabalho.BackEnd;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class LogIn {
-    public static User user;
+    public static PublicUser user;
+    public static AdmUser admUser;
+    public static ArtistUser artistUser;
 
     public static boolean logIn(String userInput, String passwordInput) throws FileNotFoundException{
-        int i = 0;
-        String userInfo[];
+        ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo("Banco.csv");
 
-        ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo();
-        int size = FileInfo.getMatrixSize();
-
-        while(i < size){ //loop para iterar por todos os usuarios
-            userInfo = matrixInfo.get(i);
+        for(String [] userInfo : matrixInfo){ //loop para iterar por todos os usuarios
             String currentUser = userInfo[1];
             String currentEmail = userInfo[2];
             String currentPassword = userInfo[3];
@@ -23,8 +20,6 @@ public class LogIn {
                 return defUser(userInfo); //cria o objeto com os dados do user na Main
                 //retorna true ou false se conseguir fazer o login
             }
-
-            i++;
         }
         return false;
     }
@@ -39,12 +34,12 @@ public class LogIn {
             }
 
             case "gerente" -> {
-                user = new AdmUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
+                admUser = new AdmUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
                 success = true;
             }
 
             case "artista" -> {
-                user = new ArtistUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
+                artistUser = new ArtistUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
                 success = true;
             }
 

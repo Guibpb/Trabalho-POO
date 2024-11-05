@@ -1,27 +1,26 @@
-package com.example.trabalho;
+package com.example.trabalho.BackEnd;
 
 public class PublicUser extends User {
-    private final String role = "comum";
+    private final String ROLE = "comum";
 
     public PublicUser(String id, String name, String email, String password){
         super(id, name, email, password);
     }
 
-    @Override
     public String getRole(){
-        return role;
+        return ROLE;
     }
 
     @Override
     public String getFormatData(){
-        String data = super.getFormatData() + role;
+        String data = super.getFormatData() + ROLE;
         return data;
     }
 
     @Override
     public String[] getData(){
         String[] origin = super.getData();
-        String[] data = {origin[0],origin[1],origin[2],origin[3],role};
+        String[] data = {origin[0],origin[1],origin[2],origin[3],ROLE};
         return data;
     }
 }

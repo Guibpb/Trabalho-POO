@@ -1,5 +1,6 @@
 package com.example.trabalho;
 
+import com.example.trabalho.BackEnd.*;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,7 +80,7 @@ public class registerScreenController {
         }
 
         //funcao chamada para efetuar o registro ou retornar possíveis erros
-        int confirmacao = SignUp.signUp(registerName.getText(), registerEmail.getText(), registerPassword.getText(), registerPasswordConfirm.getText(), tipoUsuario);
+        int confirmacao = SignUp.signUp(registerName.getText(), registerEmail.getText(), registerPassword.getText(), registerPasswordConfirm.getText(), tipoUsuario, true);
         if (confirmacao == 0) {
             this.registerName.clear();
             this.registerPassword.clear();
