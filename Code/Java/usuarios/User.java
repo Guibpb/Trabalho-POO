@@ -168,19 +168,24 @@ public abstract class User implements Followable{
     }
     
     @Override
-    public void editSelf(String newName, String newEmail, String newPassword, String newPassword2, boolean compareName, boolean compareEmail, boolean comparePassword) throws FileNotFoundException{//função comum
-        if(!compareName)
-            newName = "";
-        if(!compareEmail)
-            newEmail = "";
-        if(!comparePassword)
-            newPassword = newPassword2 = "";
+    public int editSelf(String newName, String newEmail, String newPassword, String newPassword2, boolean compareName, boolean compareEmail, boolean comparePassword) throws FileNotFoundException{//função comum
+        String tempName = newName;
+        String tempEmail = newEmail;
+        String tempPassword = newPassword;
+        String tempPassword2 = newPassword2;
         
-        int numErro = SignUp.userCompare(newName, newEmail, newPassword, newPassword2);
+        if(!compareName)
+            tempName = "";
+        if(!compareEmail)
+            tempEmail = "@.";
+        if(!comparePassword)
+            tempPassword = tempPassword2 = "";
+        
+        int numErro = SignUp.userCompare(tempName, tempEmail, tempPassword, tempPassword2);
 
         if(numErro != 0){
             //mensagem de erro de acordo com o retorno
-            return;
+            return numErro;
         }
             
         String oldData = LogIn.user.getFormatData();
@@ -191,5 +196,7 @@ public abstract class User implements Followable{
 
         newUserData = String.format("\n%s,%s", newName, oldUserInfo[0]);
         updateFollowers(newUserData);
+
+        return 0;
     }
 }
