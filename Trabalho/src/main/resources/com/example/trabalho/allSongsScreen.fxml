@@ -1,126 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.allSongsScreenController">
    <children>
-      <VBox layoutX="293.0" layoutY="152.0" prefHeight="488.0" prefWidth="706.0">
-         <children>
-            <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
-               <children>
-                  <Label layoutX="14.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="469.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Artista" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="610.0" layoutY="19.0" prefHeight="46.0" prefWidth="74.0" text="00:00" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="283.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Gênero" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Pane>
-            <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
-               <children>
-                  <Label layoutX="14.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="469.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Artista" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="610.0" layoutY="19.0" prefHeight="46.0" prefWidth="74.0" text="00:00" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="283.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Gênero" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Pane>
-            <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
-               <children>
-                  <Label layoutX="14.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="469.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Artista" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="610.0" layoutY="19.0" prefHeight="46.0" prefWidth="74.0" text="00:00" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="283.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Gênero" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Pane>
-            <Pane id="songBox" prefHeight="84.0" prefWidth="706.0" stylesheets="@stylePlaylistScreen.css">
-               <children>
-                  <Label layoutX="14.0" layoutY="19.0" prefHeight="46.0" prefWidth="258.0" text="Nome da Música" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="469.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Artista" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="610.0" layoutY="19.0" prefHeight="46.0" prefWidth="74.0" text="00:00" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="283.0" layoutY="19.0" prefHeight="46.0" prefWidth="141.0" text="Gênero" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Pane>
-         </children>
-      </VBox>
+      <ScrollPane layoutX="193.0" layoutY="144.0" maxHeight="615.0" prefWidth="892.0" style="-fx-background-color: #1b1c1f; -fx-background: #1b1c1f;" stylesheets="@styleAllSongsScreen.css">
+         <content>
+            <VBox fx:id="vboxSongs" prefWidth="814.0" />
+         </content>
+      </ScrollPane>
+      <TextField layoutX="246.0" layoutY="30.0" prefHeight="46.0" prefWidth="499.0" promptText="Nome da Música">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Button layoutX="791.0" layoutY="32.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" style="-fx-background-color: none;">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/searchIcon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="66.0" layoutY="119.0" mnemonicParsing="false" onAction="#addSong" text="add" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: none;">
+         <graphic>
+            <ImageView fitHeight="49.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/goBack.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

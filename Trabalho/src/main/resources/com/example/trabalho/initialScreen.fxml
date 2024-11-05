@@ -62,7 +62,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="14.0" layoutY="160.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="62.0" style="-fx-background-color: none;">
+            <Button layoutX="14.0" layoutY="160.0" mnemonicParsing="false" onAction="#switchToSceneAllSongs" prefHeight="46.0" prefWidth="62.0" style="-fx-background-color: none;">
                <graphic>
                   <ImageView fitHeight="39.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
