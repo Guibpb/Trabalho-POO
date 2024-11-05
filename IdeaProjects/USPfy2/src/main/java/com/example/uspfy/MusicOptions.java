@@ -6,6 +6,7 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
 
 public class MusicOptions {
 
@@ -18,7 +19,10 @@ public class MusicOptions {
             Files.move(musicFilePath, musicDirectory.resolve(musicFilePath.getFileName())); //funcao de mover, vou pesquisar
 
             //parte do csv abaixo, so vai rodar se a de cima n der erro
-            int currentID = Integer.parseInt(musicCSVFileList.getLast()[0]);//id armazenado como string, passando pra int aqui
+            int currentID = 1; //se for a primeira musica a ser adicionada
+            if(!musicCSVFileList.getLast()[0].equals("MusicID"))
+                currentID = Integer.parseInt(musicCSVFileList.getLast()[0]);
+            //id armazenado como string, passando pra int aqui
             String newID = String.valueOf(currentID + 1);//soma +1 ao ultimo id registrado para termos um novo id
             String[] newMusic = {newID,artistName,musicName,"0",musicGenre, musicFile.getName()};
             musicCSVFileList.add(newMusic); //adiciona a nova musica a lista de strings
