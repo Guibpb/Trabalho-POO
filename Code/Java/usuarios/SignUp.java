@@ -39,7 +39,7 @@ public class SignUp {
 
             RecordUser newUser = new RecordUser();
 
-            String data = LogIn.user.getFormatData();
+            String data = LogIn.admUser.getFormatData();
             newUser.writeInFile(data, "Banco.csv");
         }else{
             //mensagem de erro
@@ -60,8 +60,14 @@ public class SignUp {
 
     public static int userCompare(String user, String email, String password, String password2) throws FileNotFoundException{
         int newId;
-        ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo("Banco.csv");
+        ArrayList<String[]> matrixInfo;
 
+        try {
+            matrixInfo = FileInfo.getMatrixInfo("Banco.csv");
+        } catch (FileNotFoundException e) {
+            matrixInfo = new ArrayList<>();
+        }
+        
         for(String userInfo[] : matrixInfo){
             if(userInfo[1].equals(user)){
                 return 1; //Esse usuário já existe.
