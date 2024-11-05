@@ -99,12 +99,12 @@ public abstract class User implements Followable{
         ArrayList <String> allFollowers = new ArrayList<>();
 
         final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser\"%s\".csv", id);
-        ArrayList <String[]> userInfo = new ArrayList<>();
+        ArrayList <String[]> userInfo;
 
         try {
             userInfo = FileInfo.getMatrixInfo(FOLLOWERS_FILE_NAME);
-        } catch (Exception e) {
-            return allFollowers;
+        } catch (FileNotFoundException e) {
+            return allFollowers;  //retorna vazio
         }
         
         for(String [] names : userInfo){
@@ -119,12 +119,11 @@ public abstract class User implements Followable{
         ArrayList <String> allFollowings = new ArrayList<>();
 
         final String FOLLOWINGS_FILE_NAME = String.format("Followings/FollowingsOfUser\"%s\".csv", id);
-        ArrayList <String[]> userInfo = new ArrayList<>();
-
+        ArrayList <String[]> userInfo;
         try {
             userInfo = FileInfo.getMatrixInfo(FOLLOWINGS_FILE_NAME);
-        } catch (Exception FileNotFoundException) {
-            return allFollowings; //retorna 0
+        } catch (FileNotFoundException e) {
+            return allFollowings; //retorna vazio
         }
 
         for(String [] names : userInfo){
@@ -140,18 +139,14 @@ public abstract class User implements Followable{
         ArrayList<String> followingsName = getAllFollowings(1);
         String formatData = String.format("\n%s,%s",name, id);
 
-        for(int i = 0; i < followingsName.size(); i++){//atualiza o usuário de todas as pastas de seguidores
-            String idFollowings = followingsName.get(i);
-
+        for(String idFollowings : followingsName){//atualiza o usuário de todas as pastas de seguidores
             genericFileName = String.format("Followers/FollowersOfUser\"%s\".csv", idFollowings);
             ModifyUser.modUser(FileInfo.getRawData(genericFileName), formatData, newData, genericFileName);
         }
 
         followingsName = getAllFollowers(1);
 
-        for(int i = 0; i < followingsName.size(); i++){//atualiza o usuário de todas as pastas de seguidos
-            String idFollowers = followingsName.get(i);
-
+        for(String idFollowers : followingsName){//atualiza o usuário de todas as pastas de seguidos
             genericFileName = String.format("Followings/FollowingsOfUser\"%s\".csv", idFollowers);
             ModifyUser.modUser(FileInfo.getRawData(genericFileName), formatData, newData, genericFileName);
         }

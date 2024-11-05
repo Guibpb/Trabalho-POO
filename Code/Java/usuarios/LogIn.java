@@ -7,14 +7,9 @@ public class LogIn {
     public static ArtistUser artistUser;
 
     public static boolean logIn(String userInput, String passwordInput) throws FileNotFoundException{ 
-        int i = 0;
-        String userInfo[];
-
         ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo("Banco.csv");
-        int size = matrixInfo.size();
         
-        while(i < size){ //loop para iterar por todos os usuarios
-            userInfo = matrixInfo.get(i);
+        for(String [] userInfo : matrixInfo){ //loop para iterar por todos os usuarios
             String currentUser = userInfo[1];
             String currentEmail = userInfo[2];
             String currentPassword = userInfo[3];
@@ -23,8 +18,6 @@ public class LogIn {
                 return defUser(userInfo); //cria o objeto com os dados do user na Main
                 //retorna true ou false se conseguir fazer o login
             }
-                
-            i++;
         }
         return false;
     }

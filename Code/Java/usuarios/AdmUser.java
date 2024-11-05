@@ -50,6 +50,9 @@ public class AdmUser extends User implements Commandable, Customizable{
     public boolean seeAllArtists(){return false;}
     public boolean seeAllMusics(){return false;}
     public boolean seeAllPlaylists(){return false;}
+
+
+    
     public boolean generateTop10Playlist(String a){return false;}
     public boolean deleteMusic(){return false;}
     public boolean registerNewMusic(){return false;}

@@ -59,13 +59,10 @@ public class SignUp {
      */
 
     public static int userCompare(String user, String email, String password, String password2) throws FileNotFoundException{
-        int i = 0, newId;
+        int newId;
         ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo("Banco.csv");
-        int size = matrixInfo.size();
 
-        while(i < size) {
-            String userInfo[] = matrixInfo.get(i);
-
+        for(String userInfo[] : matrixInfo){
             if(userInfo[1].equals(user)){
                 return 1; //Esse usuário já existe.
             }
@@ -96,8 +93,6 @@ public class SignUp {
             } catch (NumberFormatException e) {
                 //mensagem de erro de formatação de inteiro
             }
-
-            i++;
         }
 
         return 0; //nenhuma restrição foi ativada
