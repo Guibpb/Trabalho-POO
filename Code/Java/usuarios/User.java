@@ -87,9 +87,11 @@ public abstract class User implements Followable{
 
         final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser%s.csv", idUserToBeUnfollowed);
         formatData = String.format("\n%s,%s",name, id);
+
+        System.out.println(FileInfo.getRawData(FOLLOWERS_FILE_NAME));
         
         ModifyUser.modUser(FileInfo.getRawData(FOLLOWERS_FILE_NAME), formatData, "", FOLLOWERS_FILE_NAME);
-        
+
         return false;
     }
 

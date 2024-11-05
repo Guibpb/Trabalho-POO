@@ -34,6 +34,8 @@ public class FileInfo {
             } 
         }
 
+        rawData = rawData.trim();
+
         return rawData;
     } 
 }
