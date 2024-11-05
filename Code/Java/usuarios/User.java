@@ -53,7 +53,6 @@ public abstract class User implements Followable{
     public boolean followUser(String userToBeFollowed, String idUserToBeFollowed) throws FileNotFoundException{
         final String FOLLOWINGS_FILE_NAME = String.format("Followings/FollowingsOfUser\"%s\".csv", id);
         File followingsFile = new File(FOLLOWINGS_FILE_NAME);
-        RecordUser newFriend = new RecordUser();
         String formatData;
 
         if(followingsFile.exists())
@@ -62,7 +61,7 @@ public abstract class User implements Followable{
         else
             formatData = String.format("Seguindo,Id\n%s,%s",userToBeFollowed, idUserToBeFollowed);    
         
-        newFriend.writeInFile(formatData, FOLLOWINGS_FILE_NAME);
+        RecordUser.writeInFile(formatData, FOLLOWINGS_FILE_NAME);
 
         final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser\"%s\".csv", idUserToBeFollowed);
         File followersFile = new File(FOLLOWERS_FILE_NAME);
@@ -73,7 +72,7 @@ public abstract class User implements Followable{
         else
             formatData = String.format("Seguidores,Id\n%s,%s",name, id); 
         
-        newFriend.writeInFile(formatData, FOLLOWERS_FILE_NAME);
+        RecordUser.writeInFile(formatData, FOLLOWERS_FILE_NAME);
 
         return false;
     }

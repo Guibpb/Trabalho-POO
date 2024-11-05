@@ -37,10 +37,8 @@ public class SignUp {
             if(selfMade)
                 LogIn.defUser(userInfo);
 
-            RecordUser newUser = new RecordUser();
-
             String data = LogIn.admUser.getFormatData();
-            newUser.writeInFile(data, "Banco.csv");
+            RecordUser.writeInFile(data, "Banco.csv");
         }else{
             //mensagem de erro
         }
