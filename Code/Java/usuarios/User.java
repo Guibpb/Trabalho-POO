@@ -197,6 +197,9 @@ public abstract class User implements Followable{
         newUserData = String.format("\n%s,%s", newName, oldUserInfo[0]);
         updateFollowers(newUserData);
 
+        String [] newUserInfo = {oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4]};
+        LogIn.defUser(newUserInfo);
+
         return 0;
     }
 }
