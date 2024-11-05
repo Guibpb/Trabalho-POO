@@ -65,10 +65,15 @@ public class friendsScreenController {
     }
 
     @FXML
-    public void follow(ActionEvent e) throws IOException {
+    public void friendBtn(ActionEvent e) throws IOException {
         Button btn  = (Button) e.getSource();
         ImageView img, newImg;
         img = (ImageView) btn.getGraphic();
+        List<Node> nodes = new ArrayList<Node>();
+        Pane pane = (Pane) btn.getParent();
+        nodes = pane.getChildren();
+        Label name= (Label) nodes.get(1);
+        Label id = (Label) nodes.get(4);
 
         if(img.getImage().equals(following)) {
             newImg = new ImageView(add);
@@ -76,84 +81,82 @@ public class friendsScreenController {
             newImg.setFitWidth(35);
             newImg.setPreserveRatio(true);
             btn.setGraphic(newImg);
+            LogIn.user.unfollowUser(name.getText(), id.getText());
         }else{
             newImg = new ImageView(following);
             newImg.setFitHeight(53);
             newImg.setFitWidth(35);
             newImg.setPreserveRatio(true);
             btn.setGraphic(newImg);
+            LogIn.user.followUser(name.getText(), id.getText());
         }
-
-        List<Node> nodes = new ArrayList<Node>();
-        Pane pane = (Pane) btn.getParent();
-        nodes = pane.getChildren();
-        Label name= (Label) nodes.get(1);
-        Label id = (Label) nodes.get(4);
-        LogIn.user.followUser(name.getText(), id.getText());
     }
 
     @FXML
     public void addUsers() throws IOException {
         for(String[] user : users){
-            Pane pane = new Pane();
-            ImageView icon = new ImageView(userIcon);
-            ImageView btnIcon = new ImageView(add);
-            Label name = new Label();
-            Label role = new Label();
-            Label id = new Label();
-            Button btn = new Button();
+            if(!user[0].equals(LogIn.user.getId())){
+                Pane pane = new Pane();
+                ImageView icon = new ImageView(userIcon);
+                ImageView btnIcon = new ImageView(add);
+                Label name = new Label();
+                Label role = new Label();
+                Label id = new Label();
+                Button btn = new Button();
 
-            pane.setPrefWidth(878);
-            pane.setPrefHeight(76);
+                pane.setPrefWidth(878);
+                pane.setPrefHeight(76);
 
-            icon.preserveRatioProperty().set(true);
-            icon.setFitWidth(85);
-            icon.setFitHeight(71);
-            icon.setLayoutX(14);
-            icon.setLayoutY(3);
+                icon.preserveRatioProperty().set(true);
+                icon.setFitWidth(85);
+                icon.setFitHeight(71);
+                icon.setLayoutX(14);
+                icon.setLayoutY(3);
 
-            name.setPrefWidth(143);
-            name.setPrefHeight(38);
-            name.setFont(Font.font("System", 17));
-            name.setTextFill(Color.WHITE);
-            name.setLayoutX(131);
-            name.setLayoutY(19);
+                name.setPrefWidth(143);
+                name.setPrefHeight(38);
+                name.setFont(Font.font("System", 17));
+                name.setTextFill(Color.WHITE);
+                name.setLayoutX(131);
+                name.setLayoutY(19);
 
-            role.setPrefWidth(143);
-            role.setPrefHeight(38);
-            role.setFont(Font.font("System", 17));
-            role.setTextFill(Color.WHITE);
-            role.setLayoutX(368);
-            role.setLayoutY(20);
+                role.setPrefWidth(143);
+                role.setPrefHeight(38);
+                role.setFont(Font.font("System", 17));
+                role.setTextFill(Color.WHITE);
+                role.setLayoutX(368);
+                role.setLayoutY(20);
 
-            id.visibleProperty().set(false);
-            id.setPrefWidth(0);
-            id.setPrefHeight(0);
+                id.visibleProperty().set(false);
+                id.setPrefWidth(0);
+                id.setPrefHeight(0);
 
-            btnIcon.setPreserveRatio(true);
-            btnIcon.setFitWidth(53);
-            btnIcon.setFitHeight(35);
-            btn.setGraphic(btnIcon);
-            btn.setPrefWidth(54);
-            btn.setPrefHeight(38);
-            btn.setLayoutX(721);
-            btn.setLayoutY(17);
-            btn.setStyle("-fx-background-color: none;");
-            btn.setCursor(Cursor.HAND);
+                btnIcon.setPreserveRatio(true);
+                btnIcon.setFitWidth(53);
+                btnIcon.setFitHeight(35);
+                btn.setGraphic(btnIcon);
+                btn.setPrefWidth(54);
+                btn.setPrefHeight(38);
+                btn.setLayoutX(721);
+                btn.setLayoutY(17);
+                btn.setStyle("-fx-background-color: none;");
+                btn.setCursor(Cursor.HAND);
 
-            btn.setOnAction(event ->{
-                try {
-                    follow(event);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
+                btn.setOnAction(event ->{
+                    try {
+                        friendBtn(event);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
 
-            id.setText(user[0]);
-            name.setText(user[1]);
-            role.setText(user[4]);
-            pane.getChildren().addAll(icon, name, role, btn, id);
-            vbox.getChildren().add(pane);
+                id.setText(user[0]);
+                name.setText(user[1]);
+                role.setText(user[4]);
+                pane.getChildren().addAll(icon, name, role, btn, id);
+                vbox.getChildren().add(pane);
+            }
+
         }
     }
 }

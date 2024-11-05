@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -78,12 +79,11 @@ public class allSongsScreenController {
         songDuration.setFont(new Font("System", 14));
         songDuration.setAlignment(Pos.CENTER);
 
-        addPlaylistBtn.setTextFill(Color.WHITE);
-        addPlaylistBtn.setPrefWidth(83);
+        addPlaylistBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
         addPlaylistBtn.setPrefHeight(35);
         addPlaylistBtn.setLayoutX(710);
         addPlaylistBtn.setLayoutY(25);
-        addPlaylistBtn.setStyle("-fx-background-color:  #8A2BE2");
+        addPlaylistBtn.setStyle("-fx-background-color:  #8A2BE2; -fx-text-fill: #1b1c1f;");
         addPlaylistBtn.setCursor(Cursor.HAND);
         addPlaylistBtn.setFont(Font.font("System", FontWeight.BOLD, 14));
 

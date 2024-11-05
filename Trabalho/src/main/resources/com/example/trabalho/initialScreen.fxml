@@ -122,7 +122,7 @@
             <Insets bottom="10.0" />
          </padding>
       </ScrollPane>
-      <Button layoutX="934.0" layoutY="100.0" mnemonicParsing="false" onAction="#switchToSceneCreatePlaylist" prefHeight="46.0" prefWidth="113.0" style="-fx-background-color: #62f576;" text="Nova Playlist">
+      <Button layoutX="934.0" layoutY="100.0" mnemonicParsing="false" onAction="#switchToSceneCreatePlaylist" prefHeight="46.0" style="-fx-background-color: #62f576;" text="Nova Playlist">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
