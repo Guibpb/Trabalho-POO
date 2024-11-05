@@ -51,7 +51,7 @@ public abstract class User implements Followable{
 
     @Override
     public boolean followUser(String userToBeFollowed, String idUserToBeFollowed) throws FileNotFoundException{
-        final String FOLLOWINGS_FILE_NAME = String.format("Followings/FollowingsOfUser\"%s\".csv", id);
+        final String FOLLOWINGS_FILE_NAME = String.format("Followings/FollowingsOfUser%s.csv", id);
         File followingsFile = new File(FOLLOWINGS_FILE_NAME);
         String formatData;
 
@@ -63,7 +63,7 @@ public abstract class User implements Followable{
         
         RecordUser.writeInFile(formatData, FOLLOWINGS_FILE_NAME);
 
-        final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser\"%s\".csv", idUserToBeFollowed);
+        final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser%s.csv", idUserToBeFollowed);
         File followersFile = new File(FOLLOWERS_FILE_NAME);
 
         if(followersFile.exists())
@@ -79,13 +79,13 @@ public abstract class User implements Followable{
 
     @Override
     public boolean unfollowUser(String userToBeUnfollowed, String idUserToBeUnfollowed) throws FileNotFoundException{
-        final String FOLLOWINGS_FILE_NAME = String.format("Followings/FollowingsOfUser\"%s\".csv", id);
+        final String FOLLOWINGS_FILE_NAME = String.format("Followings/FollowingsOfUser%s.csv", id);
 
         String formatData;
         formatData = String.format("\n%s,%s",userToBeUnfollowed, idUserToBeUnfollowed); 
         ModifyUser.modUser(FileInfo.getRawData(FOLLOWINGS_FILE_NAME), formatData, "", FOLLOWINGS_FILE_NAME);
 
-        final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser\"%s\".csv", idUserToBeUnfollowed);
+        final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser%s.csv", idUserToBeUnfollowed);
         formatData = String.format("\n%s,%s",name, id);
         
         ModifyUser.modUser(FileInfo.getRawData(FOLLOWERS_FILE_NAME), formatData, "", FOLLOWERS_FILE_NAME);
@@ -97,7 +97,7 @@ public abstract class User implements Followable{
     public ArrayList<String> getAllFollowers(int identifier) throws FileNotFoundException{
         ArrayList <String> allFollowers = new ArrayList<>();
 
-        final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser\"%s\".csv", id);
+        final String FOLLOWERS_FILE_NAME = String.format("Followers/FollowersOfUser%s.csv", id);
         ArrayList <String[]> userInfo;
 
         try {
@@ -117,7 +117,7 @@ public abstract class User implements Followable{
     public ArrayList<String> getAllFollowings(int identifier) throws FileNotFoundException{
         ArrayList <String> allFollowings = new ArrayList<>();
 
-        final String FOLLOWINGS_FILE_NAME = String.format("Followings/FollowingsOfUser\"%s\".csv", id);
+        final String FOLLOWINGS_FILE_NAME = String.format("Followings/FollowingsOfUser%s.csv", id);
         ArrayList <String[]> userInfo;
         try {
             userInfo = FileInfo.getMatrixInfo(FOLLOWINGS_FILE_NAME);
@@ -139,14 +139,14 @@ public abstract class User implements Followable{
         String formatData = String.format("\n%s,%s",name, id);
 
         for(String idFollowings : followingsName){//atualiza o usuário de todas as pastas de seguidores
-            genericFileName = String.format("Followers/FollowersOfUser\"%s\".csv", idFollowings);
+            genericFileName = String.format("Followers/FollowersOfUser%s.csv", idFollowings);
             ModifyUser.modUser(FileInfo.getRawData(genericFileName), formatData, newData, genericFileName);
         }
 
         followingsName = getAllFollowers(1);
 
         for(String idFollowers : followingsName){//atualiza o usuário de todas as pastas de seguidos
-            genericFileName = String.format("Followings/FollowingsOfUser\"%s\".csv", idFollowers);
+            genericFileName = String.format("Followings/FollowingsOfUser%s.csv", idFollowers);
             ModifyUser.modUser(FileInfo.getRawData(genericFileName), formatData, newData, genericFileName);
         }
     }
@@ -156,11 +156,11 @@ public abstract class User implements Followable{
         ModifyUser.modUser(FileInfo.getRawData("Banco.csv"), getFormatData(), "", "Banco.csv");
         updateFollowers(""); //apaga o usuario de todas as pastas
 
-        String fileToBeDeleted = String.format("Followers/FollowersOfUser\"%s\".csv", id);
+        String fileToBeDeleted = String.format("Followers/FollowersOfUser%s.csv", id);
         File followersFile = new File(fileToBeDeleted);
         followersFile.delete();//apaga a pasta de seguidores
 
-        fileToBeDeleted = String.format("Followings/FollowingsOfUser\"%s\".csv", id);
+        fileToBeDeleted = String.format("Followings/FollowingsOfUser%s.csv", id);
         File followingsFile = new File(fileToBeDeleted);
         followingsFile.delete();//apaga a pasta de seguidos
 
@@ -168,8 +168,16 @@ public abstract class User implements Followable{
     }
     
     @Override
-    public void editSelf(String newName, String newEmail, String newPassword, String newPassword2, String newRole) throws FileNotFoundException{//função comum
+    public void editSelf(String newName, String newEmail, String newPassword, String newPassword2, boolean compareName, boolean compareEmail, boolean comparePassword) throws FileNotFoundException{//função comum
+        if(!compareName)
+            newName = "";
+        if(!compareEmail)
+            newEmail = "";
+        if(!comparePassword)
+            newPassword = newPassword2 = "";
+        
         int numErro = SignUp.userCompare(newName, newEmail, newPassword, newPassword2);
+
         if(numErro != 0){
             //mensagem de erro de acordo com o retorno
             return;
@@ -177,12 +185,11 @@ public abstract class User implements Followable{
             
         String oldData = LogIn.user.getFormatData();
         String oldUserInfo[] = LogIn.user.getData();
-        String newId = oldUserInfo[0];
 
-        String newUserData = String.format("\n%s,%s,%s,%s,%s", newId, newName, newEmail, newPassword, newRole);
+        String newUserData = String.format("\n%s,%s,%s,%s,%s", oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4]);
         ModifyUser.modUser(FileInfo.getRawData("Banco.csv"), oldData, newUserData, "Banco.csv");
 
-        newUserData = String.format("\n%s,%s", newName, newId);
+        newUserData = String.format("\n%s,%s", newName, oldUserInfo[0]);
         updateFollowers(newUserData);
     }
 }

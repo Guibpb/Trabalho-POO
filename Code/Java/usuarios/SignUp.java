@@ -37,7 +37,7 @@ public class SignUp {
             if(selfMade)
                 LogIn.defUser(userInfo);
 
-            String data = LogIn.admUser.getFormatData();
+            String data = LogIn.user.getFormatData();
             RecordUser.writeInFile(data, "Banco.csv");
         }else{
             //mensagem de erro

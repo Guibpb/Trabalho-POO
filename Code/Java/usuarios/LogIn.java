@@ -2,9 +2,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class LogIn {
-    public static PublicUser user;
-    public static AdmUser admUser;
-    public static ArtistUser artistUser;
+    public static User user;
 
     public static boolean logIn(String userInput, String passwordInput) throws FileNotFoundException{ 
         ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo("Banco.csv");
@@ -32,12 +30,12 @@ public class LogIn {
             }
 
             case "gerente" -> {
-                admUser = new AdmUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
+                user = new AdmUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
                 success = true;
             }
 
             case "artista" -> {
-                artistUser = new ArtistUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
+                user = new ArtistUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3]);
                 success = true;
             }
 
