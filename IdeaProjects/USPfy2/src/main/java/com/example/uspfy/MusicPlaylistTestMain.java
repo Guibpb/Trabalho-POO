@@ -7,10 +7,10 @@ import java.util.List;
 public class MusicPlaylistTestMain {
     public static void main(String[] args) {
 
-
-        /* TESTE DE MUSIC DATABASE E MUSIC OPTIONS
         List<String[]> temp;
         temp = MusicDatabase.getMusicCSVFile();
+        /* TESTE DE MUSIC DATABASE E MUSIC OPTIONS
+
 
         //musica a ser movida
         File testmusic = new File("Rap do Escanor (Nanatsu No Taizai) Ft. VMZ _ Tauz RapTributo 16 [ ezmp3.cc ].mp3");
@@ -28,6 +28,8 @@ public class MusicPlaylistTestMain {
 
         //TESTE DE PLAYLIST DATABASE E PLAYLIST OPTIONS
         List<List<String>> plTest = PlaylistDatabase.getPlaylistCSVFile();
-        PlaylistDatabase.updatePlaylistCSVFile(plTest);
+        PlaylistOptions.generateTop10Playlist(temp,plTest,"rap");
+
+
     }
 }

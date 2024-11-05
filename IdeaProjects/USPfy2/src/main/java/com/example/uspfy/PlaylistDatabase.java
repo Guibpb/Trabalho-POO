@@ -7,7 +7,7 @@ import java.util.List;
 public class PlaylistDatabase {
 
     public static List<List<String>> getPlaylistCSVFile(){
-        List<List<String>> playlistCSVFileList = new ArrayList<List<String>>(); //List é mais generico, permite trocar dps entre Linked e Array
+        List<List<String>> playlistCSVFileList = new ArrayList<>(); //List é mais generico, permite trocar dps entre Linked e Array
         String row; //cada linha do arquivo
         try {
             BufferedReader reader = new BufferedReader(new FileReader("mplaylists.csv"));
@@ -15,10 +15,11 @@ public class PlaylistDatabase {
                 List<String> rowList = new ArrayList<>(); //uma Lista com os dados de cada linha do arquivo
                 String[] values = row.split(",");
                 for (String value : values) {
-                    rowList.add(value);
+                    rowList.add(value); //no intellij ele fala q da pra substituir por um addAll, mas resolvi deixar assim, unico "warning" do programa
                 }
                 playlistCSVFileList.add(rowList);
             }
+            reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
