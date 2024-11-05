@@ -6,8 +6,8 @@ public class Main{
     
     public static void main(String[] args) throws FileNotFoundException{
         //ModifyUser.deleteAny("johnlennon"); // ta funcionando
-        LogIn.logIn("pedro", "000");
-        LogIn.user.unfollowUser("gui", "2");
+        LogIn.logIn("mikhael", "000");
+        LogIn.admUser.deleteSelf();
         scan.close();
     }
 }

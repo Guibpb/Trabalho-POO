@@ -2,7 +2,6 @@ id,usuario,email,senha,cargo
 1,admin,admin@usp.br,123,gerente
 2,gui,gui@usp.br,123,gerente
 3,daniel,daniel@usp.br,456,gerente
-4,mikhael,mikhael@usp.br,789,gerente
 5,pedro,pedro@usp.br,000,comum
 6,gabriel,gabriel@usp.br,002,comum
 7,johnlennon,johnlennon@beatles.com,Yoko123,artista
