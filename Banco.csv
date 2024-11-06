@@ -1,6 +1,6 @@
 id,usuario,email,senha,cargo
 1,admin,admin@usp.br,123,gerente
-2,gui,gui@usp.br,123,gerente
+2,gui,gui@usp.br,000,gerente
 3,daniel,daniel@usp.br,456,gerente
 5,pedro,pedro@usp.br,000,comum
 6,gabriel,gabriel@usp.br,002,comum
@@ -8,5 +8,5 @@ id,usuario,email,senha,cargo
 8,gui2,gui2@usp.br,gui2,comum
 9,Paul_McCartney,paulmccartney@beatles.com,John123,artista
 10,George Harrison,George@beatles.com,123,artista
-11,Daniel,danielbrito@gmail.com,123,comum
+11,Clove,danielbrito@gmail.com,123,comum
 12,1,1@gmail.com,123,comum

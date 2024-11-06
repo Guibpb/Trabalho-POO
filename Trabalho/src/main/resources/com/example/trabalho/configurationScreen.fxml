@@ -45,7 +45,7 @@
          <Font size="19.0" />
       </font>
    </Label>
-   <Button layoutX="623.0" layoutY="583.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="118.0" style="-fx-background-color: #4CAF50;" text="Aplicar" textFill="#1b1c1f">
+   <Button layoutX="623.0" layoutY="583.0" mnemonicParsing="false" onAction="#confirmEdit" prefHeight="42.0" prefWidth="118.0" style="-fx-background-color: #4CAF50;" text="Aplicar" textFill="#1b1c1f">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>

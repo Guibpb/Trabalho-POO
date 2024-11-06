@@ -2,7 +2,6 @@ package com.example.trabalho;
 
 import com.example.trabalho.BackEnd.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -34,6 +33,7 @@ public class friendsScreenController {
     private Image add = new Image(getClass().getResourceAsStream("/com/example/trabalho/imagens/addFriend.png"));
 
     private ArrayList<String[]> users;
+    private ArrayList<String> followings;
 
     {
         try {
@@ -44,7 +44,8 @@ public class friendsScreenController {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws FileNotFoundException {
+        followings = LogIn.user.getAllFollowings(0);
         try {
             addUsers();
         } catch (IOException e) {
@@ -98,7 +99,7 @@ public class friendsScreenController {
             if(!user[0].equals(LogIn.user.getId())){
                 Pane pane = new Pane();
                 ImageView icon = new ImageView(userIcon);
-                ImageView btnIcon = new ImageView(add);
+                ImageView btnIcon;
                 Label name = new Label();
                 Label role = new Label();
                 Label id = new Label();
@@ -131,10 +132,17 @@ public class friendsScreenController {
                 id.setPrefWidth(0);
                 id.setPrefHeight(0);
 
-                btnIcon.setPreserveRatio(true);
+                if(followings.contains(user[1])){
+                    btnIcon = new ImageView(following);
+                }else{
+                    btnIcon = new ImageView(add);
+                }
+
                 btnIcon.setFitWidth(53);
                 btnIcon.setFitHeight(35);
+                btnIcon.setPreserveRatio(true);
                 btn.setGraphic(btnIcon);
+
                 btn.setPrefWidth(54);
                 btn.setPrefHeight(38);
                 btn.setLayoutX(721);
