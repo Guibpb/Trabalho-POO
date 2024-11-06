@@ -7,9 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -20,6 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Optional;
 
 public class configurationScreenController {
     private Stage stage;
@@ -39,12 +38,21 @@ public class configurationScreenController {
     private PasswordField passwordConfirm;
     @FXML
     private Pane confirmPasswordPane;
+    @FXML
+    private Label usernameTitle;
+    @FXML
+    private Label numFollowers;
+    @FXML
+    private Label numFollowing;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws FileNotFoundException {
         username.setText(LogIn.user.getName());
+        usernameTitle.setText(LogIn.user.getName());
         email.setText(LogIn.user.getEmail());
         password.setText(LogIn.user.getPassword());
+        numFollowers.setText(String.valueOf(LogIn.user.getAllFollowers(0).size()));
+        numFollowing.setText(String.valueOf(LogIn.user.getAllFollowings(0).size()));
     }
 
     @FXML
@@ -135,4 +143,49 @@ public class configurationScreenController {
             throw new RuntimeException(ex);
         }
     }
+
+    @FXML
+    public void deleteSelf(ActionEvent e) throws FileNotFoundException {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Deletar conta");
+        confirmation.setHeaderText("Deseja continuar?");
+        confirmation.setContentText("Sua conta será permanentemente apagada");
+        Optional<ButtonType> result = confirmation.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            LogIn.user.deleteSelf();
+            try {
+                this.root = (Parent) FXMLLoader.load(this.getClass().getResource("loginScreen.fxml"));
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+            this.scene = new Scene(this.root);
+            this.stage.setScene(this.scene);
+            stage.centerOnScreen();
+            this.stage.show();
+        }
+    }
+
+    @FXML
+    public void exit(ActionEvent e){
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Sair");
+        confirmation.setHeaderText("Deseja continuar?");
+        confirmation.setContentText(null);
+        Optional<ButtonType> result = confirmation.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            try {
+                this.root = (Parent) FXMLLoader.load(this.getClass().getResource("loginScreen.fxml"));
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+            this.scene = new Scene(this.root);
+            this.stage.setScene(this.scene);
+            stage.centerOnScreen();
+            this.stage.show();
+        }
+            LogIn.user = null;
+        }
+
 }

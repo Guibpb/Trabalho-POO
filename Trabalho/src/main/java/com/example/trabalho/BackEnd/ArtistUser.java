@@ -1,7 +1,7 @@
 package com.example.trabalho.BackEnd;
 
 public class ArtistUser extends User implements Customizable{
-    private final String ROLE = "artista";
+    private final String ROLE = "Artista";
 
     public ArtistUser(String id, String name, String email, String password){
         super(id, name, email, password);

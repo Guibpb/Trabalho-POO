@@ -36,6 +36,13 @@ public class registerScreenController {
     @FXML
     public void initialize() {
         userCheckbox.setSelected(true);
+
+        //Limita o número de caracteres do username para 15
+        registerName.textProperty().addListener((observable, oldValue, newValue) -> {
+           if(newValue.length() > 15){
+               registerName.setText(oldValue);
+           }
+        });
     }
 
     //funcao para mudar para a tela de login
@@ -74,9 +81,9 @@ public class registerScreenController {
         //checkbox para definir o tipo de usuário (obrigatoriamente um estará escolhido para evitar erros)
         String tipoUsuario = "";
         if (this.artistCheckbox.isSelected()) {
-            tipoUsuario = "artista";
+            tipoUsuario = "Artista";
         } else {
-            tipoUsuario = "comum";
+            tipoUsuario = "Comum";
         }
 
         //funcao chamada para efetuar o registro ou retornar possíveis erros

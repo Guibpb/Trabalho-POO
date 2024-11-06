@@ -1,7 +1,7 @@
 package com.example.trabalho.BackEnd;
 
 public class PublicUser extends User {
-    private final String ROLE = "comum";
+    private final String ROLE = "Comum";
 
     public PublicUser(String id, String name, String email, String password){
         super(id, name, email, password);

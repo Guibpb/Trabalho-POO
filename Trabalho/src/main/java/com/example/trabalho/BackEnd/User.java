@@ -165,8 +165,6 @@ public abstract class User implements Followable{
         fileToBeDeleted = String.format("Followings/FollowingsOfUser%s.csv", id);
         File followingsFile = new File(fileToBeDeleted);
         followingsFile.delete();//apaga a pasta de seguidos
-
-        System.exit(0);
     }
 
     @Override
