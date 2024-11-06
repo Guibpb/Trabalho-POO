@@ -4,13 +4,18 @@ import java.util.*;
 
 public class PlaylistOptions {
 
-    public static void createPlaylist(List<List<String>> playlistCSVFileList, String playlistName, String userName, String visibility) {
+    public static int createPlaylist(List<List<String>> playlistCSVFileList, String playlistName, String userName, String visibility) {
+        if(playlistName.contains(",")){
+            return 1;
+        }
+
         List<String> newPlaylist = new ArrayList<>();
         newPlaylist.add(0, playlistName);
         newPlaylist.add(1, userName);
         newPlaylist.add(2, visibility);
         playlistCSVFileList.addLast(newPlaylist);
         PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
+        return 0;
     }
 
     public static void addMusicToPlaylist(List<List<String>> playlistCSVFileList, String playlistName, String musicID) {
@@ -33,7 +38,11 @@ public class PlaylistOptions {
         PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
     }
 
-    public static void editPlaylist(List<List<String>> playlistCSVFileList, String oldPlaylistName, String newPlaylistName, String newVisibility) {
+    public static int editPlaylist(List<List<String>> playlistCSVFileList, String oldPlaylistName, String newPlaylistName, String newVisibility) {
+        if(newPlaylistName.contains(",")){
+            return 1;
+        }
+
         for(int i=1; i<playlistCSVFileList.size(); i++){
             if(playlistCSVFileList.get(i).getFirst().equals(oldPlaylistName)){
                 playlistCSVFileList.get(i).set(0, newPlaylistName);
@@ -42,6 +51,7 @@ public class PlaylistOptions {
             }
         }
         PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
+        return 0;
     }
 
     public static void removeMusicFromPlaylist(List<List<String>> playlistCSVFileList, String playlistName, String musicID){

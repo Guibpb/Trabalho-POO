@@ -9,12 +9,11 @@ public class MusicPlaylistTestMain {
 
         List<String[]> temp;
         temp = MusicDatabase.getMusicCSVFile();
-        /* TESTE DE MUSIC DATABASE E MUSIC OPTIONS
+
 
 
         //musica a ser movida
         File testmusic = new File("Rap do Escanor (Nanatsu No Taizai) Ft. VMZ _ Tauz RapTributo 16 [ ezmp3.cc ].mp3");
-
         //teste de upload
         MusicOptions.uploadMusic(temp, "Tauz","Rap do Dark Souls","rap",testmusic);
 
@@ -24,12 +23,12 @@ public class MusicPlaylistTestMain {
         //teste de deletar
         //MusicOptions.deleteMusic(temp, testmusic);
 
-         */
 
-        //TESTE DE PLAYLIST DATABASE E PLAYLIST OPTIONS
+
+       /* //TESTE DE PLAYLIST DATABASE E PLAYLIST OPTIONS
         List<List<String>> plTest = PlaylistDatabase.getPlaylistCSVFile();
-        PlaylistOptions.generateTop10Playlist(temp,plTest,"rap");
-
+        PlaylistOptions.generateTop10Playlist(temp,plTest,null);
+*/
 
     }
 }

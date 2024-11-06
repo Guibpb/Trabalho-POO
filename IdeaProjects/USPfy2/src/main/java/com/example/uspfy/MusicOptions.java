@@ -9,9 +9,17 @@ import java.util.List;
 
 public class MusicOptions {
 
-    public static void uploadMusic(List<String[]> musicCSVFileList, String artistName, String musicName, String musicGenre, File musicFile){
+    public static int uploadMusic(List<String[]> musicCSVFileList, String artistName, String musicName, String musicGenre, File musicFile){
+        if(musicName.contains(",")){
+            return 1;
+        }
+
+
         try{ //fudeu explicar isso aq +/-, pra funcionar tu bota uma pasta no TempMusic e copia o nome dela na main na variavel "testmusic", ela n pode tar na Music tbm
-            Path musicDirectory = Path.of("Musics"); //endereco da pasta de musicas
+            Path musicDirectory = Path.of("Musics");//endereco da pasta de musicas
+            if (!Files.exists(musicDirectory))
+                Files.createDirectories(musicDirectory);
+            //endereco da pasta de musicas
             Path origin = Path.of("TempMusics"); //n to conseguindo pegar de um diretorio generalizado
             Path musicFilePath = origin.resolve(musicFile.getName()); //endereco da musica? n entendi mt bem essa aq, vou pesquisar
             //esse foi o unico jeito q eu consegui fzr rodar
@@ -33,6 +41,7 @@ public class MusicOptions {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return 0;
     }
 
     public static void deleteMusic(List<String[]> musicCSVFileList, File musicFile){
@@ -52,7 +61,10 @@ public class MusicOptions {
         MusicDatabase.updateMusicCSVFile(musicCSVFileList);
     }
 
-    public static void editMusic(List<String[]> musicCSVFileList,String musicID, String newName, String newGenre){
+    public static int editMusic(List<String[]> musicCSVFileList,String musicID, String newName, String newGenre){
+        if(newName.contains(",")){
+            return 1;
+        }
         for (String[] music : musicCSVFileList) {
             if (music[0].equals(musicID)) {
                 music[2] = newName; //altera o nome da musica
@@ -61,6 +73,7 @@ public class MusicOptions {
             } //se for alterar somente o genero ou somente o nome, passar como parametro o genero/nome ja existente
         }
         MusicDatabase.updateMusicCSVFile(musicCSVFileList);
+        return 0;
     }
 }
 
