@@ -15,12 +15,14 @@ public abstract class User implements Followable{
     protected String name;
     protected String email;
     protected String password;
+    protected String pfPicture;
 
-    public User (String id, String name, String email, String password){
+    public User (String id, String name, String email, String password, String pfPicture){
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.pfPicture = pfPicture;
     }
 
     /**
@@ -155,7 +157,7 @@ public abstract class User implements Followable{
 
     @Override
     public void deleteSelf() throws FileNotFoundException{
-        ModifyUser.modUser(FileInfo.getRawData("Banco.csv"), getFormatData(), "", "Banco.csv");
+        ModifyUser.modUser(FileInfo.getRawData("Database/Banco.csv"), getFormatData(), "", "Database/Banco.csv");
         updateFollowers(""); //apaga o usuario de todas as pastas
 
         String fileToBeDeleted = String.format("Followers/FollowersOfUser%s.csv", id);
@@ -165,12 +167,10 @@ public abstract class User implements Followable{
         fileToBeDeleted = String.format("Followings/FollowingsOfUser%s.csv", id);
         File followingsFile = new File(fileToBeDeleted);
         followingsFile.delete();//apaga a pasta de seguidos
-
-        System.exit(0);
     }
     
     @Override
-    public int editSelf(String newName, String newEmail, String newPassword, String newPassword2, boolean compareName, boolean compareEmail, boolean comparePassword) throws FileNotFoundException{//função comum
+    public int editSelf(String newName, String newEmail, String newPassword, String newPassword2, String newPicture, boolean compareName, boolean compareEmail, boolean comparePassword) throws FileNotFoundException{//função comum
         String tempName = newName;
         String tempEmail = newEmail;
         String tempPassword = newPassword;
@@ -193,13 +193,13 @@ public abstract class User implements Followable{
         String oldData = LogIn.user.getFormatData();
         String oldUserInfo[] = LogIn.user.getData();
 
-        String newUserData = String.format("\n%s,%s,%s,%s,%s", oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4]);
-        ModifyUser.modUser(FileInfo.getRawData("Banco.csv"), oldData, newUserData, "Banco.csv");
+        String newUserData = String.format("\n%s,%s,%s,%s,%s,%s", oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4], newPicture);
+        ModifyUser.modUser(FileInfo.getRawData("Database/Banco.csv"), oldData, newUserData, "Database/Banco.csv");
 
         newUserData = String.format("\n%s,%s", newName, oldUserInfo[0]);
         updateFollowers(newUserData);
 
-        String [] newUserInfo = {oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4]};
+        String [] newUserInfo = {oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4], newPicture};
         LogIn.defUser(newUserInfo);
 
         return 0;

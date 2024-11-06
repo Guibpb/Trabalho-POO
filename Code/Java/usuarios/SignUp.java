@@ -32,13 +32,14 @@ public class SignUp {
 
         if(errorNum == 0){
             String id = Integer.toString(currentId);
+            String profilePicture = "Database/Default.png";
             String userInfo[] = {id, user, email, password, role};
 
             if(selfMade)
                 LogIn.defUser(userInfo);
 
-            String data = LogIn.user.getFormatData();
-            RecordUser.writeInFile(data, "Banco.csv");
+            String data = String.format("\n%s,%s,%s,%s,%s,%s", id, user, email, password, role, profilePicture);
+            RecordUser.writeInFile(data, "Database/Banco.csvs");
         }else{
             //mensagem de erro
         }
@@ -61,7 +62,7 @@ public class SignUp {
         ArrayList<String[]> matrixInfo;
 
         try {
-            matrixInfo = FileInfo.getMatrixInfo("Banco.csv");
+            matrixInfo = FileInfo.getMatrixInfo("Database/Banco.csvs");
         } catch (FileNotFoundException e) {
             matrixInfo = new ArrayList<>();
         }

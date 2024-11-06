@@ -2,8 +2,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class AdmUser extends User implements Commandable, Customizable{
-    public AdmUser(String id, String name, String email, String password){
-        super(id, name, email, password);
+    public AdmUser(String id, String name, String email, String password, String pfPicture){
+        super(id, name, email, password, pfPicture);
     }
 
     public String getRole(){
@@ -12,29 +12,27 @@ public class AdmUser extends User implements Commandable, Customizable{
 
     @Override
     public String getFormatData(){
-        String data = super.getFormatData() + ROLE;
+        String data = super.getFormatData() + ROLE + "," + pfPicture;
         return data;
     }
 
     @Override
     public String[] getData(){
         String[] origin = super.getData();
-        String[] data = {origin[0],origin[1],origin[2],origin[3],ROLE};
+        String[] data = {origin[0],origin[1],origin[2],origin[3],ROLE, pfPicture};
         return data;
     }
 
     @Override
     public boolean deleteAny(String userToBeDeleted) throws FileNotFoundException{ //função de ADM
-        ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo("Banco.csv"); 
-        int size = matrixInfo.size();
-        
-        for(int i = 0; i < size; i++){
-            String userInfo[] = matrixInfo.get(i);
+        ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo("Database/Banco.csv"); 
 
+        for(String userInfo[] : matrixInfo){
             if(userInfo[1].equals(userToBeDeleted)){
-                String data = String.format("\n%s,%s,%s,%s,%s", userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4]);
-                ModifyUser.modUser(FileInfo.getRawData("Banco.csv"),data, "", "Banco.csv");
-                return true;
+                String data = String.format("\n%s,%s,%s,%s,%s,%s", userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4], userInfo[5]);
+                ModifyUser.modUser(FileInfo.getRawData("Database/Banco.csv"),data, "", "Database/Banco.csv");
+                return true; //alterar isso aqui pra remover os arquivos de seguidores tbm kkk
+
             }
         }
 
