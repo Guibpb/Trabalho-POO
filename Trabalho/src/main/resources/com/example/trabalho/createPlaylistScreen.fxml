@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.createPlaylistScreenController">
    <children>
-      <TextField layoutX="139.0" layoutY="104.0" prefHeight="48.0" prefWidth="322.0" promptText="Nome da playlist">
+      <TextField fx:id="labelPlaylistName" layoutX="139.0" layoutY="104.0" prefHeight="48.0" prefWidth="322.0" promptText="Nome da playlist">
          <font>
             <Font size="14.0" />
          </font>
@@ -44,7 +44,7 @@
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <Button layoutX="356.0" layoutY="271.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #41e884;" text="Criar" textFill="#1b1c1f">
+      <Button layoutX="356.0" layoutY="271.0" mnemonicParsing="false" onAction="#createPlaylist" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #41e884;" text="Criar" textFill="#1b1c1f">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

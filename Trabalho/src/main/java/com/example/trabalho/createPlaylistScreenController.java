@@ -1,5 +1,8 @@
 package com.example.trabalho;
 
+import com.example.trabalho.BackEnd.LogIn;
+import com.example.trabalho.BackEnd.PlaylistDatabase;
+import com.example.trabalho.BackEnd.PlaylistOptions;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,10 +10,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class createPlaylistScreenController{
     private Stage stage;
@@ -21,10 +30,16 @@ public class createPlaylistScreenController{
     private RadioButton publicRadioBtn;
     @FXML
     private RadioButton privateRadioBtn;
+    @FXML
+    private TextField labelPlaylistName;
+
+    List<List<String>> playlists;
 
     @FXML
     public void initialize(){
         publicRadioBtn.setSelected(true);
+        playlists = PlaylistDatabase.getPlaylistCSVFile();
+        PlaylistDatabase.updatePlaylistCSVFile(playlists);
     }
 
     @FXML //Função para voltar para a tela inicial
@@ -59,4 +74,24 @@ public class createPlaylistScreenController{
             this.privateRadioBtn.setSelected(true);
         }
     }
+
+    @FXML
+    public void createPlaylist(ActionEvent e) throws IOException {
+        String playlistName = labelPlaylistName.getText();
+        String artist = LogIn.user.getName();
+        String visibility;
+        if(privateRadioBtn.isSelected()) {
+            visibility = "private";
+        }else{
+            visibility = "public";
+        }
+        PlaylistOptions.createPlaylist(playlists, playlistName, artist, visibility);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Playlist");
+        alert.setHeaderText(null);
+        alert.setContentText("Playlist criada com sucesso!");
+        alert.showAndWait();
+        goBack(e);
+    }
+
 }

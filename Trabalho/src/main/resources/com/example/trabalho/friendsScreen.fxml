@@ -40,7 +40,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane hbarPolicy="NEVER" layoutX="160.0" layoutY="173.0" maxHeight="600.0" prefWidth="983.0" style="-fx-background-color: #1b1c1f; -fx-background: #1b1c1f;">
+      <ScrollPane hbarPolicy="NEVER" layoutX="160.0" layoutY="173.0" maxHeight="600.0" prefWidth="983.0" style="-fx-background-color: #1b1c1f; -fx-background: #1b1c1f;" stylesheets="@styleFriendsScreen.css">
          <content>
             <VBox fx:id="vbox" prefWidth="964.0" spacing="40.0" style="-fx-background-color: #1b1c1f;" />
          </content>

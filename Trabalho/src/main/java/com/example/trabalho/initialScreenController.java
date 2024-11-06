@@ -1,6 +1,7 @@
 package com.example.trabalho;
 
 import com.example.trabalho.BackEnd.LogIn;
+import com.example.trabalho.BackEnd.PlaylistDatabase;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +30,7 @@ public class initialScreenController {
     private Parent root;
     private Scene scene;
     private Image playlistImage = new Image(getClass().getResourceAsStream("imagens/empty_image.jpg"));
+    private List<List<String>> playlists;
 
     @FXML
     VBox vbox;
@@ -38,6 +40,8 @@ public class initialScreenController {
     @FXML
     public void initialize() {
         username.setText(LogIn.user.getName());
+        playlists = PlaylistDatabase.getPlaylistCSVFile();
+        addPlaylsit(null);
     }
 
     @FXML
@@ -102,51 +106,57 @@ public class initialScreenController {
 
     @FXML
     public void addPlaylsit(ActionEvent e){
-        boolean createNewHBox = true;
-        Pane pane = new Pane();
-        Label label = new Label("Nome da Playlist");
-        ImageView imageView = new ImageView(playlistImage);
-        imageView.preserveRatioProperty().set(true);
+        for(List<String> playlist : playlists){
+            if(playlist.get(1).equals(LogIn.user.getName())){
+                boolean createNewHBox = true;
+                Pane pane = new Pane();
+                Label label = new Label(playlist.get(0));
+                ImageView imageView = new ImageView(playlistImage);
+                imageView.preserveRatioProperty().set(true);
 
-        pane.setCursor(Cursor.HAND);
-        pane.setOnMouseClicked(mouseEvent -> {
-            try {
-                switchToScenePlaylist(mouseEvent);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                pane.setCursor(Cursor.HAND);
+                pane.setOnMouseClicked(mouseEvent -> {
+                    try {
+                        switchToScenePlaylist(mouseEvent);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+                label.setPrefWidth(284);
+                label.setPrefHeight(35);
+                label.setLayoutX(17);
+                label.setLayoutY(146);
+                label.setAlignment(Pos.CENTER);
+                label.setTextFill(Color.WHITE);
+                label.setFont(Font.font("System", FontWeight.BOLD, 20));
+
+
+                imageView.setFitWidth(200);
+                imageView.setFitHeight(150);
+                imageView.setLayoutX(59);
+                imageView.setLayoutY(0);
+
+                pane.getChildren().addAll(imageView, label);
+
+                List<Node> nodes = vbox.getChildren();
+                for(int i = 0; i < nodes.size(); i++){
+                    HBox hbox = (HBox) nodes.get(i);
+                    if(hbox.getChildren().size() < 3){
+                        hbox.getChildren().add(pane);
+                        createNewHBox = false;
+                        break;
+                    }
+                }
+
+                if(createNewHBox){
+                    HBox hbox = new HBox();
+                    hbox.getChildren().add(pane);
+                    vbox.getChildren().add(hbox);
+                }
             }
-        });
 
-        label.setPrefWidth(284);
-        label.setPrefHeight(35);
-        label.setLayoutX(17);
-        label.setLayoutY(146);
-        label.setAlignment(Pos.CENTER);
-        label.setTextFill(Color.WHITE);
-        label.setFont(Font.font("System", FontWeight.BOLD, 20));
-
-
-        imageView.setFitWidth(200);
-        imageView.setFitHeight(150);
-        imageView.setLayoutX(59);
-        imageView.setLayoutY(0);
-
-        pane.getChildren().addAll(imageView, label);
-
-        List<Node> nodes = vbox.getChildren();
-        for(int i = 0; i < nodes.size(); i++){
-            HBox hbox = (HBox) nodes.get(i);
-            if(hbox.getChildren().size() < 3){
-                hbox.getChildren().add(pane);
-                createNewHBox = false;
-                break;
-            }
         }
 
-        if(createNewHBox){
-            HBox hbox = new HBox();
-            hbox.getChildren().add(pane);
-            vbox.getChildren().add(hbox);
-        }
     }
 }

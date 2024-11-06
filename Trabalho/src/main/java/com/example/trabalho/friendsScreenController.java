@@ -4,6 +4,7 @@ import com.example.trabalho.BackEnd.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -125,6 +126,7 @@ public class friendsScreenController {
                 role.setPrefHeight(38);
                 role.setFont(Font.font("System", 17));
                 role.setTextFill(Color.WHITE);
+                role.setAlignment(Pos.CENTER);
                 role.setLayoutX(368);
                 role.setLayoutY(20);
 

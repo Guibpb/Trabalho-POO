@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.configurationScreenController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.configurationScreenController">
    <ImageView id="userIcon" fx:id="userIcon" fitHeight="220.0" fitWidth="188.0" layoutX="177.0" layoutY="86.0" onMouseClicked="#editIcon" pickOnBounds="true" preserveRatio="true">
       <Image url="@imagens/imgIcon.png" />
       <cursor>
@@ -20,7 +20,7 @@
    </ImageView>
    <Label fx:id="usernameTitle" alignment="CENTER" layoutX="438.0" layoutY="57.0" prefHeight="58.0" prefWidth="343.0" text="Nome do usuário" textFill="#f2f2f2">
       <font>
-         <Font size="30.0" />
+         <Font name="System Bold" size="38.0" />
       </font>
    </Label>
    <TextField fx:id="username" disable="true" editable="false" focusTraversable="false" layoutX="453.0" layoutY="261.0" prefHeight="58.0" prefWidth="313.0" text="Nome do Usuario">
