@@ -1,8 +1,5 @@
 PlaylistName,User,PlaylistVisibility,Musics...
-pl1,mikhael,public,1,3,4,5,6,7,8,9
-pl2,mikhael,private,1,3,4,52,6,7,8,9,32,5,76,23,12
-TOP 10 MAIS TOCADAS,USPfy,public,4,7,6,12,8,13,3,15,5,1
-TOP 10 MAIS TOCADAS: FUNK,USPfy,public,4,6,8,3,5,1,11,2,14,10
-TOP 10 MAIS TOCADAS: RAP,USPfy,public,7,12,13,15,9
-Teste Playlist,daniel,public
-Outra playlist,daniel,public
+Primeira Playlist,daniel,public,1,2,3,7
+Segunda playlist,daniel,public
+Raps do tauz,Clove,public
+Playlist privada,Clove,private
