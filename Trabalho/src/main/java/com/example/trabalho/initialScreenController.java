@@ -120,7 +120,6 @@ public class initialScreenController {
                     Pane paneDefault = (Pane) mouseEvent.getSource();
                     List<Node> nodes = paneDefault.getChildren();
                     Label labelDefault = (Label) nodes.get(1);
-                    System.out.println(labelDefault.getText());
                     playlistScreenController.playlistName = labelDefault.getText();
                     playlistScreenController.playlistOwner = LogIn.user.getName();
                     try {

@@ -26,6 +26,10 @@ public class App extends Application {
         Scene sceneRegister = new Scene((Parent) fxmlLoaderRegister.load());
         sceneRegister.getStylesheets().add(this.getClass().getResource("styleRegisterScreen.css").toExternalForm());
 
+        stage.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
+
         stage.setResizable(false);
         stage.setTitle("USPfy");
         stage.setScene(sceneLogin);
