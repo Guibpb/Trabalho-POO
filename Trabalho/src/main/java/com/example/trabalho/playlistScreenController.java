@@ -1,5 +1,7 @@
 package com.example.trabalho;
 
+import com.example.trabalho.BackEnd.MusicDatabase;
+import com.example.trabalho.BackEnd.PlaylistDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,10 +28,18 @@ import javafx.util.Duration;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class playlistScreenController {
+    public static String playlistName = "";
+    public static String playlistOwner = "";
+
+    private List<String[]> musics;
+    private List<String> playlist;
+
     private Stage stage;
     private Parent root;
     private Scene scene;
@@ -47,7 +57,9 @@ public class playlistScreenController {
     File musicFile;
 
     @FXML
-    private AnchorPane anchorPane;
+    private Label labelPlaylistName;
+    @FXML
+    private Label labelPlaylistOwner;
     @FXML
     private ImageView imgButton;
     @FXML
@@ -68,11 +80,22 @@ public class playlistScreenController {
     @FXML
     public void initialize() throws IOException {
         imgButton.setImage(btnPlayImage);
+        labelPlaylistName.setText(playlistName);
+        labelPlaylistOwner.setText(playlistOwner);
+        musics = MusicDatabase.getMusicCSVFile();
+        List<List<String>> playlists = PlaylistDatabase.getPlaylistCSVFile();
+        for(List<String> findPlaylist : playlists) {
+            if(findPlaylist.get(0).equals(playlistName)) {
+                playlist = findPlaylist;
+                break;
+            }
+        }
+        addSong(null);
     }
 
     @FXML
-    public void switchToInitialScreen(ActionEvent e) throws IOException {
-        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("initialScreen.fxml"));
+    public void goBack(ActionEvent e) throws IOException {
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource(App.lastScreenVisited));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
@@ -150,64 +173,82 @@ public class playlistScreenController {
 
     @FXML
     public void addSong(ActionEvent e) {
-        Pane pane = new Pane();
-        Label songName = new Label("Nome da Música");
-        Label genre = new Label("Gênero");
-        Label artistName = new Label("Artista");
-        Label songDuration = new Label("00:00");
+        List<String[]> musicsToAdd = new ArrayList<>();
+        for(String[] music : musics){
+            boolean hasMusic = false;
+                for(int j = 3; j < playlist.size(); j++){
+                    if(playlist.get(j).equals(music[0])){
+                        hasMusic = true;
+                        break;
+                    }
+                }
+                if(hasMusic){
+                    musicsToAdd.add(music);
+                }
 
-        pane.setPrefHeight(84);
-        pane.setPrefWidth(706);
+        }
 
-        pane.setOnMouseEntered(mouseEvent -> {
-            pane.setStyle("-fx-background-color: #616161");
-        });
-        pane.setOnMouseExited(mouseEvent -> {
-            pane.setStyle("-fx-background-color: none");
-        });
+        for(String[] music : musicsToAdd){
+            Pane pane = new Pane();
+            Label songName = new Label(music[2]);
+            Label genre = new Label(music[4]);
+            Label artistName = new Label(music[1]);
+            Label songDuration = new Label("00:00");
 
-        pane.setOnMouseClicked(mouseEvent -> {
-            try {
-                musicClick(mouseEvent);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-        pane.setCursor(Cursor.HAND);
+            pane.setPrefHeight(84);
+            pane.setPrefWidth(706);
 
-        songName.setPrefWidth(258);
-        songName.setPrefHeight(46);
-        songName.setLayoutX(14);
-        songName.setLayoutY(19);
-        songName.setTextFill(Color.WHITE);
-        songName.setFont(new Font("Arial", 14));
+            pane.setOnMouseEntered(mouseEvent -> {
+                pane.setStyle("-fx-background-color: #616161");
+            });
+            pane.setOnMouseExited(mouseEvent -> {
+                pane.setStyle("-fx-background-color: none");
+            });
 
-        genre.setPrefWidth(141);
-        genre.setPrefHeight(46);
-        genre.setLayoutX(283);
-        genre.setLayoutY(19);
-        genre.setTextFill(Color.WHITE);
-        genre.setFont(new Font("Arial", 14));
-        genre.setAlignment(Pos.CENTER);
+            pane.setOnMouseClicked(mouseEvent -> {
+                try {
+                    musicClick(mouseEvent);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            pane.setCursor(Cursor.HAND);
 
-        artistName.setPrefWidth(141);
-        artistName.setPrefHeight(46);
-        artistName.setLayoutX(469);
-        artistName.setLayoutY(19);
-        artistName.setTextFill(Color.WHITE);
-        artistName.setFont(new Font("Arial", 14));
-        artistName.setAlignment(Pos.CENTER);
+            songName.setPrefWidth(258);
+            songName.setPrefHeight(46);
+            songName.setLayoutX(14);
+            songName.setLayoutY(19);
+            songName.setTextFill(Color.WHITE);
+            songName.setFont(new Font("Arial", 14));
 
-        songDuration.setPrefWidth(74);
-        songDuration.setPrefHeight(46);
-        songDuration.setLayoutX(610);
-        songDuration.setLayoutY(19);
-        songDuration.setTextFill(Color.WHITE);
-        songDuration.setFont(new Font("System", 14));
-        songDuration.setAlignment(Pos.CENTER);
+            genre.setPrefWidth(141);
+            genre.setPrefHeight(46);
+            genre.setLayoutX(283);
+            genre.setLayoutY(19);
+            genre.setTextFill(Color.WHITE);
+            genre.setFont(new Font("Arial", 14));
+            genre.setAlignment(Pos.CENTER);
 
-        pane.getChildren().addAll(songName, genre, artistName, songDuration);
-        vboxSongs.getChildren().add(pane);
+            artistName.setPrefWidth(141);
+            artistName.setPrefHeight(46);
+            artistName.setLayoutX(469);
+            artistName.setLayoutY(19);
+            artistName.setTextFill(Color.WHITE);
+            artistName.setFont(new Font("Arial", 14));
+            artistName.setAlignment(Pos.CENTER);
+
+            songDuration.setPrefWidth(74);
+            songDuration.setPrefHeight(46);
+            songDuration.setLayoutX(610);
+            songDuration.setLayoutY(19);
+            songDuration.setTextFill(Color.WHITE);
+            songDuration.setFont(new Font("System", 14));
+            songDuration.setAlignment(Pos.CENTER);
+
+            pane.getChildren().addAll(songName, genre, artistName, songDuration);
+            vboxSongs.getChildren().add(pane);
+        }
+
     }
 
     public void changeSongVolume(double volume) {

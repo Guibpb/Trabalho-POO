@@ -52,6 +52,5 @@
             <URL value="@styleAllPlaylistsScreen.css" />
          </stylesheets>
       </ScrollPane>
-      <Button layoutX="197.0" layoutY="121.0" mnemonicParsing="false" onAction="#addPlaylsit" text="add" />
    </children>
 </AnchorPane>

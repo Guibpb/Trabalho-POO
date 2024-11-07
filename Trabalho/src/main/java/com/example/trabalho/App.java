@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     public static File file = new File("Banco.csv");
     public static Scanner scan;
+    public static String lastScreenVisited = "";
 
     public App() {
     }

@@ -46,6 +46,7 @@ public class initialScreenController {
 
     @FXML
     public void switchToScenePlaylist(javafx.scene.input.MouseEvent e) throws IOException {
+        App.lastScreenVisited = "initialScreen.fxml";
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("playlistScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
@@ -116,6 +117,12 @@ public class initialScreenController {
 
                 pane.setCursor(Cursor.HAND);
                 pane.setOnMouseClicked(mouseEvent -> {
+                    Pane paneDefault = (Pane) mouseEvent.getSource();
+                    List<Node> nodes = paneDefault.getChildren();
+                    Label labelDefault = (Label) nodes.get(1);
+                    System.out.println(labelDefault.getText());
+                    playlistScreenController.playlistName = labelDefault.getText();
+                    playlistScreenController.playlistOwner = LogIn.user.getName();
                     try {
                         switchToScenePlaylist(mouseEvent);
                     } catch (IOException ex) {

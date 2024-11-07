@@ -1,5 +1,6 @@
 package com.example.trabalho;
 
+import com.example.trabalho.BackEnd.PlaylistDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,10 +29,16 @@ public class allPlaylistsController {
     private Parent root;
     private Scene scene;
     private Image playlistImage = new Image(getClass().getResourceAsStream("imagens/empty_image.jpg"));
+    private List<List<String>> playlists;
 
     @FXML
     VBox vbox;
 
+    @FXML
+    public void initialize(){
+        playlists = PlaylistDatabase.getPlaylistCSVFile();
+        addPlaylsit(null);
+    }
 
     @FXML
     public void goBack(ActionEvent e) throws IOException {
@@ -53,54 +60,72 @@ public class allPlaylistsController {
 
     @FXML
     public void addPlaylsit(ActionEvent e){
-        boolean createNewHBox = true;
+        for(List<String> playlist : playlists){
+            if(playlist.get(2).equals("public")){
+                boolean createNewHBox = true;
 
-        Pane pane = new Pane();
-        pane.setCursor(Cursor.HAND);
+                Pane pane = new Pane();
+                pane.setCursor(Cursor.HAND);
 
-        Label label1 = new Label("Nome da Playlist");
-        Label label2 = new Label("Nome da dono");
+                Label label1 = new Label(playlist.get(0));
+                Label label2 = new Label(playlist.get(1));
 
-        ImageView imageView = new ImageView(playlistImage);
-        imageView.preserveRatioProperty().set(true);
+                ImageView imageView = new ImageView(playlistImage);
+                imageView.preserveRatioProperty().set(true);
 
-        label1.setPrefWidth(284);
-        label1.setPrefHeight(35);
-        label1.setLayoutX(17);
-        label1.setLayoutY(146);
-        label1.setAlignment(Pos.CENTER);
-        label1.setTextFill(Color.WHITE);
-        label1.setFont(Font.font("System", FontWeight.BOLD, 20));
+                label1.setPrefWidth(284);
+                label1.setPrefHeight(35);
+                label1.setLayoutX(17);
+                label1.setLayoutY(146);
+                label1.setAlignment(Pos.CENTER);
+                label1.setTextFill(Color.WHITE);
+                label1.setFont(Font.font("System", FontWeight.BOLD, 20));
 
-        label2.setPrefWidth(140);
-        label2.setPrefHeight(25);
-        label2.setLayoutX(89);
-        label2.setLayoutY(188);
-        label2.setAlignment(Pos.CENTER);
-        label2.setTextFill(Color.WHITE);
-        label2.setFont(Font.font("System", 14));
+                label2.setPrefWidth(140);
+                label2.setPrefHeight(25);
+                label2.setLayoutX(89);
+                label2.setLayoutY(188);
+                label2.setAlignment(Pos.CENTER);
+                label2.setTextFill(Color.WHITE);
+                label2.setFont(Font.font("System", 14));
 
-        imageView.setFitWidth(200);
-        imageView.setFitHeight(150);
-        imageView.setLayoutX(59);
-        imageView.setLayoutY(0);
+                imageView.setFitWidth(200);
+                imageView.setFitHeight(150);
+                imageView.setLayoutX(59);
+                imageView.setLayoutY(0);
 
-        pane.getChildren().addAll(imageView, label1, label2);
+                pane.getChildren().addAll(imageView, label1, label2);
+                pane.setOnMouseClicked(mouseEvent -> {
+                    Pane paneDefault = (Pane) mouseEvent.getSource();
+                    List<Node> nodes = paneDefault.getChildren();
+                    Label labelPlaylist = (Label) nodes.get(1);
+                    Label labelName = (Label) nodes.get(2);
+                    playlistScreenController.playlistName = labelPlaylist.getText();
+                    playlistScreenController.playlistOwner = labelName.getText();
+                    try {
+                        App.lastScreenVisited = "allPlaylistsScreen.fxml";
+                        switchToScenePlaylist(mouseEvent);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
 
-        List<Node> nodes = vbox.getChildren();
-        for(int i = 0; i < nodes.size(); i++){
-            HBox hbox = (HBox) nodes.get(i);
-            if(hbox.getChildren().size() < 3){
-                hbox.getChildren().add(pane);
-                createNewHBox = false;
-                break;
+                List<Node> nodes = vbox.getChildren();
+                for(int i = 0; i < nodes.size(); i++){
+                    HBox hbox = (HBox) nodes.get(i);
+                    if(hbox.getChildren().size() < 3){
+                        hbox.getChildren().add(pane);
+                        createNewHBox = false;
+                        break;
+                    }
+                }
+
+                if(createNewHBox){
+                    HBox hbox = new HBox();
+                    hbox.getChildren().add(pane);
+                    vbox.getChildren().add(hbox);
+                }
             }
-        }
-
-        if(createNewHBox){
-            HBox hbox = new HBox();
-            hbox.getChildren().add(pane);
-            vbox.getChildren().add(hbox);
         }
     }
 }
