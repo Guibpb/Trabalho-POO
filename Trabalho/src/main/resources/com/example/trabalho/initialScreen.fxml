@@ -45,7 +45,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane layoutY="187.0" prefHeight="373.0" prefWidth="90.0">
+      <Pane layoutY="187.0" prefHeight="501.0" prefWidth="90.0">
          <children>
             <Button layoutX="12.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToSceneFriends" prefHeight="46.0" prefWidth="62.0" style="-fx-background-color: none;">
                <graphic>
@@ -82,6 +82,21 @@
                   <ImageView fitHeight="39.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@imagens/allPlaylists.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Todas as playlists" />
+               </tooltip>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="createMusicButton" layoutX="13.0" layoutY="431.0" mnemonicParsing="false" onAction="#switchToSceneUploadMusic" prefHeight="46.0" prefWidth="62.0" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagens/addMusic.png" />
                      </image>
                   </ImageView>
                </graphic>

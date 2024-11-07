@@ -378,8 +378,8 @@ public class playlistScreenController {
     }
 
     private String formatDuration(Duration duration) {
-        long minutes = (long) duration.toMinutes();
-        long seconds = (long) (duration.toSeconds() % 60);
-        return String.format("%02d:%02d", minutes, seconds);
+        int minutes = (int) duration.toMinutes();
+        int seconds = (int) (duration.toSeconds() % 60); //Calculndo o resto para os segundos
+        return String.format("%02d:%02d", minutes, seconds); //Ficar no formato 00:00
     }
 }

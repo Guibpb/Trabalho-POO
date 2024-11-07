@@ -1,5 +1,6 @@
 package com.example.trabalho;
 
+import com.example.trabalho.BackEnd.FileInfo;
 import com.example.trabalho.BackEnd.LogIn;
 import com.example.trabalho.BackEnd.PlaylistDatabase;
 import javafx.application.Platform;
@@ -11,6 +12,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,7 +24,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class initialScreenController {
@@ -31,17 +35,33 @@ public class initialScreenController {
     private Scene scene;
     private Image playlistImage = new Image(getClass().getResourceAsStream("imagens/empty_image.jpg"));
     private List<List<String>> playlists;
+    private ArrayList<String[]> users;
 
     @FXML
     VBox vbox;
     @FXML
     Label username;
+    @FXML
+    Button createMusicButton;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws FileNotFoundException {
         username.setText(LogIn.user.getName());
         playlists = PlaylistDatabase.getPlaylistCSVFile();
         addPlaylsit(null);
+        users = FileInfo.getMatrixInfo("Banco.csv");
+        String role = "";
+        for(String[]user : users) {
+            if(LogIn.user.getName().equals(user[1])) {
+                role = user[4];
+                break;
+            }
+        }
+        if(role.equals("Artista")){
+            createMusicButton.setVisible(true);
+        }else{
+            createMusicButton.setVisible(false);
+        }
     }
 
     @FXML
@@ -92,15 +112,22 @@ public class initialScreenController {
 
     @FXML
     public void switchToSceneCreatePlaylist(ActionEvent e) throws IOException {
+        App.lastScreenVisited = "initialScreen.fxml";
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("createPlaylistScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
-        Platform.runLater(() -> {
-            this.stage.setWidth(600);
-            this.stage.setHeight(400);
-            this.stage.sizeToScene();
-        });
+        this.stage.centerOnScreen();
+        this.stage.show();
+    }
+
+    @FXML
+    public void switchToSceneUploadMusic(ActionEvent e) throws IOException {
+        App.lastScreenVisited = "initialScreen.fxml";
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("uploadMusicScreen.fxml"));
+        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        this.scene = new Scene(this.root);
+        this.stage.setScene(this.scene);
         this.stage.centerOnScreen();
         this.stage.show();
     }
