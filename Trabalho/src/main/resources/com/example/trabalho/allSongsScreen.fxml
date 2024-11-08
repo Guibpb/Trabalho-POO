@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.allSongsScreenController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.allSongsScreenController">
    <children>
       <ScrollPane layoutX="193.0" layoutY="144.0" maxHeight="615.0" prefWidth="892.0" style="-fx-background-color: #1b1c1f; -fx-background: #1b1c1f;" stylesheets="@styleAllSongsScreen.css">
          <content>
             <VBox fx:id="vboxSongs" prefWidth="814.0" />
          </content>
       </ScrollPane>
-      <TextField layoutX="246.0" layoutY="30.0" prefHeight="46.0" prefWidth="499.0" promptText="Nome da Música">
+      <TextField fx:id="searchTextField" layoutX="246.0" layoutY="30.0" prefHeight="46.0" prefWidth="499.0" promptText="Nome da Música">
          <font>
             <Font size="18.0" />
          </font>
@@ -34,7 +34,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="66.0" layoutY="119.0" mnemonicParsing="false" onAction="#addSong" text="add" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="49.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">

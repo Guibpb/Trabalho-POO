@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.uploadMusicScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.uploadMusicScreenController">
    <children>
       <TextField fx:id="musicName" layoutX="64.0" layoutY="107.0" prefHeight="39.0" prefWidth="304.0">
          <font>
@@ -31,7 +31,7 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </MenuButton>
-      <Button layoutX="64.0" layoutY="184.0" mnemonicParsing="false" onAction="#selectMusicFile" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #840b8c;" text="Selecionar Música" textFill="#1b1c1f">
+      <Button layoutX="64.0" layoutY="184.0" mnemonicParsing="false" onAction="#selectMusicFile" prefHeight="34.0" style="-fx-background-color: white;" text="Selecionar Música" textFill="#1b1c1f">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

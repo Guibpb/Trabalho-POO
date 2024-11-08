@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -32,12 +33,17 @@ public class allPlaylistsController {
     private List<List<String>> playlists;
 
     @FXML
-    VBox vbox;
+    private VBox vbox;
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     public void initialize(){
         playlists = PlaylistDatabase.getPlaylistCSVFile();
-        addPlaylsit(null);
+        addPlaylsit("");
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            addPlaylsit(newValue);
+        });
     }
 
     @FXML
@@ -58,10 +64,18 @@ public class allPlaylistsController {
         this.stage.show();
     }
 
-    @FXML
-    public void addPlaylsit(ActionEvent e){
+
+    public void addPlaylsit(String playlistName){
+        vbox.getChildren().clear();
+
         for(List<String> playlist : playlists){
-            if(playlist.get(2).equals("public")){
+            boolean canAdd = false;
+
+            if(playlist.get(0).toLowerCase().contains(playlistName.toLowerCase()) || playlist.get(1).toLowerCase().contains(playlistName.toLowerCase()) ||playlistName.equals("")){
+                canAdd = true;
+            }
+
+            if(playlist.get(2).equals("public") && canAdd){
                 boolean createNewHBox = true;
 
                 Pane pane = new Pane();

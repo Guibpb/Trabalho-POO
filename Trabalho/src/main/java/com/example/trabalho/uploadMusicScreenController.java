@@ -38,7 +38,7 @@ public class uploadMusicScreenController {
     }
 
     @FXML
-    public void create(ActionEvent event) {
+    public void create(ActionEvent event) throws IOException {
         int response;
         if(!genreMenu.getText().equals("Gênero")){
             response = MusicOptions.uploadMusic(MusicDatabase.getMusicCSVFile(), LogIn.user.getName(), musicName.getText(), genreMenu.getText(), musicFile);
@@ -47,12 +47,21 @@ public class uploadMusicScreenController {
                 alert.setTitle("Erro");
                 alert.setHeaderText(null);
                 alert.setContentText("Nome de música inválido");
+                alert.showAndWait();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Sucesso");
+                alert.setHeaderText(null);
+                alert.setContentText("Música criada com sucesso");
+                alert.showAndWait();
+                goBack(event);
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText(null);
             alert.setContentText("Escolha um gênero");
+            alert.showAndWait();
         }
 
     }
