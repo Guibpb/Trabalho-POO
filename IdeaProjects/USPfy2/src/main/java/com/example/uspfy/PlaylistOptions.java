@@ -9,6 +9,7 @@ public class PlaylistOptions {
             return 1;
         }
 
+
         List<String> newPlaylist = new ArrayList<>();
         newPlaylist.add(0, playlistName);
         newPlaylist.add(1, userName);
@@ -18,14 +19,19 @@ public class PlaylistOptions {
         return 0;
     }
 
-    public static void addMusicToPlaylist(List<List<String>> playlistCSVFileList, String playlistName, String musicID) {
+    public static int addMusicToPlaylist(List<List<String>> playlistCSVFileList, String playlistName, String musicID) {
         for(List<String> playlist : playlistCSVFileList){
             if(playlist.getFirst().equals(playlistName)){
+                for(String checkID : playlist){
+                    if(checkID.equals(musicID))
+                        return 1;
+                }
                 playlist.addLast(musicID);
                 break;
             }
         }
         PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
+        return 0;
     }
 
     public static void deletePlaylist(List<List<String>> playlistCSVFileList, String playlistName) {

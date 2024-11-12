@@ -36,7 +36,7 @@ public class MusicOptions {
             MusicDatabase.updateMusicCSVFile(musicCSVFileList); //atualiza o arquivo csv com a nova musica
 
         } catch (FileAlreadyExistsException e) {
-            System.out.println("File already exists");
+            return 1;
             //erro especifico pra caso a musica ja tenha sido registrada, fazer alguma outra coisa sla, ou nois bota q pode upar musicas iguais (complica mais ainda)?
         } catch (IOException e) {
             throw new RuntimeException(e);
