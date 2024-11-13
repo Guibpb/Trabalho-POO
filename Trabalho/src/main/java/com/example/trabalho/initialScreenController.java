@@ -48,7 +48,7 @@ public class initialScreenController {
     public void initialize() throws FileNotFoundException {
         username.setText(LogIn.user.getName());
         playlists = PlaylistDatabase.getPlaylistCSVFile();
-        addPlaylsit(null);
+        addPlaylist(null);
         users = FileInfo.getMatrixInfo("Banco.csv");
         String role = "";
         for(String[]user : users) {
@@ -133,7 +133,7 @@ public class initialScreenController {
     }
 
     @FXML
-    public void addPlaylsit(ActionEvent e){
+    public void addPlaylist(ActionEvent e){
         for(List<String> playlist : playlists){
             if(playlist.get(1).equals(LogIn.user.getName())){
                 boolean createNewHBox = true;
@@ -190,6 +190,5 @@ public class initialScreenController {
             }
 
         }
-
     }
 }

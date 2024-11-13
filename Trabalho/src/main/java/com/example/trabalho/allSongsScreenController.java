@@ -69,6 +69,7 @@ public class allSongsScreenController {
                 Label genre = new Label(music[4]);
                 Label artistName = new Label(music[1]);
                 Label songDuration = new Label("00:00");
+                Label id = new Label(music[0]);
                 Button addPlaylistBtn = new Button("Adicionar");
 
                 pane.setPrefHeight(84);
@@ -104,6 +105,8 @@ public class allSongsScreenController {
                 songDuration.setFont(new Font("System", 14));
                 songDuration.setAlignment(Pos.CENTER);
 
+                id.setVisible(false);
+
                 addPlaylistBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 addPlaylistBtn.setPrefHeight(35);
                 addPlaylistBtn.setLayoutX(750);
@@ -111,8 +114,28 @@ public class allSongsScreenController {
                 addPlaylistBtn.setStyle("-fx-background-color:  #8A2BE2; -fx-text-fill: #1b1c1f;");
                 addPlaylistBtn.setCursor(Cursor.HAND);
                 addPlaylistBtn.setFont(Font.font("System", FontWeight.BOLD, 14));
+                addPlaylistBtn.setOnAction(event -> {
+                    final String idToPass = id.getText();
+                    App.idMusicToAdd = idToPass;
+                    /*
+                    Pane defaultPane = (Pane)event.getSource();
+                    List<Node> defaultPaneNodes = defaultPane.getChildren();
+                    Label defaultId = (Label) defaultPaneNodes.get(5);
+                    App.idMusicToAdd = defaultId.getText();
+                     */
+                    try {
+                        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("addMusicPlaylistScreen.fxml"));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    this.scene = new Scene(this.root);
+                    this.stage.setScene(this.scene);
+                    this.stage.show();
+                    App.lastScreenVisited = "allSongsScreen.fxml";
+                });
 
-                pane.getChildren().addAll(songName, genre, artistName, songDuration, addPlaylistBtn);
+                pane.getChildren().addAll(songName, genre, artistName, songDuration, addPlaylistBtn,id);
                 vboxSongs.getChildren().add(pane);
             }
         }
