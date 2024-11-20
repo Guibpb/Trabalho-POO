@@ -21,7 +21,4 @@ public class ArtistUser extends User implements Customizable{
         String[] data = {origin[0],origin[1],origin[2],origin[3],ROLE, pfPicture};
         return data;
     }
-
-    public boolean deleteMusic(){return false;}
-    public boolean registerNewMusic(){return false;}
 }
