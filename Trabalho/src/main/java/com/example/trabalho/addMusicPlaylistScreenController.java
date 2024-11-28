@@ -11,6 +11,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -86,6 +87,11 @@ public class addMusicPlaylistScreenController {
                 pane.getChildren().addAll(imageView, label);
                 pane.setOnMouseClicked(event -> {
                     PlaylistOptions.addMusicToPlaylist(PlaylistDatabase.getPlaylistCSVFile(), label.getText(), App.idMusicToAdd);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle(null);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Música adicionada com sucesso");
+                    alert.showAndWait();
                     goBack(event);
                 });
 

@@ -170,8 +170,8 @@ public class configurationScreenController {
     public void exit(ActionEvent e){
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         confirmation.setTitle("Sair");
-        confirmation.setHeaderText("Deseja continuar?");
-        confirmation.setContentText(null);
+        confirmation.setHeaderText(null);
+        confirmation.setContentText("Deseja continuar?");
         Optional<ButtonType> result = confirmation.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
             try {

@@ -25,12 +25,12 @@
                         <Image url="@imagens/musicIcon.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="footerLabelMusicName" layoutX="75.0" layoutY="14.0" prefHeight="34.0" prefWidth="223.0" text="Nome da Música">
+                  <Label fx:id="footerLabelMusicName" layoutX="75.0" layoutY="14.0" prefHeight="34.0" prefWidth="223.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="footerLabelArtistName" layoutX="75.0" layoutY="52.0" prefHeight="18.0" prefWidth="223.0" text="Artista" textFill="#6b6b6b">
+                  <Label fx:id="footerLabelArtistName" layoutX="75.0" layoutY="52.0" prefHeight="18.0" prefWidth="223.0" textFill="#6b6b6b">
                      <font>
                         <Font size="14.0" />
                      </font>

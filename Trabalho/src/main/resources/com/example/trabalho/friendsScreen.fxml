@@ -48,7 +48,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </ScrollPane>
-      <CheckBox layoutX="832.0" layoutY="109.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="224.0" text="Apenas quem você segue" textFill="#fffdfd">
+      <CheckBox fx:id="friendsCheckbox" layoutX="832.0" layoutY="109.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="224.0" text="Apenas quem você segue" textFill="#fffdfd">
          <font>
             <Font size="15.0" />
          </font>

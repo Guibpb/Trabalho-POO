@@ -109,6 +109,9 @@ public class playlistScreenController {
 
     @FXML
     public void goBack(ActionEvent e) throws IOException {
+        if(mediaPlayer != null){
+            mediaPlayer.dispose();
+        }
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource(App.lastScreenVisited));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
@@ -275,6 +278,9 @@ public class playlistScreenController {
         }
 
         if(musicFile.exists()){
+            if(timer != null){
+                timer.cancel();
+            }
             media = new Media(musicFile.toURI().toString());
             mediaPlayer = new MediaPlayer(media);
             mediaPlayer.setOnReady(new Runnable() {

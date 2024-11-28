@@ -15,12 +15,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -117,12 +121,6 @@ public class allSongsScreenController {
                 addPlaylistBtn.setOnAction(event -> {
                     final String idToPass = id.getText();
                     App.idMusicToAdd = idToPass;
-                    /*
-                    Pane defaultPane = (Pane)event.getSource();
-                    List<Node> defaultPaneNodes = defaultPane.getChildren();
-                    Label defaultId = (Label) defaultPaneNodes.get(5);
-                    App.idMusicToAdd = defaultId.getText();
-                     */
                     try {
                         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("addMusicPlaylistScreen.fxml"));
                     } catch (IOException e) {
@@ -135,9 +133,25 @@ public class allSongsScreenController {
                     App.lastScreenVisited = "allSongsScreen.fxml";
                 });
 
+                File defaultFile = new File("Musics/" + music[5]);
+                if(defaultFile.exists()) {
+                    Media defaultMedia = new Media(defaultFile.toURI().toString());
+                    MediaPlayer defaultMediaPlayer = new MediaPlayer(defaultMedia);
+                    defaultMediaPlayer.setOnReady(() -> {
+                        Duration duration = defaultMediaPlayer.getMedia().getDuration();
+                        songDuration.setText(formatDuration(duration));
+                    });
+                }
+
                 pane.getChildren().addAll(songName, genre, artistName, songDuration, addPlaylistBtn,id);
                 vboxSongs.getChildren().add(pane);
             }
         }
+    }
+
+    private String formatDuration(Duration duration) {
+        int minutes = (int) duration.toMinutes();
+        int seconds = (int) (duration.toSeconds() % 60); //Calculndo o resto para os segundos
+        return String.format("%02d:%02d", minutes, seconds); //Ficar no formato 00:00
     }
 }
