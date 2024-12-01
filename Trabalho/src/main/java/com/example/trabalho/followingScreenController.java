@@ -1,6 +1,7 @@
 package com.example.trabalho;
 
-import com.example.trabalho.BackEnd.*;
+import com.example.trabalho.BackEnd.FileInfo;
+import com.example.trabalho.BackEnd.LogIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -27,7 +26,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class friendsScreenController {
+public class followingScreenController {
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -42,10 +42,6 @@ public class friendsScreenController {
 
     @FXML
     VBox vbox;
-    @FXML
-    CheckBox friendsCheckbox;
-    @FXML
-    TextField searchTextField;
 
     {
         try {
@@ -59,33 +55,15 @@ public class friendsScreenController {
     public void initialize() throws FileNotFoundException {
         followings = LogIn.user.getAllFollowings(0);
         try {
-            addUsers("");
+            addUsers();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        friendsCheckbox.setOnAction(event -> {
-            try {
-                vbox.getChildren().clear();
-                addUsers("");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-                vbox.getChildren().clear();
-                addUsers(newValue);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
     }
 
     @FXML
     public void goBack(ActionEvent e) throws IOException {
-        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("initialScreen.fxml"));
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("configurationScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
@@ -93,48 +71,15 @@ public class friendsScreenController {
     }
 
     @FXML
-    public void friendBtn(ActionEvent e) throws IOException {
-        Button btn  = (Button) e.getSource();
-        ImageView img, newImg;
-        img = (ImageView) btn.getGraphic();
-        List<Node> nodes = new ArrayList<Node>();
-        Pane pane = (Pane) btn.getParent();
-        nodes = pane.getChildren();
-        Label name= (Label) nodes.get(1);
-        Label id = (Label) nodes.get(4);
-
-        if(img.getImage().equals(following)) {
-            newImg = new ImageView(add);
-            newImg.setFitHeight(53);
-            newImg.setFitWidth(35);
-            newImg.setPreserveRatio(true);
-            btn.setGraphic(newImg);
-            LogIn.user.unfollowUser(name.getText(), id.getText());
-        }else{
-            newImg = new ImageView(following);
-            newImg.setFitHeight(53);
-            newImg.setFitWidth(35);
-            newImg.setPreserveRatio(true);
-            btn.setGraphic(newImg);
-            LogIn.user.followUser(name.getText(), id.getText());
-        }
-        followings = LogIn.user.getAllFollowings(0); //Atualizar a lista de amigos
-    }
-
-    @FXML
-    public void addUsers(String username) throws IOException {
-        for(String[] user : users){
-            if(!user[0].equals(LogIn.user.getId())){
-                boolean canAdd = false;
-                if(user[1].toLowerCase().contains(username.toLowerCase()) || username.equals("")) {
-                    canAdd = true;
-                }
-
-                if(friendsCheckbox.isSelected() && !followings.contains(user[1])){
+    public void addUsers () throws IOException {
+        for (String[] user : users) {
+            if (!user[0].equals(LogIn.user.getId())) {
+                boolean canAdd = true;
+                if (!followings.contains(user[1])) {
                     canAdd = false;
                 }
 
-                if(canAdd){
+                if (canAdd) {
                     Pane pane = new Pane();
                     ImageView icon = new ImageView(userIcon);
                     ImageView btnIcon;
@@ -171,9 +116,9 @@ public class friendsScreenController {
                     id.setPrefWidth(0);
                     id.setPrefHeight(0);
 
-                    if(followings.contains(user[1])){
+                    if (followings.contains(user[1])) {
                         btnIcon = new ImageView(following);
-                    }else{
+                    } else {
                         btnIcon = new ImageView(add);
                     }
 
@@ -189,7 +134,7 @@ public class friendsScreenController {
                     btn.setStyle("-fx-background-color: none;");
                     btn.setCursor(Cursor.HAND);
 
-                    btn.setOnAction(event ->{
+                    btn.setOnAction(event -> {
                         try {
                             friendBtn(event);
                         } catch (IOException e) {
@@ -207,5 +152,34 @@ public class friendsScreenController {
                 }
             }
         }
+    }
+
+    @FXML
+    public void friendBtn(ActionEvent e) throws IOException {
+        Button btn  = (Button) e.getSource();
+        ImageView img, newImg;
+        img = (ImageView) btn.getGraphic();
+        List<Node> nodes = new ArrayList<Node>();
+        Pane pane = (Pane) btn.getParent();
+        nodes = pane.getChildren();
+        Label name= (Label) nodes.get(1);
+        Label id = (Label) nodes.get(4);
+
+        if(img.getImage().equals(following)) {
+            newImg = new ImageView(add);
+            newImg.setFitHeight(53);
+            newImg.setFitWidth(35);
+            newImg.setPreserveRatio(true);
+            btn.setGraphic(newImg);
+            LogIn.user.unfollowUser(name.getText(), id.getText());
+        }else{
+            newImg = new ImageView(following);
+            newImg.setFitHeight(53);
+            newImg.setFitWidth(35);
+            newImg.setPreserveRatio(true);
+            btn.setGraphic(newImg);
+            LogIn.user.followUser(name.getText(), id.getText());
+        }
+        followings = LogIn.user.getAllFollowings(0); //Atualizar a lista de amigos
     }
 }

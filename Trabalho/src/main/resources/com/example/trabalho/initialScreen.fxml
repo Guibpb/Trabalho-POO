@@ -129,7 +129,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ScrollPane hbarPolicy="NEVER" layoutX="138.0" layoutY="168.0" maxHeight="600.0" prefWidth="959.0" style="-fx-background: #1b1c1f; -fx-background-color: #1b1c1f;" stylesheets="@styleInitialScreen.css">
+      <ScrollPane hbarPolicy="NEVER" layoutX="138.0" layoutY="187.0" maxHeight="600.0" prefWidth="959.0" style="-fx-background: #1b1c1f; -fx-background-color: #1b1c1f;" stylesheets="@styleInitialScreen.css">
          <content>
             <VBox fx:id="vbox" alignment="CENTER" spacing="30.0" style="-fx-background-color: #1b1c1f;" />
          </content>
@@ -137,10 +137,13 @@
             <Insets bottom="10.0" />
          </padding>
       </ScrollPane>
-      <Button layoutX="934.0" layoutY="100.0" mnemonicParsing="false" onAction="#switchToSceneCreatePlaylist" prefHeight="46.0" style="-fx-background-color: #62f576;" text="Nova Playlist">
+      <Button fx:id="newPlaylistBtn" layoutX="934.0" layoutY="100.0" mnemonicParsing="false" onAction="#switchToSceneCreatePlaylist" prefHeight="46.0" style="-fx-background-color: none;" stylesheets="@styleInitialScreen.css" text="Nova Playlist" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>

@@ -14,14 +14,14 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.friendsScreenController">
    <children>
-      <TextField layoutX="268.0" layoutY="30.0" prefHeight="38.0" prefWidth="556.0" promptText="Pesquisar">
+      <TextField fx:id="searchTextField" layoutX="268.0" layoutY="30.0" prefHeight="38.0" prefWidth="556.0" promptText="Pesquisar">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="38.0" prefWidth="54.0" style="-fx-background-color: none;">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: none;">
          <graphic>
-            <ImageView fitHeight="48.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imagens/goBack.png" />
                </image>

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -56,7 +57,7 @@ public class configurationScreenController {
     }
 
     @FXML
-    public void switchToInitialScreen(ActionEvent e) throws IOException {
+    public void goBack(ActionEvent e) throws IOException {
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("initialScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
@@ -129,7 +130,7 @@ public class configurationScreenController {
                 alert.setContentText("Usuário editado com sucesso!");
                 alert.setHeaderText(null);
                 alert.showAndWait();
-                switchToInitialScreen(e);
+                goBack(e);
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Editar");
@@ -164,6 +165,24 @@ public class configurationScreenController {
             stage.centerOnScreen();
             this.stage.show();
         }
+    }
+
+    @FXML
+    public void goFollowingScreen(MouseEvent e) throws IOException {
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("followingScreen.fxml"));
+        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        this.scene = new Scene(this.root);
+        this.stage.setScene(this.scene);
+        this.stage.show();
+    }
+
+    @FXML
+    public void goFollowersScreen(MouseEvent e) throws IOException {
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("followersScreen.fxml"));
+        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        this.scene = new Scene(this.root);
+        this.stage.setScene(this.scene);
+        this.stage.show();
     }
 
     @FXML

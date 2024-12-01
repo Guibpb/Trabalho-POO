@@ -120,9 +120,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#goBack" prefHeight="36.0" prefWidth="49.0" style="-fx-background-color: none;">
+      <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#goBack" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: none;">
          <graphic>
-            <ImageView fitHeight="52.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imagens/goBack.png" />
                </image>

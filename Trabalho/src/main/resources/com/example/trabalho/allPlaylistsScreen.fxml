@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.allPlaylistsController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.allPlaylistsController">
    <children>
-      <Button layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onAction="#goBack" prefHeight="41.0" prefWidth="58.0" style="-fx-background-color: none;">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: none;">
          <graphic>
-            <ImageView fitHeight="52.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imagens/goBack.png" />
                </image>
