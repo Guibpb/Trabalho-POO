@@ -47,17 +47,16 @@ public class friendsScreenController {
     @FXML
     TextField searchTextField;
 
-    {
+    @FXML
+    public void initialize() throws FileNotFoundException {
         try {
             users = FileInfo.getMatrixInfo("Banco.csv");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-    }
 
-    @FXML
-    public void initialize() throws FileNotFoundException {
         followings = LogIn.user.getAllFollowings(0);
+
         try {
             addUsers("");
         } catch (IOException e) {

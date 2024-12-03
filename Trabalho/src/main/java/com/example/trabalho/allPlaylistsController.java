@@ -48,7 +48,11 @@ public class allPlaylistsController {
 
     @FXML
     public void goBack(ActionEvent e) throws IOException {
-        Parent root = (Parent) FXMLLoader.load(this.getClass().getResource("initialScreen.fxml"));
+        System.out.println(App.lastScreenVisited);
+        if(App.admEditing){
+            App.lastScreenVisited = "admScreen.fxml";
+        }
+        Parent root = (Parent) FXMLLoader.load(this.getClass().getResource(App.lastScreenVisited));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         this.stage.setScene(scene);
@@ -75,7 +79,7 @@ public class allPlaylistsController {
                 canAdd = true;
             }
 
-            if(playlist.get(2).equals("public") && canAdd){
+            if(playlist.get(2).equals("public") && canAdd){ //colocar para aparecer todas se for adm
                 boolean createNewHBox = true;
 
                 Pane pane = new Pane();

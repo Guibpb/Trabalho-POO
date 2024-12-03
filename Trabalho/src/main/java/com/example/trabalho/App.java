@@ -14,9 +14,10 @@ public class App extends Application {
     public static Scanner scan;
     public static String lastScreenVisited = "";
     public static String idMusicToAdd;
-
-    public App() {
-    }
+    public static String musicToEdit;
+    public static String userToEdit;
+    public static String playlistToEdit;
+    public static boolean admEditing = false;
 
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoaderLogin = new FXMLLoader(App.class.getResource("loginScreen.fxml"));

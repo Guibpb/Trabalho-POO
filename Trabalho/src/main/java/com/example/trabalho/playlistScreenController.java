@@ -119,6 +119,20 @@ public class playlistScreenController {
         this.stage.show();
     }
 
+    @FXML
+    public void switchToSceneEditPlaylist(ActionEvent e) throws IOException {
+        if(mediaPlayer != null){
+            mediaPlayer.dispose();
+        }
+        App.playlistToEdit = labelPlaylistName.getText();
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("editPlaylistScreen.fxml"));
+        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        this.scene = new Scene(this.root);
+        this.stage.setScene(this.scene);
+        this.stage.centerOnScreen();
+        this.stage.show();
+    }
+
     public void addSong() {
         List<String[]> musicsToAdd = new ArrayList<>();
         for(String[] music : musics){

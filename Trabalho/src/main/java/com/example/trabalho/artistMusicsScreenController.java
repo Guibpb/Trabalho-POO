@@ -1,5 +1,6 @@
 package com.example.trabalho;
 
+import com.example.trabalho.BackEnd.LogIn;
 import com.example.trabalho.BackEnd.MusicDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -27,7 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class allSongsScreenController {
+public class artistMusicsScreenController {
     Parent root;
     Stage stage;
     Scene scene;
@@ -36,33 +36,27 @@ public class allSongsScreenController {
 
     @FXML
     VBox vboxSongs;
-    @FXML
-    TextField searchTextField;
 
     @FXML
     public void initialize(){
         musics = MusicDatabase.getMusicCSVFile();
-        addSong("");
-        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            addSong(newValue);
-        });
+        addSong();
     }
 
     @FXML
     public void goBack(ActionEvent e) throws IOException {
-        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("initialScreen.fxml"));
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource(App.lastScreenVisited));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
         this.stage.show();
     }
 
-    public void addSong(String musicName) {
-        vboxSongs.getChildren().clear();
+    public void addSong() {
         for(String[] music : musics) {
             boolean canAdd = false;
 
-            if(music[2].toLowerCase().contains(musicName.toLowerCase()) || musicName.equals("")) {
+            if(music[1].equals(LogIn.user.getName())) { //colocar para aparecer todos se for adm
                 canAdd = true;
             }
 
@@ -73,7 +67,7 @@ public class allSongsScreenController {
                 Label artistName = new Label(music[1]);
                 Label songDuration = new Label("00:00");
                 Label id = new Label(music[0]);
-                Button addPlaylistBtn = new Button("Adicionar");
+                Button editMusicButton = new Button("Editar");
 
                 pane.setPrefHeight(84);
 
@@ -110,24 +104,27 @@ public class allSongsScreenController {
 
                 id.setVisible(false);
 
-                addPlaylistBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                addPlaylistBtn.setPrefHeight(35);
-                addPlaylistBtn.setLayoutX(750);
-                addPlaylistBtn.setLayoutY(25);
-                addPlaylistBtn.setStyle("-fx-background-color:  #8A2BE2; -fx-text-fill: #1b1c1f;");
-                addPlaylistBtn.setCursor(Cursor.HAND);
-                addPlaylistBtn.setFont(Font.font("System", FontWeight.BOLD, 14));
-                addPlaylistBtn.setOnAction(event -> {
+                editMusicButton.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                editMusicButton.setPrefHeight(35);
+                editMusicButton.setLayoutX(750);
+                editMusicButton.setLayoutY(25);
+                editMusicButton.setStyle("-fx-background-color:  #8A2BE2; -fx-text-fill: #1b1c1f;");
+                editMusicButton.setCursor(Cursor.HAND);
+                editMusicButton.setFont(Font.font("System", FontWeight.BOLD, 14));
+                editMusicButton.setOnAction(event -> {
+                    final String musicNameToPass = songName.getText();
                     final String idToPass = id.getText();
                     App.idMusicToAdd = idToPass;
+                    App.musicToEdit = musicNameToPass;
                     try {
-                        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("addMusicPlaylistScreen.fxml"));
+                        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("musicConfigScreen.fxml"));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                     this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                     this.scene = new Scene(this.root);
                     this.stage.setScene(this.scene);
+                    this.stage.centerOnScreen();
                     this.stage.show();
                     App.lastScreenVisited = "allSongsScreen.fxml";
                 });
@@ -142,7 +139,7 @@ public class allSongsScreenController {
                     });
                 }
 
-                pane.getChildren().addAll(songName, genre, artistName, songDuration, addPlaylistBtn,id);
+                pane.getChildren().addAll(songName, genre, artistName, songDuration, editMusicButton,id);
                 vboxSongs.getChildren().add(pane);
             }
         }
