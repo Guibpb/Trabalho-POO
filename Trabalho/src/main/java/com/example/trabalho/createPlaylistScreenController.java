@@ -2,7 +2,6 @@ package com.example.trabalho;
 
 import com.example.trabalho.BackEnd.LogIn;
 import com.example.trabalho.BackEnd.PlaylistDatabase;
-import com.example.trabalho.BackEnd.PlaylistOptions;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,14 +10,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class createPlaylistScreenController{
@@ -75,6 +71,7 @@ public class createPlaylistScreenController{
         }
     }
 
+    /*
     @FXML
     public void createPlaylist(ActionEvent e) throws IOException {
         String playlistName = labelPlaylistName.getText();
@@ -85,13 +82,13 @@ public class createPlaylistScreenController{
         }else{
             visibility = "public";
         }
-        PlaylistOptions.createPlaylist(playlists, playlistName, artist, visibility);
+        LogIn.user.(playlists, playlistName, artist, visibility);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Playlist");
         alert.setHeaderText(null);
         alert.setContentText("Playlist criada com sucesso!");
         alert.showAndWait();
         goBack(e);
-    }
+    }*/
 
 }

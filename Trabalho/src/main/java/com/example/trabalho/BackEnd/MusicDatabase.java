@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MusicDatabase {
-
     public static List<String[]> getMusicCSVFile(){
         List<String[]> musicCSVFileList = new ArrayList<>(); //como cada linha tem 6 elementos sempre, n precisa ser dinamico
         String row; //cada linha do arquivo

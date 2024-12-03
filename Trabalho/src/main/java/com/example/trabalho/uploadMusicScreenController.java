@@ -2,7 +2,6 @@ package com.example.trabalho;
 
 import com.example.trabalho.BackEnd.LogIn;
 import com.example.trabalho.BackEnd.MusicDatabase;
-import com.example.trabalho.BackEnd.MusicOptions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
 import javax.swing.*;
 import java.io.File;
@@ -37,11 +35,12 @@ public class uploadMusicScreenController {
         musicFile = f.getSelectedFile();
     }
 
+    /*
     @FXML
     public void create(ActionEvent event) throws IOException {
         int response;
         if(!genreMenu.getText().equals("Gênero")){
-            response = MusicOptions.uploadMusic(MusicDatabase.getMusicCSVFile(), LogIn.user.getName(), musicName.getText(), genreMenu.getText(), musicFile);
+            response = LogIn.user.upl(MusicDatabase.getMusicCSVFile(), LogIn.user.getName(), musicName.getText(), genreMenu.getText(), musicFile);
             if(response == 1){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erro");
@@ -65,6 +64,8 @@ public class uploadMusicScreenController {
         }
 
     }
+    */
+
 
     @FXML
     public void changeMenuText(ActionEvent event) {

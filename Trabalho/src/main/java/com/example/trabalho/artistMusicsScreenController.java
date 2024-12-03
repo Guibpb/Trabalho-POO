@@ -2,6 +2,7 @@ package com.example.trabalho;
 
 import com.example.trabalho.BackEnd.LogIn;
 import com.example.trabalho.BackEnd.MusicDatabase;
+import com.example.trabalho.BackEnd.PublicUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,7 +57,7 @@ public class artistMusicsScreenController {
         for(String[] music : musics) {
             boolean canAdd = false;
 
-            if(music[1].equals(LogIn.user.getName())) { //colocar para aparecer todos se for adm
+            if(LogIn.user.getRole().equals("Gerente") || music[1].equals(LogIn.user.getName())) { //colocar para aparecer todos se for adm
                 canAdd = true;
             }
 

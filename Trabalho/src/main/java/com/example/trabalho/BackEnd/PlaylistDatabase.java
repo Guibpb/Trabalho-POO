@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistDatabase {
-
     public static List<List<String>> getPlaylistCSVFile(){
         File playlistCSVFile = new File("mplaylists.csv");
         List<List<String>> playlistCSVFileList = new ArrayList<>(); //List é mais generico, permite trocar dps entre Linked e Array
