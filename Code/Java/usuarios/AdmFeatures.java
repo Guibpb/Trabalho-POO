@@ -1,8 +1,9 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public interface Commandable {
+public interface AdmFeatures {
     String ROLE = "Gerente";
 
     default boolean deleteAny(String userToBeDeleted) throws FileNotFoundException{ //função de ADM
@@ -24,12 +25,38 @@ public interface Commandable {
         return SignUp.signUp(name, email, password, password2, role, false);
     }
 
-    /*boolean seeAllUsers();
-    boolean seeAllArtists();
-    boolean seeAllMusics();
-    boolean seeAllPlaylists();*/
+    default ArrayList<String[]> seeAllUsers()throws FileNotFoundException{
+        ArrayList <String[]> users;
 
-    default void generateTop10Playlist(List<String[]> musicCSVFileList, List<List<String>> playlistCSVFileList, String playlistGenre) {
+        users = FileInfo.getMatrixInfo("Database/Banco.csv");
+
+        return users;
+    }
+
+    default ArrayList<String[]> seeAllArtists()throws FileNotFoundException{
+        ArrayList <String[]> artists;
+        artists = FileInfo.getMatrixInfo("Database/Banco.csv");
+        
+        artists.removeIf(artist -> !Arrays.asList(artist).contains("Artista"));
+
+        return artists;
+    }
+    
+    default List<String[]> seeAllMusics(){
+        List<String[]> musics;
+        musics = MusicDatabase.getMusicCSVFile();
+
+        return musics;
+    }
+    
+    default List<List<String>> seeAllPlaylists(){
+        List<List<String>> playlists;
+        playlists = PlaylistDatabase.getPlaylistCSVFile();
+
+        return playlists;
+    }
+
+    default int generateTop10Playlist(List<String[]> musicCSVFileList, List<List<String>> playlistCSVFileList, String playlistGenre) {
         List<String> top10playedmusics = new ArrayList<>();
         String playlistName = "TOP 10 MAIS TOCADAS";
         if(playlistGenre != null) {
@@ -51,13 +78,12 @@ public interface Commandable {
         for(int i=2; i<=limit; i++){ //como a primeira linha e uma template, ele começa no indice 1 
             for(int j=limit; j>=i; j--){
                 if(Integer.parseInt(musicCSVFileList.get(j-1)[3]) > Integer.parseInt(musicCSVFileList.get(j)[3])){
-                    String[] intermediate = musicCSVFileList.get(j-1);
+                    String[] intermediary = musicCSVFileList.get(j-1);
                     musicCSVFileList.set(j-1, musicCSVFileList.get(j));
-                    musicCSVFileList.set(j, intermediate);
+                    musicCSVFileList.set(j, intermediary);
                 }
             }
         }
-
         if(musicCSVFileList.size() > 10) {
             for (int i = limit; i > limit - 10; i--) //armazena as top 10 em ordem decrescente, o bubblesort é crescente
                 top10playedmusics.add(musicCSVFileList.get(i)[0]);
@@ -66,7 +92,18 @@ public interface Commandable {
                 top10playedmusics.add(musicCSVFileList.get(i)[0]);
         }
 
+        if(top10playedmusics.size() <= 3)
+            return 1; //erro se nao tiver nenhuma musica
+
+        if(top10playedmusics.size() < 13) {
+            playlistName = "TOP " + (top10playedmusics.size() - 3) + " MAIS TOCADAS";
+            if(playlistGenre != null)
+                playlistName += ": " + playlistGenre.toUpperCase();
+            top10playedmusics.set(0, playlistName);
+        }
+
         playlistCSVFileList.add(top10playedmusics); //adiciona essa playlist a lista de playlists
         PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList); //atualiza o arquivo das playlists
+        return 0;
     }
 }

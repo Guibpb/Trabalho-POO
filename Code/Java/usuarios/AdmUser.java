@@ -1,6 +1,6 @@
-public class AdmUser extends User implements Commandable, Customizable{
-    public AdmUser(String id, String name, String email, String password, String pfPicture){
-        super(id, name, email, password, pfPicture);
+public class AdmUser extends User implements AdmFeatures, ArtistFeatures{
+    public AdmUser(String id, String name, String email, String password){
+        super(id, name, email, password);
     }
 
     public String getRole(){
@@ -9,14 +9,14 @@ public class AdmUser extends User implements Commandable, Customizable{
 
     @Override
     public String getFormatData(){
-        String data = super.getFormatData() + ROLE + "," + pfPicture;
+        String data = super.getFormatData() + ROLE;
         return data;
     }
 
     @Override
     public String[] getData(){
         String[] origin = super.getData();
-        String[] data = {origin[0],origin[1],origin[2],origin[3],ROLE, pfPicture};
+        String[] data = {origin[0],origin[1],origin[2],origin[3],ROLE};
         return data;
     }
 }

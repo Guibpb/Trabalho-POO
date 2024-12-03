@@ -1,11 +1,11 @@
 id,usuario,email,senha,Cargo,Foto
-1,admin,admin@usp.br,123,Gerente,Database/Default.png
-2,gui,gui@usp.br,123,Gerente,Database/Default.png
-3,daniel,daniel@usp.br,456,Gerente,Database/Default.png
-4,mikhael,mikhael@usp.br,000,Gerente,Database/Default.png
-5,pedro,pedro@usp.br,000,Comum,Database/Default.png
-6,gabriel,gabriel@usp.br,002,Comum,Database/Default.png
-7,johnlennon,johnlennon@beatles.com,Yoko123,Artista,Database/Default.png
-8,gui2,gui2@usp.br,gui2,Comum,Database/Default.png
-9,Paul_McCartney,paulmccartney@beatles.com,John123,Artista,Database/Default.png
-10,George Harrison,George@beatles.com,123,Artista,Database/Default.png
+1,admin,admin@usp.br,123,Gerente,
+2,gui,gui@usp.br,123,Gerente,
+3,daniel,daniel@usp.br,456,Gerente,
+4,mikhael,mikhael@usp.br,000,Gerente,
+5,pedro,pedro@usp.br,000,Comum,
+6,gabriel,gabriel@usp.br,002,Comum,
+7,johnlennon,johnlennon@beatles.com,Yoko123,Artista,
+8,gui2,gui2@usp.br,gui2,Comum,
+9,Paul_McCartney,paulmccartney@beatles.com,John123,Artista,
+10,George Harrison,George@beatles.com,123,Artista,
