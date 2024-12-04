@@ -28,4 +28,6 @@ public abstract class User implements CommonFeatures{
     public String getEmail(){return this.email;}
 
     public String getPassword(){return this.password;}
+
+    public String getRole(){return "";}
 }

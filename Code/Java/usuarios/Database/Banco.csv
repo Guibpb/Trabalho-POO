@@ -1,4 +1,4 @@
-id,usuario,email,senha,Cargo,Foto
+id,usuario,email,senha,Cargo,
 1,admin,admin@usp.br,123,Gerente,
 2,gui,gui@usp.br,123,Gerente,
 3,daniel,daniel@usp.br,456,Gerente,
@@ -7,5 +7,5 @@ id,usuario,email,senha,Cargo,Foto
 6,gabriel,gabriel@usp.br,002,Comum,
 7,johnlennon,johnlennon@beatles.com,Yoko123,Artista,
 8,gui2,gui2@usp.br,gui2,Comum,
-9,Paul_McCartney,paulmccartney@beatles.com,John123,Artista,
+9,Paul,BestBeatle@usp.br,456,Artista,
 10,George Harrison,George@beatles.com,123,Artista,

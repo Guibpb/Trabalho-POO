@@ -3,6 +3,7 @@ public class AdmUser extends User implements AdmFeatures, ArtistFeatures{
         super(id, name, email, password);
     }
 
+    @Override
     public String getRole(){
         return ROLE;
     }

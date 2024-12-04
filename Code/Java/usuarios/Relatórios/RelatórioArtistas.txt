@@ -1,0 +1,17 @@
+Relatório Estatístico: Artistas
+
+Id de Usuário: 7
+Nome: johnlennon
+E-mail: johnlennon@beatles.com
+Musica 1: Bones
+
+Id de Usuário: 9
+Nome: Paul
+E-mail: BestBeatle@usp.br
+Musica 1: Rap do escanor
+
+Id de Usuário: 10
+Nome: George Harrison
+E-mail: George@beatles.com
+Musica 1: Numb
+

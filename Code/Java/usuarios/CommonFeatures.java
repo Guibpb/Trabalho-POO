@@ -132,7 +132,7 @@ interface CommonFeatures {
         followingsFile.delete();//apaga a pasta de seguidos
     }
 
-    default int editSelf(String newName, String newEmail, String newPassword, String newPassword2, String newPicture, boolean compareName, boolean compareEmail, boolean comparePassword) throws FileNotFoundException{//função comum
+    default int editSelf(String newName, String newEmail, String newPassword, String newPassword2, boolean compareName, boolean compareEmail, boolean comparePassword) throws FileNotFoundException{//função comum
         String tempName = newName;
         String tempEmail = newEmail;
         String tempPassword = newPassword;
@@ -155,13 +155,13 @@ interface CommonFeatures {
         String oldData = LogIn.user.getFormatData();
         String oldUserInfo[] = LogIn.user.getData();
 
-        String newUserData = String.format("\n%s,%s,%s,%s,%s,%s", oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4], newPicture);
+        String newUserData = String.format("\n%s,%s,%s,%s,%s", oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4]);
         ModifyUser.modUser(FileInfo.getRawData("Database/Banco.csv"), oldData, newUserData, "Database/Banco.csv");
 
         newUserData = String.format("\n%s,%s", newName, oldUserInfo[0]);
         updateFollowers(newUserData);
 
-        String [] newUserInfo = {oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4], newPicture};
+        String [] newUserInfo = {oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4]};
         LogIn.defUser(newUserInfo);
 
         return 0;
@@ -234,5 +234,20 @@ interface CommonFeatures {
             }
         }
         PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
+    }
+
+    default void viewCounter(String musicID){
+        List<String[]> musicCSVFileList = MusicDatabase.getMusicCSVFile();
+
+        for(String[] music : musicCSVFileList){
+            if(music[0].equals(musicID)){
+                int currentViews = Integer.parseInt(music[3]);
+                currentViews++;
+                music[3] = String.valueOf(currentViews);
+                break;
+            }
+        }
+
+        MusicDatabase.updateMusicCSVFile(musicCSVFileList);
     }
 }    

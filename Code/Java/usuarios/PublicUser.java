@@ -5,6 +5,7 @@ public class PublicUser extends User {
         super(id, name, email, password);
     }
 
+    @Override
     public String getRole(){
         return ROLE;
     }

@@ -5,6 +5,7 @@ public class ArtistUser extends User implements ArtistFeatures{
         super(id, name, email, password);
     }
 
+    @Override
     public String getRole(){
         return ROLE;
     }

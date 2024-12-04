@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
@@ -40,12 +41,12 @@ interface ArtistFeatures {
         return 0;
     }
 
-    default void deleteMusic(List<String[]> musicCSVFileList, File musicFile){
+    default void deleteMusic(List<String[]> musicCSVFileList, String musicFileName){
         try {
             for (String[] music : musicCSVFileList) {
-                if (music[5].equals(musicFile.getName())) {
+                if (music[5].equals(musicFileName)) {
                     Path origin = Path.of("Musics");
-                    Path musicFilePath = origin.resolve(musicFile.getName());
+                    Path musicFilePath = origin.resolve(musicFileName);
                     Files.delete(musicFilePath);
                     musicCSVFileList.remove(music);
                     break;
@@ -70,5 +71,23 @@ interface ArtistFeatures {
         }
         MusicDatabase.updateMusicCSVFile(musicCSVFileList);
         return 0;
+    }
+
+    default void seeAllOwnMusics(String FILE_PATH)throws FileNotFoundException{
+        String name = LogIn.artistUser.getName();
+        List<String[]> musics;
+        musics = MusicDatabase.getMusicCSVFile();
+        musics.remove(0);
+        String formatData = String.format("Relatório Estatístico de %s: Músicas\n\n", name);
+
+        for(String[] musicInfo : musics){
+            if(musicInfo[1].equals(name)){
+                String info = String.format("Id de Música: %s\nNome da Música: %s\nVizualizações: %s\nGênero: %s\nNome do Arquivo: %s\n\n", musicInfo[0], musicInfo[2], musicInfo[3], musicInfo[4], musicInfo[5]);
+                formatData += info;
+            }
+        }
+
+        FILE_PATH += String.format("RelatórioMúsicas%s.txt", name);
+        RecordUser.replaceInFile(formatData, FILE_PATH);
     }
 }

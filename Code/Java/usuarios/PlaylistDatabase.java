@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PlaylistDatabase {
     public static List<List<String>> getPlaylistCSVFile(){
-        File playlistCSVFile = new File("mplaylists.csv");
+        File playlistCSVFile = new File("Database/mplaylists.csv");
         List<List<String>> playlistCSVFileList = new ArrayList<>(); //List é mais generico, permite trocar dps entre Linked e Array
         String row; //cada linha do arquivo
         try {
@@ -32,7 +32,7 @@ public class PlaylistDatabase {
     }
 
     public static void updatePlaylistCSVFile(List<List<String>> playlistCSVFileList){
-        File playlistCSVFile = new File("mplaylists.csv");
+        File playlistCSVFile = new File("Database/mplaylists.csv");
         try {
             if(playlistCSVFile.createNewFile()){
                 PrintWriter printTemplate = new PrintWriter(playlistCSVFile);
@@ -40,7 +40,7 @@ public class PlaylistDatabase {
                 printTemplate.close();
 
             }
-            PrintWriter writer = new PrintWriter(new FileWriter("mplaylists.csv"));
+            PrintWriter writer = new PrintWriter(new FileWriter("Database/mplaylists.csv"));
             for(List<String> data : playlistCSVFileList){ //itera sobre cada "playlist"
                 for (int i = 0; i < data.size(); i++) { //itera sobre cada string contida na playlist
                     writer.print(data.get(i));
