@@ -4,26 +4,44 @@ import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
+/**
+ * Interface que representa métodos exclusivos para artistas, como upar/editar/excluir músicas no aplicativo e gerar relatórios.
+ * @author Mikhael
+ * @author Guilherme
+ */
+
 interface ArtistFeatures {
+    /**
+     * Adiciona uma nova música ao banco de dados de músicas e à pasta com os arquivos mp3 das músicas. O endereço da pasta com as
+     * músicas do programa e o endereço no qual o arquivo da música a ser adicionada são obtidos pelo método Path, e a transferência
+     * do arquivo entre as pastas é feita com Files.move(), na qual o arquivo da música é copiado para a pasta destino e removido
+     * da pasta origem. O ID da ultima música adicionada é recebido para ser incrementado e indentificar a nova música, o que também
+     * garante a unicidade do ID da música, por fim, a música é adicionada ao banco de dados com suas respectivas informações.
+     * @param musicCSVFileList Lista de músicas a qual sera adicionada a nova música.
+     * @param artistName Nome do artista que adicionou a nova música.
+     * @param musicName Nome da nova música.
+     * @param musicGenre Gênero musical da nova música.
+     * @param musicFile Arquivo mp3 da nova música
+     * @return Retorna 1 em casos inválidos, retorna 0 por padrão.
+     */
+
     default int uploadMusic(List<String[]> musicCSVFileList, String artistName, String musicName, String musicGenre, File musicFile){
         if(musicName.contains(",")){
             return 1;
         }
 
-        try{ //fudeu explicar isso aq +/-, pra funcionar tu bota uma pasta no TempMusic e copia o nome dela na main na variavel "testmusic", ela n pode tar na Music tbm
-            Path musicDirectory = Path.of("Musics");//endereco da pasta de musicas
+        try{
+            Path musicDirectory = Path.of("Musics");
             if (!Files.exists(musicDirectory))
                 Files.createDirectories(musicDirectory);
-            //endereco da pasta de musicas
-            Path origin = Path.of("TempMusics"); //n to conseguindo pegar de um diretorio generalizado
-            Path musicFilePath = origin.resolve(musicFile.getName()); //endereco da musica? n entendi mt bem essa aq, vou pesquisar
-            //esse foi o unico jeito q eu consegui fzr rodar
-            Files.move(musicFilePath, musicDirectory.resolve(musicFilePath.getFileName())); //funcao de mover, vou pesquisar
+            Path destinationDir = Path.of("Musics");
+            Path destinationPath = destinationDir.resolve(musicFile.getName());
+            Files.move(musicFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
-            //parte do csv abaixo, so vai rodar se a de cima n der erro
-            int currentID = 1; //se for a primeira musica a ser adicionada
+            int currentID = 1;
             if(!musicCSVFileList.getLast()[0].equals("MusicID"))
                 currentID = Integer.parseInt(musicCSVFileList.getLast()[0]);
             //id armazenado como string, passando pra int aqui
@@ -40,6 +58,13 @@ interface ArtistFeatures {
         }
         return 0;
     }
+
+    /**
+     * Remove uma música da lista de músicas, atualizando o banco de dados de músicas com a nova lista e remove a música da pasta
+     * com os arquivos de música.
+     * @param musicCSVFileList Lista de músicas a ser atualizada com a remoção de uma música.
+     * @param musicFileName Name Arquivo de música a ser removido da pasta de músicas.
+     */
 
     default void deleteMusic(List<String[]> musicCSVFileList, String musicFileName){
         try {
@@ -58,6 +83,15 @@ interface ArtistFeatures {
         MusicDatabase.updateMusicCSVFile(musicCSVFileList);
     }
 
+    /**
+     * Edita uma música ja existente, atualiza o bando de dados de músicas com a música editada.
+     * @param musicCSVFileList Lista de músicas que sera atualizada com uma música editada.
+     * @param musicID ID da música que vai ser editada.
+     * @param newName Novo nome da música que vai ser editada.
+     * @param newGenre Novo gênero musical da música que vai ser editada.
+     * @return Retorna 1 em casos inválidos, retorna 0 por padrão.
+     */
+
     default int editMusic(List<String[]> musicCSVFileList,String musicID, String newName, String newGenre){
         if(newName.contains(",")){
             return 1;
@@ -72,6 +106,12 @@ interface ArtistFeatures {
         MusicDatabase.updateMusicCSVFile(musicCSVFileList);
         return 0;
     }
+
+    /**
+     * Gera um relatório das músicas do artista logado em forma de arquivo txt.
+     * @param FILE_PATH Caminho onde o arquivo será criado.
+     * @throws FileNotFoundException Tratamento de erro de arquivo inexistente.
+     */
 
     default void seeAllOwnMusics(String FILE_PATH)throws FileNotFoundException{
         String name = LogIn.artistUser.getName();
