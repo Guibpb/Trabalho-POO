@@ -11,6 +11,7 @@ public class MusicPlaylistTestMain {
 
         //musica a ser movida
         File testmusic = new File("Rap do Dark Souls _ Tauz RapGame 33 [ ezmp3.cc ].mp3");
+        String name = testmusic.getName();
         //teste de upload
         MusicOptions.uploadMusic(temp, "Tauz","Rap do Dark Souls","rap",testmusic);
 
@@ -18,7 +19,9 @@ public class MusicPlaylistTestMain {
         //MusicOptions.editMusic(temp, "3", "funkdogoku","funk");
 
         //teste de deletar
-        //MusicOptions.deleteMusic(temp, testmusic);
+        //MusicOptions.deleteMusic(temp, name);
+
+        //MusicOptions.viewCounter(temp, "10");
 
 
 

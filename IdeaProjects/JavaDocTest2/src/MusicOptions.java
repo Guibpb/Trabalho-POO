@@ -24,6 +24,10 @@ public class MusicOptions {
         if(musicName.contains(",")){
             return 1;
         }
+        for(String[] music : musicCSVFileList){
+            if(music[2].equals(musicName))
+                return 1;
+        }
 
         try{
             Path musicDirectory = Path.of("Musics");
@@ -58,14 +62,14 @@ public class MusicOptions {
      * Remove uma música da lista de músicas, atualizando o banco de dados de músicas com a nova lista e remove a música da pasta
      * com os arquivos de música.
      * @param musicCSVFileList Lista de músicas a ser atualizada com a remoção de uma música.
-     * @param musicFile Arquivo de música a ser removido da pasta de músicas.
+     * @param musicFileName Name Arquivo de música a ser removido da pasta de músicas.
      */
-    public static void deleteMusic(List<String[]> musicCSVFileList, File musicFile){
+    public static void deleteMusic(List<String[]> musicCSVFileList, String musicFileName){
         try {
             for (String[] music : musicCSVFileList) {
-                if (music[5].equals(musicFile.getName())) {
+                if (music[5].equals(musicFileName)) {
                     Path origin = Path.of("Musics");
-                    Path musicFilePath = origin.resolve(musicFile.getName());
+                    Path musicFilePath = origin.resolve(musicFileName);
                     Files.delete(musicFilePath);
                     musicCSVFileList.remove(music);
                     break;
@@ -99,4 +103,16 @@ public class MusicOptions {
         MusicDatabase.updateMusicCSVFile(musicCSVFileList);
         return 0;
     }
+
+    public static void viewCounter(List<String[]> musicCSVFileList, String musicID){
+        for(String[] music : musicCSVFileList){
+            if(music[0].equals(musicID)){
+                int currentViews = Integer.parseInt(music[3]);
+                currentViews++;
+                music[3] = String.valueOf(currentViews);
+                break;
+            }
+        }
+    }
 }
+
