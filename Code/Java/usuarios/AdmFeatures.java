@@ -3,27 +3,79 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * A interface AdmFeatures fornece métodos padrão para funcionalidades administrativas,
+ * como deletar, criar e editar usuários, e gerar relatórios.
+ * @author Guilherme
+ */
+
 public interface AdmFeatures {
     String ROLE = "Gerente";
 
-    default boolean deleteAny(String userToBeDeleted) throws FileNotFoundException{ //função de ADM
+    /**
+     * Deleta um usuário especificado do arquivo
+     *
+     * @param userToBeDeleted O nome do usuário a ser deletado.
+     * @return true se o usuário foi deletado com sucesso, false caso contrário.
+     * @throws FileNotFoundException Se o arquivo do banco de dados não for encontrado.
+     */
+
+    default boolean deleteAny(String idUserToBeDeleted) throws FileNotFoundException{ //função de ADM
         ArrayList<String[]> matrixInfo = FileInfo.getMatrixInfo("Database/Banco.csv"); 
 
         for(String userInfo[] : matrixInfo){
-            if(userInfo[1].equals(userToBeDeleted)){
-                String data = String.format("\n%s,%s,%s,%s,%s,%s", userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4], userInfo[5]);
-                ModifyUser.modUser(FileInfo.getRawData("Database/Banco.csv"),data, "", "Database/Banco.csv");
+            if(userInfo[0].equals(idUserToBeDeleted)){
+                switch(userInfo[4]){
+                    case "Artista" -> {
+                        ArtistUser artistUser = new ArtistUser(userInfo[0], userInfo[1],userInfo[2],userInfo[3]);
+                        artistUser.deleteSelf(artistUser);
+                    }
+                    case "Gerente" -> {
+                        AdmUser admUser = new AdmUser(userInfo[0], userInfo[1],userInfo[2],userInfo[3]);
+                        admUser.deleteSelf(admUser);
+                    }
+                    default -> {
+                        PublicUser publicUser = new PublicUser(userInfo[0], userInfo[1],userInfo[2],userInfo[3]);
+                        publicUser.deleteSelf(publicUser);
+                    }
+                }
                 return true; //alterar isso aqui pra remover os arquivos de seguidores tbm kkk
-
             }
         }
 
         return false; //mensagem de erro
     }
 
+    /**
+     * Cria um novo usuário com as informações fornecidas.
+     *
+     * @param name O nome do usuário.
+     * @param email O email do usuário.
+     * @param password A senha do usuário.
+     * @param password2 A confirmação da senha do usuário.
+     * @param role O cargo do usuário.
+     * @return Um código de erro: 0 se o usuário foi criado com sucesso, um valor diferente de 0 caso contrário.
+     * @throws FileNotFoundException Se o arquivo do banco de dados não for encontrado.
+     */
+
     default int createAny(String name, String email, String password, String password2, String role) throws FileNotFoundException{
         return SignUp.signUp(name, email, password, password2, role, false);
     }
+
+    /**
+     * Edita as informações de um usuário existente.
+     *
+     * @param id O ID do usuário.
+     * @param newName O novo nome do usuário.
+     * @param newEmail O novo email do usuário.
+     * @param newPassword A nova senha do usuário.
+     * @param newPassword2 A confirmação da nova senha do usuário.
+     * @param compareName Se o nome deve ser comparado.
+     * @param compareEmail Se o email deve ser comparado.
+     * @param comparePassword Se a senha deve ser comparada.
+     * @return Um código de erro: 0 se o usuário foi editado com sucesso, um valor diferente de 0 caso contrário.
+     * @throws FileNotFoundException Se o arquivo do banco de dados não for encontrado.
+     */
 
     default int editAny(String id, String newName, String newEmail, String newPassword, String newPassword2, boolean compareName, boolean compareEmail, boolean comparePassword) throws FileNotFoundException{//função comum
         String tempName = newName;
@@ -62,6 +114,13 @@ public interface AdmFeatures {
         return 0;
     }
 
+     /**
+     * Gera um relatório com informações de todos os usuários.
+     *
+     * @param FILE_PATH O caminho do arquivo onde o relatório será salvo.
+     * @throws FileNotFoundException Se o arquivo do banco de dados não for encontrado.
+     */
+
     default void seeAllUsers(String FILE_PATH)throws FileNotFoundException{
         ArrayList <String[]> users;
         users = FileInfo.getMatrixInfo("Database/Banco.csv");
@@ -75,6 +134,13 @@ public interface AdmFeatures {
         FILE_PATH += "RelatórioUsuários.txt";
         RecordUser.replaceInFile(formatData, FILE_PATH);
     }
+
+    /**
+     * Gera um relatório com informações de todos os artistas.
+     *
+     * @param FILE_PATH O caminho do arquivo onde o relatório será salvo.
+     * @throws FileNotFoundException Se o arquivo do banco de dados não for encontrado.
+     */
 
     default void seeAllArtists(String FILE_PATH)throws FileNotFoundException{
         ArrayList <String[]> artists;
@@ -102,6 +168,13 @@ public interface AdmFeatures {
         FILE_PATH += "RelatórioArtistas.txt"; 
         RecordUser.replaceInFile(formatData, FILE_PATH);
     }
+
+    /**
+     * Gera um relatório com informações de todas as músicas.
+     *
+     * @param FILE_PATH O caminho do arquivo onde o relatório será salvo.
+     * @throws FileNotFoundException Se o arquivo do banco de dados não for encontrado.
+     */
     
     default void seeAllMusics(String FILE_PATH)throws FileNotFoundException{
         List<String[]> musics;
@@ -117,6 +190,13 @@ public interface AdmFeatures {
         FILE_PATH += "RelatórioMúsicasGeral.txt";
         RecordUser.replaceInFile(formatData, FILE_PATH);
     }
+
+    /**
+     * Gera um relatório com informações de todas as playlists.
+     *
+     * @param FILE_PATH O caminho do arquivo onde o relatório será salvo.
+     * @throws FileNotFoundException Se o arquivo do banco de dados não for encontrado.
+     */
     
     default void seeAllPlaylists(String FILE_PATH)throws FileNotFoundException{
         List<List<String>> playlists;
@@ -136,6 +216,16 @@ public interface AdmFeatures {
         RecordUser.replaceInFile(formatData, FILE_PATH);
     }
 
+    /**
+     * Gera uma playlist com as top 10 musicas mais tocadas da plataforma, caso o playlistGenre seja diferente de null,
+     * gera uma playlist com as top 10 músicas mais tocadas para o genero passado como parâmetro. Caso o número de músicas seja
+     * inferior a 10, gera uma playlist com o número de músicas mais tocadas. A playlist é gerada por meio de um BubbleSort que percorre
+     * as visualizações das músicas da plataforma.
+     * @param musicCSVFileList ArrayList de músicas que será lido para gerar a playlist.
+     * @param playlistCSVFileList ArrayList de playlists que será atualizado com a nova playlist.
+     * @param playlistGenre Gênero da playlist das top 10 músicas mais tocadas, caso seja null, a playlist não pussui um gênero específico.
+     * @return Retorna 1 em casos inválidos, retorna 0 por padrão.
+     */
     default int generateTop10Playlist(List<String[]> musicCSVFileList, List<List<String>> playlistCSVFileList, String playlistGenre) {
         List<String> top10playedmusics = new ArrayList<>();
         String playlistName = "TOP 10 MAIS TOCADAS";
