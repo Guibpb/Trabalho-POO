@@ -49,7 +49,7 @@ public class initialScreenController {
         username.setText(LogIn.user.getName());
         playlists = PlaylistDatabase.getPlaylistCSVFile();
         addPlaylist(null);
-        users = FileInfo.getMatrixInfo("Banco.csv");
+        users = FileInfo.getMatrixInfo("Database/Banco.csv");
         String role = "";
         for(String[]user : users) {
             if(LogIn.user.getName().equals(user[1])) {
@@ -94,6 +94,7 @@ public class initialScreenController {
 
     @FXML
     public void switchToSceneAllPlaylists(ActionEvent e) throws IOException {
+        App.lastScreenVisited = "initialScreen.fxml";
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("allPlaylistsScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
@@ -125,17 +126,6 @@ public class initialScreenController {
     public void switchToSceneMusicsConfig(ActionEvent e) throws IOException {
         App.lastScreenVisited = "initialScreen.fxml";
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("artistMusicsScreen.fxml"));
-        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        this.scene = new Scene(this.root);
-        this.stage.setScene(this.scene);
-        this.stage.centerOnScreen();
-        this.stage.show();
-    }
-
-    @FXML
-    public void switchToSceneAdmScreen(ActionEvent e) throws IOException {
-        App.lastScreenVisited = "admScreen.fxml";
-        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("admScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);

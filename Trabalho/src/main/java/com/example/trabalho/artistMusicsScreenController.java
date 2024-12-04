@@ -50,6 +50,7 @@ public class artistMusicsScreenController {
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
+        this.stage.centerOnScreen();
         this.stage.show();
     }
 
@@ -115,7 +116,7 @@ public class artistMusicsScreenController {
                 editMusicButton.setOnAction(event -> {
                     final String musicNameToPass = songName.getText();
                     final String idToPass = id.getText();
-                    App.idMusicToAdd = idToPass;
+                    App.idMusicToEdit = idToPass;
                     App.musicToEdit = musicNameToPass;
                     try {
                         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("musicConfigScreen.fxml"));

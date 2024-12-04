@@ -37,7 +37,7 @@ public class admUsersScreenController {
     @FXML
     public void initialize() throws FileNotFoundException {
         try {
-            users = FileInfo.getMatrixInfo("Banco.csv");
+            users = FileInfo.getMatrixInfo("Database/Banco.csv");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -56,6 +56,7 @@ public class admUsersScreenController {
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
+        this.stage.centerOnScreen();
         this.stage.show();
     }
 
@@ -65,7 +66,7 @@ public class admUsersScreenController {
             boolean canAdd = false;
 
             if(!user[0].equals(LogIn.user.getId()) && !user[4].equals("Gerente")) {
-                canAdd = canAdd = true;
+                canAdd = true;
             }
 
             if(canAdd){
@@ -103,6 +104,8 @@ public class admUsersScreenController {
                 btn.setLayoutY(17);
                 btn.setStyle("-fx-background-color: #ac12c7;");
                 btn.setCursor(Cursor.HAND);
+                btn.setTextFill(Color.WHITE);
+                btn.setFont(Font.font("System", 18));
 
                 id.setText(user[0]);
                 name.setText(user[1]);

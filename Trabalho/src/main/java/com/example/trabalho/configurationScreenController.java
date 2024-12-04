@@ -45,6 +45,8 @@ public class configurationScreenController {
     private Label numFollowers;
     @FXML
     private Label numFollowing;
+    @FXML
+    private Label admButton;
 
     @FXML
     public void initialize() throws FileNotFoundException {
@@ -54,6 +56,10 @@ public class configurationScreenController {
         password.setText(LogIn.user.getPassword());
         numFollowers.setText(String.valueOf(LogIn.user.getAllFollowers(0).size()));
         numFollowing.setText(String.valueOf(LogIn.user.getAllFollowings(0).size()));
+        if(LogIn.user.getRole().equals("Gerente")){
+            admButton.setDisable(false);
+            admButton.setVisible(true);
+        }
     }
 
     @FXML
@@ -62,6 +68,17 @@ public class configurationScreenController {
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
+        this.stage.show();
+    }
+
+    @FXML
+    public void switchToSceneAdmScreen(MouseEvent e) throws IOException {
+        App.lastScreenVisited = "admScreen.fxml";
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("admScreen.fxml"));
+        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        this.scene = new Scene(this.root);
+        this.stage.setScene(this.scene);
+        this.stage.centerOnScreen();
         this.stage.show();
     }
 

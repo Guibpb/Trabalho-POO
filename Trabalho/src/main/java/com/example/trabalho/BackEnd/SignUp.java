@@ -13,13 +13,12 @@ public class SignUp {
 
         if(errorNum == 0){
             String id = Integer.toString(currentId);
-            String profilePicture = "Database/Default.png";
-            String userInfo[] = {id, user, email, password, role, profilePicture};
+            String userInfo[] = {id, user, email, password, role};
 
             if(selfMade)
                 LogIn.defUser(userInfo);
 
-            String data = String.format("\n%s,%s,%s,%s,%s,%s", id, user, email, password, role, profilePicture);
+            String data = String.format("\n%s,%s,%s,%s,%s,", id, user, email, password, role);
             RecordUser.writeInFile(data, "Database/Banco.csv");
         }else{
             //mensagem de erro
@@ -27,7 +26,6 @@ public class SignUp {
 
         return errorNum;
     }
-
 
     public static int userCompare(String user, String email, String password, String password2) throws FileNotFoundException{
         int newId;
@@ -71,6 +69,7 @@ public class SignUp {
                 //mensagem de erro de formatação de inteiro
             }
         }
+
         return 0; //nenhuma restrição foi ativada
     }
 }

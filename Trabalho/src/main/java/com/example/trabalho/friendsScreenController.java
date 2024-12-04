@@ -50,7 +50,7 @@ public class friendsScreenController {
     @FXML
     public void initialize() throws FileNotFoundException {
         try {
-            users = FileInfo.getMatrixInfo("Banco.csv");
+            users = FileInfo.getMatrixInfo("Database/Banco.csv");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

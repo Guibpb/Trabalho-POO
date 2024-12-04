@@ -3,8 +3,8 @@ package com.example.trabalho.BackEnd;
 public class PublicUser extends User {
     private final String ROLE = "Comum";
 
-    public PublicUser(String id, String name, String email, String password, String pfPicture){
-        super(id, name, email, password, pfPicture);
+    public PublicUser(String id, String name, String email, String password){
+        super(id, name, email, password);
     }
 
     @Override
@@ -14,14 +14,14 @@ public class PublicUser extends User {
 
     @Override
     public String getFormatData(){
-        String data = super.getFormatData() + ROLE + "," + pfPicture;
+        String data = super.getFormatData() + ROLE;
         return data;
     }
 
     @Override
     public String[] getData(){
         String[] origin = super.getData();
-        String[] data = {origin[0],origin[1],origin[2],origin[3],ROLE, pfPicture};
+        String[] data = {origin[0],origin[1],origin[2],origin[3],ROLE};
         return data;
     }
 }

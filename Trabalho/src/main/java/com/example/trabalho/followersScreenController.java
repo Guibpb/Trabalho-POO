@@ -45,7 +45,7 @@ public class followersScreenController {
 
     {
         try {
-            users = FileInfo.getMatrixInfo("Banco.csv");
+            users = FileInfo.getMatrixInfo("Database/Banco.csv");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

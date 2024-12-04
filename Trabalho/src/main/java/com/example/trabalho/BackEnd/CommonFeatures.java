@@ -3,8 +3,9 @@ package com.example.trabalho.BackEnd;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
-interface Followable {
+interface CommonFeatures {
     default boolean followUser(String userToBeFollowed, String idUserToBeFollowed) throws FileNotFoundException{
         String id = LogIn.user.getId();
         String name = LogIn.user.getName();
@@ -166,5 +167,74 @@ interface Followable {
         LogIn.defUser(newUserInfo);
 
         return 0;
+    }
+
+    default int createPlaylist(List<List<String>> playlistCSVFileList, String playlistName, String userName, String visibility) {
+        if(playlistName.contains(",")){
+            return 1;
+        }
+
+        List<String> newPlaylist = new ArrayList<>();
+        newPlaylist.add(0, playlistName);
+        newPlaylist.add(1, userName);
+        newPlaylist.add(2, visibility);
+        playlistCSVFileList.addLast(newPlaylist);
+        PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
+        return 0;
+    }
+
+    default int addMusicToPlaylist(List<List<String>> playlistCSVFileList, String playlistName, String musicID) {
+        for(List<String> playlist : playlistCSVFileList){
+            if(playlist.getFirst().equals(playlistName)){
+                for(String checkID : playlist){
+                    if(checkID.equals(musicID))
+                        return 1;
+                }
+                playlist.addLast(musicID);
+                break;
+            }
+        }
+        PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
+        return 0;
+    }
+
+    default void deletePlaylist(List<List<String>> playlistCSVFileList, String playlistName) {
+        for(List<String> playlist : playlistCSVFileList){
+            if(playlist.getFirst().equals(playlistName)){
+                playlistCSVFileList.remove(playlist);
+                break;
+            }
+        }
+        PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
+    }
+
+    default int editPlaylist(List<List<String>> playlistCSVFileList, String oldPlaylistName, String newPlaylistName, String newVisibility) {
+        if(newPlaylistName.contains(",")){
+            return 1;
+        }
+
+        for(int i=1; i<playlistCSVFileList.size(); i++){
+            if(playlistCSVFileList.get(i).getFirst().equals(oldPlaylistName)){
+                playlistCSVFileList.get(i).set(0, newPlaylistName);
+                playlistCSVFileList.get(i).set(2, newVisibility);
+                break;
+            }
+        }
+        PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
+        return 0;
+    }
+
+    default void removeMusicFromPlaylist(List<List<String>> playlistCSVFileList, String playlistName, String musicID){
+        for(int i=1; i<playlistCSVFileList.size(); i++){
+            if(playlistCSVFileList.get(i).getFirst().equals(playlistName)){
+                for(int j=0; j<playlistCSVFileList.get(i).size(); j++){
+                    if(playlistCSVFileList.get(i).get(j).equals(musicID)){
+                        playlistCSVFileList.get(i).remove(j);
+                        break;
+                    }
+                }
+            }
+        }
+        PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
     }
 }

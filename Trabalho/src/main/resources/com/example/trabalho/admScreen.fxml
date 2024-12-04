@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +11,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1b1c1f;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalho.admScreenController">
    <children>
-      <Button layoutX="27.0" layoutY="200.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="244.0" style="-fx-background-color: none;" text="Músicas" textFill="WHITE">
+      <Button layoutX="101.0" layoutY="257.0" mnemonicParsing="false" onAction="#switchToSceneMusicsData" prefHeight="39.0" style="-fx-background-color: none;" styleClass="option" stylesheets="@styleAdmScreen.css" text="Músicas" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -20,7 +19,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="27.0" layoutY="314.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="244.0" style="-fx-background-color: none;" text="Playlists" textFill="WHITE">
+      <Button layoutX="100.0" layoutY="314.0" mnemonicParsing="false" onAction="#switchToScenePlaylistData" prefHeight="39.0" style="-fx-background-color: none;" styleClass="option" stylesheets="@styleAdmScreen.css" text="Playlists" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -28,7 +27,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="27.0" layoutY="257.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="244.0" style="-fx-background-color: none;" text="Usuários" textFill="WHITE">
+      <Button layoutX="98.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToSceneUserData" prefHeight="39.0" style="-fx-background-color: none;" styleClass="option" stylesheets="@styleAdmScreen.css" text="Usuários" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -36,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="362.0" layoutY="314.0" mnemonicParsing="false" onAction="#switchToSceneMusicsConfig" prefHeight="39.0" prefWidth="164.0" style="-fx-background-color: none;" text="Editar músicas" textFill="WHITE">
+      <Button layoutX="397.0" layoutY="257.0" mnemonicParsing="false" onAction="#switchToSceneMusicsConfig" prefHeight="39.0" style="-fx-background-color: none;" styleClass="option" stylesheets="@styleAdmScreen.css" text="Músicas" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -44,12 +43,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="80.0" layoutY="27.0" prefHeight="66.0" prefWidth="447.0" text="Gerenciar Aplicativo" textFill="#ac12c7">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="10.0" prefHeight="66.0" prefWidth="473.0" text="Gerenciar Aplicativo" textFill="#ac12c7">
          <font>
-            <Font name="System Bold" size="43.0" />
+            <Font name="System Bold" size="38.0" />
          </font>
       </Label>
-      <Button layoutX="362.0" layoutY="257.0" mnemonicParsing="false" onAction="#switchToScenePlaylists" prefHeight="39.0" prefWidth="164.0" style="-fx-background-color: none;" text="Playlists" textFill="WHITE">
+      <Button layoutX="396.0" layoutY="314.0" mnemonicParsing="false" onAction="#switchToScenePlaylists" prefHeight="39.0" style="-fx-background-color: none;" styleClass="option" stylesheets="@styleAdmScreen.css" text="Playlists" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -57,7 +56,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="363.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToSceneUsers" prefHeight="39.0" prefWidth="164.0" style="-fx-background-color: none;" text="Usuários" textFill="WHITE">
+      <Button layoutX="394.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToSceneUsers" prefHeight="39.0" style="-fx-background-color: none;" styleClass="option" stylesheets="@styleAdmScreen.css" text="Usuários" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -65,7 +64,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="39.0" prefWidth="39.0" style="-fx-background-color: none;">
+      <Button layoutX="3.0" layoutY="10.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="43.0" style="-fx-background-color: none;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -73,21 +75,17 @@
                </image>
             </ImageView>
          </graphic>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
       </Button>
-      <Label fx:id="aparecerTexto" alignment="CENTER" layoutX="59.0" layoutY="124.0" minHeight="16" minWidth="69" onDragDetected="#handleButtonAction" prefHeight="66.0" prefWidth="179.0" text="Relatórios" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="59.0" layoutY="124.0" minHeight="16" minWidth="69" prefHeight="66.0" prefWidth="179.0" text="Relatórios" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="33.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="aparecerTexto1" alignment="CENTER" layoutX="389.0" layoutY="128.0" minHeight="16" minWidth="69" onDragDetected="#handleButtonAction" prefHeight="58.0" prefWidth="111.0" text="Editar" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="389.0" layoutY="128.0" minHeight="16" minWidth="69" prefHeight="58.0" prefWidth="111.0" text="Editar" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="33.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
       <Separator layoutX="301.0" layoutY="100.0" orientation="VERTICAL" prefHeight="279.0" prefWidth="0.0" />
-      <ToggleButton layoutX="182.0" layoutY="207.0" mnemonicParsing="false" text="ToggleButton" />
    </children>
 </AnchorPane>

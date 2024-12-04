@@ -48,7 +48,6 @@ public class allPlaylistsController {
 
     @FXML
     public void goBack(ActionEvent e) throws IOException {
-        System.out.println(App.lastScreenVisited);
         if(App.admEditing){
             App.lastScreenVisited = "admScreen.fxml";
         }
@@ -56,6 +55,7 @@ public class allPlaylistsController {
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         this.stage.setScene(scene);
+        this.stage.centerOnScreen();
         this.stage.show();
     }
 

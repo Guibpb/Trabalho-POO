@@ -71,8 +71,7 @@ public class createPlaylistScreenController{
         }
     }
 
-    /*
-    @FXML
+
     public void createPlaylist(ActionEvent e) throws IOException {
         String playlistName = labelPlaylistName.getText();
         String artist = LogIn.user.getName();
@@ -82,13 +81,13 @@ public class createPlaylistScreenController{
         }else{
             visibility = "public";
         }
-        LogIn.user.(playlists, playlistName, artist, visibility);
+        LogIn.user.createPlaylist(playlists, playlistName, artist, visibility);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Playlist");
         alert.setHeaderText(null);
         alert.setContentText("Playlist criada com sucesso!");
         alert.showAndWait();
         goBack(e);
-    }*/
+    }
 
 }

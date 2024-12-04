@@ -18,7 +18,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </ImageView>
-   <Label fx:id="usernameTitle" alignment="CENTER" layoutX="438.0" layoutY="57.0" prefHeight="58.0" prefWidth="343.0" text="Nome do usuário" textFill="#f2f2f2">
+   <Label fx:id="usernameTitle" alignment="CENTER" layoutX="428.0" layoutY="57.0" prefHeight="58.0" text="Nome do usuário" textFill="#f2f2f2">
       <font>
          <Font name="System Bold" size="38.0" />
       </font>
@@ -58,7 +58,7 @@
       <font>
          <Font name="System Bold" size="18.0" />
       </font></Button>
-   <Button layoutX="453.0" layoutY="681.0" mnemonicParsing="false" onAction="#goBack" prefHeight="43.0" prefWidth="118.0" style="-fx-background-color: #F44336;" text="Descartar" textFill="#1b1c1f">
+   <Button layoutX="453.0" layoutY="681.0" mnemonicParsing="false" onAction="#goBack" prefHeight="43.0" style="-fx-background-color: #F44336;" text="Descartar" textFill="#1b1c1f">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
@@ -158,7 +158,7 @@
          <Font name="System Bold" size="18.0" />
       </font>
    </Label>
-   <Button layoutX="197.0" layoutY="320.0" mnemonicParsing="false" onAction="#deleteSelf" prefHeight="43.0" style="-fx-background-color: #cc041b;" text="Deletar Conta" textFill="WHITE">
+   <Button layoutX="189.0" layoutY="317.0" mnemonicParsing="false" onAction="#deleteSelf" prefHeight="43.0" style="-fx-background-color: #cc041b;" text="Deletar Conta" textFill="WHITE">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
@@ -174,4 +174,12 @@
          <Font name="System Bold" size="15.0" />
       </font>
    </Button>
+   <Label fx:id="admButton" alignment="CENTER" disable="true" layoutX="97.0" layoutY="692.0" onMouseClicked="#switchToSceneAdmScreen" prefHeight="22.0" stylesheets="@styleConfigurationScreen.css" text="Opções de Administrador" textFill="WHITE" visible="false">
+      <font>
+         <Font size="15.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </Label>
 </AnchorPane>

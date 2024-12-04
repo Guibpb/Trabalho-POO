@@ -64,7 +64,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </MenuButton>
-      <Button layoutX="472.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteMusic" prefHeight="34.0" prefWidth="114.0" style="-fx-background-color: #cc041b;" text="Excluir Música" textFill="WHITE">
+      <Button layoutX="463.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteMusic" prefHeight="34.0" style="-fx-background-color: #cc041b;" text="Excluir Música" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -72,7 +72,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="363.0" layoutY="293.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="118.0" style="-fx-background-color: #4CAF50;" text="Aplicar" textFill="#1b1c1f">
+      <Button layoutX="363.0" layoutY="293.0" mnemonicParsing="false" onAction="#edit" prefHeight="42.0" prefWidth="118.0" style="-fx-background-color: #4CAF50;" text="Aplicar" textFill="#1b1c1f">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -80,7 +80,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="120.0" layoutY="293.0" mnemonicParsing="false" onAction="#goBack" prefHeight="43.0" prefWidth="118.0" style="-fx-background-color: #F44336;" text="Descartar" textFill="#1b1c1f">
+      <Button layoutX="120.0" layoutY="293.0" mnemonicParsing="false" onAction="#goBack" prefHeight="43.0" style="-fx-background-color: #F44336;" text="Descartar" textFill="#1b1c1f">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

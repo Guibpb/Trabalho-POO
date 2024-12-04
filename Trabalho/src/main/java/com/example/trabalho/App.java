@@ -14,6 +14,7 @@ public class App extends Application {
     public static Scanner scan;
     public static String lastScreenVisited = "";
     public static String idMusicToAdd;
+    public static String idMusicToEdit;
     public static String musicToEdit;
     public static String userToEdit;
     public static String playlistToEdit;

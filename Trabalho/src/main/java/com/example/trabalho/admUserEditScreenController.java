@@ -49,7 +49,7 @@ public class admUserEditScreenController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        users = FileInfo.getMatrixInfo("Banco.csv");
+        users = FileInfo.getMatrixInfo("Database/Banco.csv");
         for(int i = 0; i < users.size(); i++){
             if(users.get(i)[1].equals(App.userToEdit)){
                 userIndex = i;
@@ -125,10 +125,10 @@ public class admUserEditScreenController {
         }
     }
 
-   /* @FXML
+   /*@FXML
     public void confirmEdit(ActionEvent e){
         try {
-            int response = LogIn.user.editSelf(username.getText(), email.getText(), password.getText(), passwordConfirm.getText(), username.isEditable(), email.isEditable(), password.isEditable());
+            int response = LogIn.admUser.editA(username.getText(), email.getText(), password.getText(), passwordConfirm.getText(), username.isEditable(), email.isEditable(), password.isEditable());
             if(response == 0){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Editar");
