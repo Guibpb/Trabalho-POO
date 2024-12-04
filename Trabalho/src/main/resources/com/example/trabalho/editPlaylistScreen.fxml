@@ -44,7 +44,7 @@
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <Button layoutX="135.0" layoutY="271.0" mnemonicParsing="false" onAction="#goBack" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #f21832;" text="Descartar" textFill="#1b1c1f">
+      <Button layoutX="135.0" layoutY="271.0" mnemonicParsing="false" onAction="#goBack" prefHeight="42.0" style="-fx-background-color: #f21832;" text="Descartar" textFill="#1b1c1f">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -52,9 +52,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="351.0" layoutY="271.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #41e884;" text="Aplicar" textFill="#1b1c1f">
+      <Button layoutX="351.0" layoutY="271.0" minWidth="100.0" mnemonicParsing="false" onAction="#edit" prefHeight="42.0" style="-fx-background-color: #41e884;" text="Aplicar" textFill="#1b1c1f">
          <font>
             <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="removeMusic" layoutX="423.0" layoutY="28.0" mnemonicParsing="false" onAction="#switchToSceneRemoveMusic" style="-fx-background-color: none;" stylesheets="@styleEditPlaylistScreen.css" text="Remover música" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />

@@ -84,7 +84,7 @@ public class addMusicPlaylistScreenController {
 
                 pane.getChildren().addAll(imageView, label);
                 pane.setOnMouseClicked(event -> {
-                    PlaylistOptions.addMusicToPlaylist(PlaylistDatabase.getPlaylistCSVFile(), label.getText(), App.idMusicToAdd);
+                    LogIn.user.addMusicToPlaylist(PlaylistDatabase.getPlaylistCSVFile(), label.getText(), App.idMusicToAdd);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle(null);
                     alert.setHeaderText(null);

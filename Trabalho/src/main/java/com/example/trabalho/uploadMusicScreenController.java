@@ -20,7 +20,7 @@ public class uploadMusicScreenController {
     private Parent root;
     private Scene scene;
 
-    File musicFile;
+    File musicFile = null;
 
     @FXML
     private TextField musicName;
@@ -35,36 +35,45 @@ public class uploadMusicScreenController {
         musicFile = f.getSelectedFile();
     }
 
-    /*
     @FXML
     public void create(ActionEvent event) throws IOException {
-        int response;
-        if(!genreMenu.getText().equals("Gênero")){
-            response = LogIn.user.upl(MusicDatabase.getMusicCSVFile(), LogIn.user.getName(), musicName.getText(), genreMenu.getText(), musicFile);
-            if(response == 1){
+        if(musicFile != null && musicFile.exists() && musicFile.toString().contains(".mp3")) {
+            int response;
+            if(!genreMenu.getText().equals("Gênero")){
+                if(LogIn.user.getRole() == "Gerente"){
+                    response = LogIn.admUser.uploadMusic(MusicDatabase.getMusicCSVFile(), LogIn.user.getName(), musicName.getText(), genreMenu.getText(), musicFile);
+                }else{
+                    response = LogIn.artistUser.uploadMusic(MusicDatabase.getMusicCSVFile(), LogIn.user.getName(), musicName.getText(), genreMenu.getText(), musicFile);
+                }
+                if(response == 1){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erro");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Nome de música inválido");
+                    alert.showAndWait();
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Sucesso");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Música criada com sucesso");
+                    alert.showAndWait();
+                    goBack(event);
+                }
+            }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erro");
                 alert.setHeaderText(null);
-                alert.setContentText("Nome de música inválido");
+                alert.setContentText("Escolha um gênero");
                 alert.showAndWait();
-            }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Sucesso");
-                alert.setHeaderText(null);
-                alert.setContentText("Música criada com sucesso");
-                alert.showAndWait();
-                goBack(event);
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText(null);
-            alert.setContentText("Escolha um gênero");
+            alert.setContentText("Escolha um arquivo válido");
             alert.showAndWait();
         }
-
     }
-    */
 
 
     @FXML

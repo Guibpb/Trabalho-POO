@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -133,6 +134,16 @@ public class admUsersScreenController {
         this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
+        this.stage.show();
+    }
+
+    @FXML
+    public void switchToSceneCreateUser(MouseEvent event) throws IOException {
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("admCreateUserScreen.fxml"));
+        this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        this.scene = new Scene(this.root);
+        this.stage.setScene(this.scene);
+        this.stage.centerOnScreen();
         this.stage.show();
     }
 }

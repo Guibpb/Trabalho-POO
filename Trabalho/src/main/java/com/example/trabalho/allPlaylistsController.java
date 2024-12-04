@@ -50,6 +50,8 @@ public class allPlaylistsController {
     public void goBack(ActionEvent e) throws IOException {
         if(App.admEditing){
             App.lastScreenVisited = "admScreen.fxml";
+        }else{
+            App.lastScreenVisited = "initialScreen.fxml";
         }
         Parent root = (Parent) FXMLLoader.load(this.getClass().getResource(App.lastScreenVisited));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();

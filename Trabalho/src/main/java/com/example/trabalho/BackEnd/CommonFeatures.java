@@ -237,4 +237,19 @@ interface CommonFeatures {
         }
         PlaylistDatabase.updatePlaylistCSVFile(playlistCSVFileList);
     }
+
+    default void viewCounter(String musicID){
+        List<String[]> musicCSVFileList = MusicDatabase.getMusicCSVFile();
+
+        for(String[] music : musicCSVFileList){
+            if(music[0].equals(musicID)){
+                int currentViews = Integer.parseInt(music[3]);
+                currentViews++;
+                music[3] = String.valueOf(currentViews);
+                break;
+            }
+        }
+
+        MusicDatabase.updateMusicCSVFile(musicCSVFileList);
+    }
 }

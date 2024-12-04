@@ -6,6 +6,7 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.nio.file.StandardCopyOption;
 
 interface ArtistFeatures {
     default int uploadMusic(List<String[]> musicCSVFileList, String artistName, String musicName, String musicGenre, File musicFile){
@@ -13,18 +14,15 @@ interface ArtistFeatures {
             return 1;
         }
 
-        try{ //fudeu explicar isso aq +/-, pra funcionar tu bota uma pasta no TempMusic e copia o nome dela na main na variavel "testmusic", ela n pode tar na Music tbm
-            Path musicDirectory = Path.of("Musics");//endereco da pasta de musicas
+        try{
+            Path musicDirectory = Path.of("Musics");
             if (!Files.exists(musicDirectory))
                 Files.createDirectories(musicDirectory);
-            //endereco da pasta de musicas
-            Path origin = Path.of("TempMusics"); //n to conseguindo pegar de um diretorio generalizado
-            Path musicFilePath = origin.resolve(musicFile.getName()); //endereco da musica? n entendi mt bem essa aq, vou pesquisar
-            //esse foi o unico jeito q eu consegui fzr rodar
-            Files.move(musicFilePath, musicDirectory.resolve(musicFilePath.getFileName())); //funcao de mover, vou pesquisar
+            Path destinationDir = Path.of("Musics");
+            Path destinationPath = destinationDir.resolve(musicFile.getName());
+            Files.move(musicFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
-            //parte do csv abaixo, so vai rodar se a de cima n der erro
-            int currentID = 1; //se for a primeira musica a ser adicionada
+            int currentID = 1;
             if(!musicCSVFileList.getLast()[0].equals("MusicID"))
                 currentID = Integer.parseInt(musicCSVFileList.getLast()[0]);
             //id armazenado como string, passando pra int aqui

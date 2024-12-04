@@ -37,16 +37,51 @@ public class artistMusicsScreenController {
 
     @FXML
     VBox vboxSongs;
+    @FXML
+    Button musicsDataBtn;
+    @FXML
+    Button addMusicBtn;
 
     @FXML
     public void initialize(){
+        if(LogIn.user.getRole().equals("Gerente")){
+            musicsDataBtn.setVisible(false);
+            musicsDataBtn.setDisable(true);
+        }
         musics = MusicDatabase.getMusicCSVFile();
         addSong();
     }
 
     @FXML
     public void goBack(ActionEvent e) throws IOException {
+        if(App.admEditing){
+            App.lastScreenVisited = "admScreen.fxml";
+        }else{
+            App.lastScreenVisited = "initialScreen.fxml";
+        }
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource(App.lastScreenVisited));
+        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        this.scene = new Scene(this.root);
+        this.stage.setScene(this.scene);
+        this.stage.centerOnScreen();
+        this.stage.show();
+    }
+
+    @FXML
+    public void switchToSceneMusicsData(ActionEvent e) throws IOException {
+        App.lastScreenVisited = "artistMusicsScreen.fxml";
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("musicsDataScreen.fxml"));
+        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        this.scene = new Scene(this.root);
+        this.stage.setScene(this.scene);
+        this.stage.centerOnScreen();
+        this.stage.show();
+    }
+
+    @FXML
+    public void switchToSceneAddMusic(ActionEvent e) throws IOException {
+        App.lastScreenVisited = "artistMusicsScreen.fxml";
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("uploadMusicScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);

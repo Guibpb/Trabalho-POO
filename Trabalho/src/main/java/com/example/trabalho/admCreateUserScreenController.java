@@ -1,7 +1,7 @@
 package com.example.trabalho;
 
-import com.example.trabalho.BackEnd.*;
-import java.io.IOException;
+import com.example.trabalho.BackEnd.LogIn;
+import com.example.trabalho.BackEnd.SignUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class registerScreenController {
+import java.io.IOException;
+
+public class admCreateUserScreenController {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -31,34 +33,34 @@ public class registerScreenController {
     private CheckBox userCheckbox;
     @FXML
     private CheckBox artistCheckbox;
+    @FXML
+    private CheckBox admCheckbox;
 
-
-    //funcao para inicializar uma checkbox como true, para impedir erros
     @FXML
     public void initialize() {
         userCheckbox.setSelected(true);
 
         //Limita o número de caracteres do username para 15
         registerName.textProperty().addListener((observable, oldValue, newValue) -> {
-           if(newValue.length() > 15){
-               registerName.setText(oldValue);
-           }
+            if(newValue.length() > 15){
+                registerName.setText(oldValue);
+            }
         });
     }
 
-    //funcao para mudar para a tela de login
     @FXML
-    public void switchToSceneLogin(ActionEvent e) throws IOException {
-        this.root = (Parent)FXMLLoader.load(this.getClass().getResource("loginScreen.fxml"));
+    public void goBack(ActionEvent e) throws IOException {
+        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("admUsersScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
         this.stage.setScene(this.scene);
+        this.stage.centerOnScreen();
         this.stage.show();
     }
 
-    //funcao para impedir que o usuario selecione duas checkbox simultaneamente ou nenhuma
     @FXML
     public void userCheckboxOnClick(ActionEvent e) {
+        admCheckbox.setSelected(false);
         if (this.userCheckbox.isSelected()) {
             this.artistCheckbox.setSelected(false);
         }else{
@@ -66,9 +68,9 @@ public class registerScreenController {
         }
     }
 
-    //funcao para impedir que o usuario selecione duas checkbox simultaneamente ou nenhuma
     @FXML
     public void artistCheckboxOnClick(ActionEvent e) {
+        admCheckbox.setSelected(false);
         if (this.artistCheckbox.isSelected()) {
             this.userCheckbox.setSelected(false);
         }else{
@@ -77,18 +79,30 @@ public class registerScreenController {
     }
 
     @FXML
-    public void register(ActionEvent e) throws IOException {
+    public void admCheckboxOnClick(ActionEvent e) {
+        if(admCheckbox.isSelected()){
+            this.userCheckbox.setSelected(false);
+            this.artistCheckbox.setSelected(false);
+        }else{
+            this.userCheckbox.setSelected(true);
+        }
+    }
+
+    @FXML
+    public void create(ActionEvent e) throws IOException {
 
         //checkbox para definir o tipo de usuário (obrigatoriamente um estará escolhido para evitar erros)
         String tipoUsuario = "";
         if (this.artistCheckbox.isSelected()) {
             tipoUsuario = "Artista";
-        } else {
+        } else if(this.userCheckbox.isSelected()) {
             tipoUsuario = "Comum";
+        }else{
+            tipoUsuario = "Gerente";
         }
 
         //funcao chamada para efetuar o registro ou retornar possíveis erros
-        int confirmacao = SignUp.signUp(registerName.getText(), registerEmail.getText(), registerPassword.getText(), registerPasswordConfirm.getText(), tipoUsuario, true);
+        int confirmacao = LogIn.admUser.createAny(registerName.getText(), registerEmail.getText(), registerPassword.getText(), registerPasswordConfirm.getText(), tipoUsuario);
         if (confirmacao == 0) {
             this.registerName.clear();
             this.registerPassword.clear();
@@ -97,11 +111,11 @@ public class registerScreenController {
             this.artistCheckbox.setSelected(false);
             this.userCheckbox.setSelected(false);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Registro");
-            alert.setContentText("Seu registro foi efetuado com sucesso!");
+            alert.setTitle("Usuário");
+            alert.setContentText("Usuário criado com sucesso!");
             alert.setHeaderText(null);
             alert.showAndWait();
-            switchToSceneLogin(e);
+            goBack(e);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
@@ -134,4 +148,5 @@ public class registerScreenController {
             }
         }
     }
+
 }

@@ -34,6 +34,7 @@ public class admScreenController {
 
     @FXML
     public void switchToSceneMusicsConfig(ActionEvent e) throws IOException {
+        App.admEditing = true;
         App.lastScreenVisited = "admScreen.fxml";
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("artistMusicsScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -45,6 +46,7 @@ public class admScreenController {
 
     @FXML
     public void switchToSceneUsers(ActionEvent e) throws IOException {
+        App.admEditing = true;
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("admUsersScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         this.scene = new Scene(this.root);
@@ -55,6 +57,7 @@ public class admScreenController {
 
     @FXML
     public void switchToScenePlaylists(ActionEvent e) throws IOException {
+        App.admEditing = true;
         App.lastScreenVisited = "admScreen.fxml";
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("allPlaylistsScreen.fxml"));
         this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();

@@ -1,0 +1,27 @@
+#addMusicBtn{
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-underline: false;
+    -fx-text-fill: white;
+}
+
+#addMusicBtn:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-underline: true;
+    -fx-text-fill: #ff41e2;
+}
+
+#musicsDataBtn{
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-underline: false;
+    -fx-text-fill: white;
+}
+
+#musicsDataBtn:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-underline: true;
+    -fx-text-fill: #ff41e2;
+}

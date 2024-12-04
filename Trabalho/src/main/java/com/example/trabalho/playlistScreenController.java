@@ -1,5 +1,6 @@
 package com.example.trabalho;
 
+import com.example.trabalho.BackEnd.LogIn;
 import com.example.trabalho.BackEnd.MusicDatabase;
 import com.example.trabalho.BackEnd.PlaylistDatabase;
 import javafx.application.Platform;
@@ -11,10 +12,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -83,9 +81,15 @@ public class playlistScreenController {
     private Media media;
     @FXML
     VBox vboxSongs;
+    @FXML
+    Button configButton;
 
     @FXML
     public void initialize() throws IOException {
+        if(!LogIn.user.getRole().equals("Gerente") && !playlistScreenController.playlistOwner.equals(LogIn.user.getName())){
+            configButton.setVisible(false);
+            configButton.setDisable(true);
+        }
         imgButton.setImage(btnPlayImage);
         labelPlaylistName.setText(playlistName);
         labelPlaylistOwner.setText(playlistOwner);
@@ -144,7 +148,10 @@ public class playlistScreenController {
                     }
                 }
             if(hasMusic){
-                musicsToAdd.add(music);
+                File defaultFile = new File("Musics/" + music[5]);
+                if(defaultFile.exists()){
+                    musicsToAdd.add(music);
+                }
             }
         }
 
@@ -157,6 +164,7 @@ public class playlistScreenController {
             Label artistName = new Label(music[1]);
             Label songDuration = new Label();
             File defaultFile = new File("Musics/" + music[5]);
+
             listMusicsFiles.add(defaultFile);
             listArtists.add(music[1]);
             listMusicsNames.add(music[2]);
@@ -168,7 +176,7 @@ public class playlistScreenController {
             });
 
             pane.setPrefHeight(84);
-            pane.setPrefWidth(706);
+            pane.setPrefWidth(700);
 
             pane.setOnMouseEntered(mouseEvent -> {
                 if(currentIndexPlaying == -1 || !pane.equals(listMusicsPane.get(currentIndexPlaying))){
@@ -182,8 +190,8 @@ public class playlistScreenController {
                 }
             });
             pane.setOnMouseClicked(mouseEvent -> {
-
                 try {
+                    LogIn.user.viewCounter(music[0]);
                     chooseSong(index);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
@@ -205,7 +213,7 @@ public class playlistScreenController {
             genre.setLayoutY(19);
             genre.setTextFill(Color.WHITE);
             genre.setFont(new Font("Arial", 14));
-            genre.setAlignment(Pos.CENTER);
+            genre.setAlignment(Pos.CENTER_LEFT);
 
             artistName.setPrefWidth(141);
             artistName.setPrefHeight(46);
@@ -213,7 +221,7 @@ public class playlistScreenController {
             artistName.setLayoutY(19);
             artistName.setTextFill(Color.WHITE);
             artistName.setFont(new Font("Arial", 14));
-            artistName.setAlignment(Pos.CENTER);
+            artistName.setAlignment(Pos.CENTER_LEFT);
 
             songDuration.setPrefWidth(74);
             songDuration.setPrefHeight(46);
@@ -221,7 +229,7 @@ public class playlistScreenController {
             songDuration.setLayoutY(19);
             songDuration.setTextFill(Color.WHITE);
             songDuration.setFont(new Font("System", 14));
-            songDuration.setAlignment(Pos.CENTER);
+            songDuration.setAlignment(Pos.CENTER_RIGHT);
 
             pane.getChildren().addAll(songName, genre, artistName, songDuration);
             listMusicsPane.add(pane);
