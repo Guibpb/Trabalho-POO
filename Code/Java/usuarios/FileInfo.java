@@ -3,7 +3,20 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe FileInfo extrai dados de um arquivo e converte para uma matriz
+ * ou uma formatação em String para CSV.
+ */
+
 public class FileInfo {
+    /**
+     * Lê o conteúdo de um arquivo e converte para uma matriz (Arraylist de Array de String)
+     * onde cada linha do arquivo corresponde uma array de String.
+     * 
+     * @param FILE_NAME Nome do arquivo para ler.
+     * @return Um Array List de array de String contendo os dados do arquivo.
+     * @throws FileNotFoundException Tratamento de excessão de arquivo inexistente.
+     */
     public static ArrayList <String[]> getMatrixInfo(String FILE_NAME)throws FileNotFoundException{
         File file = new File(FILE_NAME);
         ArrayList <String[]> matrixInfo = new ArrayList<>();
@@ -21,6 +34,13 @@ public class FileInfo {
         return matrixInfo;
     } 
 
+    /**
+     * Lê o conteúdo de um arquivo e retorna uma String.
+     * 
+     * @param FILE_NAME Nome do arquivo para ler.
+     * @return String contendo os dados do arquivo.
+     * @throws FileNotFoundException Tratamento de excessão de arquivo inexistente.
+     */
     public static String getRawData(final String FILE_NAME)throws FileNotFoundException{
         File file = new File(FILE_NAME);
         String rawData;
