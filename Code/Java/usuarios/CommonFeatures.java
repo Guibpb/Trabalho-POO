@@ -171,12 +171,49 @@ interface CommonFeatures {
         updateFollowers(""); //apaga o usuario de todas as pastas
 
         String fileToBeDeleted = String.format("Followers/FollowersOfUser%s.csv", id);
-        File followersFile = new File(fileToBeDeleted);
-        followersFile.delete();//apaga a pasta de seguidores
+
+        try {
+            File followersFile = new File(fileToBeDeleted);
+            followersFile.delete();//apaga a pasta de seguidores
+        } catch (Exception e) {
+        }
+        
 
         fileToBeDeleted = String.format("Followings/FollowingsOfUser%s.csv", id);
-        File followingsFile = new File(fileToBeDeleted);
-        followingsFile.delete();//apaga a pasta de seguidos
+
+        try {
+            File followingsFile = new File(fileToBeDeleted);
+            followingsFile.delete();//apaga a pasta de seguidos
+        } catch (Exception e) {
+        }
+    }
+
+    /**
+     * Método que apaga os dados do usuário logado em todas as pastas.
+     * Método alterado para funcionar e deletar qualquer tipo de usuário.
+     * @throws FileNotFoundException Tratamento de erro para arquivo inexistente.
+     */
+    default void deleteSelf(User user) throws FileNotFoundException{
+        String id = user.getId();
+
+        ModifyUser.modUser(FileInfo.getRawData("Database/Banco.csv"), user.getFormatData(), "", "Database/Banco.csv");
+        updateFollowers(""); //apaga o usuario de todas as pastas
+
+        String fileToBeDeleted = String.format("Followers/FollowersOfUser%s.csv", id);
+
+        try {
+            File followersFile = new File(fileToBeDeleted);
+        followersFile.delete();//apaga a pasta de seguidores
+        } catch (Exception e) {
+        }
+        
+        fileToBeDeleted = String.format("Followings/FollowingsOfUser%s.csv", id);
+
+        try {
+            File followingsFile = new File(fileToBeDeleted);
+            followingsFile.delete();//apaga a pasta de seguidos
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -333,7 +370,6 @@ interface CommonFeatures {
 
     /**
      * Recebe uma música da Lista de músicas por meio do ID, incrementa a visualização dessa música.
-     * @param musicCSVFileList Lista de músicas da qual sera retirada uma música específica para incrementar a visualização.
      * @param musicID ID específico da música que foi visualizada e incrementada por 1 as visualizações.
      */
 
