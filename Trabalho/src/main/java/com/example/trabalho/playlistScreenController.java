@@ -86,7 +86,7 @@ public class playlistScreenController {
 
     @FXML
     public void initialize() throws IOException {
-        if(!LogIn.user.getRole().equals("Gerente") && !playlistScreenController.playlistOwner.equals(LogIn.user.getName())){
+        if((!LogIn.user.getRole().equals("Gerente") && !playlistScreenController.playlistOwner.equals(LogIn.user.getName())) || playlistScreenController.playlistOwner.equals("USPfy")){
             configButton.setVisible(false);
             configButton.setDisable(true);
         }

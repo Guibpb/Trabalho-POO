@@ -39,7 +39,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <tooltip>
-                  <Tooltip text="Conigurações" />
+                  <Tooltip text="Configurações" />
                </tooltip>
             </Button>
          </children>

@@ -99,6 +99,7 @@ public class admScreenController {
         if(result == JFileChooser.APPROVE_OPTION){
             String path = jf.getSelectedFile().toString() + "/";
             LogIn.admUser.seeAllUsers(path);
+            LogIn.admUser.seeAllArtists(path);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Relatório criado com sucesso");
             alert.setTitle("Relatório");
