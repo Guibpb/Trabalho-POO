@@ -31,12 +31,13 @@ public class addMusicPlaylistScreenController {
     Stage stage;
     Scene scene;
 
-    private Image playlistImage = new Image(getClass().getResourceAsStream("imagens/empty_image.jpg"));
+    private Image playlistImage = new Image(getClass().getResourceAsStream("imagens/playlistIcon.png"));
     private List<List<String>> playlists;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         playlists = PlaylistDatabase.getPlaylistCSVFile();
+        playlists.remove(0);
         addPlaylist(null);
     }
 
@@ -71,7 +72,7 @@ public class addMusicPlaylistScreenController {
                 label.setPrefWidth(284);
                 label.setPrefHeight(35);
                 label.setLayoutX(17);
-                label.setLayoutY(146);
+                label.setLayoutY(155);
                 label.setAlignment(Pos.CENTER);
                 label.setTextFill(Color.WHITE);
                 label.setFont(Font.font("System", FontWeight.BOLD, 20));
@@ -79,18 +80,27 @@ public class addMusicPlaylistScreenController {
 
                 imageView.setFitWidth(200);
                 imageView.setFitHeight(150);
-                imageView.setLayoutX(59);
+                imageView.setLayoutX(85);
                 imageView.setLayoutY(0);
 
                 pane.getChildren().addAll(imageView, label);
                 pane.setOnMouseClicked(event -> {
-                    LogIn.user.addMusicToPlaylist(PlaylistDatabase.getPlaylistCSVFile(), label.getText(), App.idMusicToAdd);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle(null);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Música adicionada com sucesso");
-                    alert.showAndWait();
-                    goBack(event);
+                    int response = LogIn.user.addMusicToPlaylist(PlaylistDatabase.getPlaylistCSVFile(), label.getText(), App.idMusicToAdd);
+                    if(response == 1){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erro");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Essa música já pertence a essa playlist");
+                        alert.showAndWait();
+                    }else{
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle(null);
+                        alert.setHeaderText(null);
+                        alert.setContentText("Música adicionada com sucesso");
+                        alert.showAndWait();
+                        goBack(event);
+                    }
+
                 });
 
                 List<Node> nodes = vbox.getChildren();

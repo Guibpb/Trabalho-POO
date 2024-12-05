@@ -1,6 +1,4 @@
 id,nome,email,senha,cargo
-0,daniel,d@usp.br,1,Gerente
-1,teste,teste@gmail.com,123,Comum
-2,Matue,matue@usp.br,fortal,Artista
-3,novoadm,novoadm@usp.br,123,Gerente
-4,novoadm2,adm@usp.br,123,Gerente
+5,daniel,d@usp.br,1,Gerente,,,,
+6,qualquer1,a@usp.br,1,Artista,
+7,Imagine Dragons,i@usp.br,1,Artista,

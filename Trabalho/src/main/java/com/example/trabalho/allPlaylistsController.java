@@ -29,7 +29,7 @@ public class allPlaylistsController {
     private Stage stage;
     private Parent root;
     private Scene scene;
-    private Image playlistImage = new Image(getClass().getResourceAsStream("imagens/empty_image.jpg"));
+    private Image playlistImage = new Image(getClass().getResourceAsStream("imagens/playlistIcon.png"));
     private List<List<String>> playlists;
 
     @FXML
@@ -96,7 +96,7 @@ public class allPlaylistsController {
                 label1.setPrefWidth(284);
                 label1.setPrefHeight(35);
                 label1.setLayoutX(17);
-                label1.setLayoutY(146);
+                label1.setLayoutY(155);
                 label1.setAlignment(Pos.CENTER);
                 label1.setTextFill(Color.WHITE);
                 label1.setFont(Font.font("System", FontWeight.BOLD, 20));
@@ -104,14 +104,14 @@ public class allPlaylistsController {
                 label2.setPrefWidth(140);
                 label2.setPrefHeight(25);
                 label2.setLayoutX(89);
-                label2.setLayoutY(188);
+                label2.setLayoutY(195);
                 label2.setAlignment(Pos.CENTER);
                 label2.setTextFill(Color.WHITE);
                 label2.setFont(Font.font("System", 14));
 
                 imageView.setFitWidth(200);
                 imageView.setFitHeight(150);
-                imageView.setLayoutX(59);
+                imageView.setLayoutX(85);
                 imageView.setLayoutY(0);
 
                 pane.getChildren().addAll(imageView, label1, label2);

@@ -28,7 +28,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="musicsDataBtn" layoutX="227.0" layoutY="688.0" mnemonicParsing="false" onAction="#switchToSceneMusicsData" style="-fx-background-color: none;" stylesheets="@styleArtistMusicsScreen.css" text="Gerar Relatório" textFill="WHITE">
+      <Button fx:id="musicsDataBtn" layoutX="227.0" layoutY="688.0" mnemonicParsing="false" onAction="#musicData" style="-fx-background-color: none;" stylesheets="@styleArtistMusicsScreen.css" text="Gerar Relatório" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

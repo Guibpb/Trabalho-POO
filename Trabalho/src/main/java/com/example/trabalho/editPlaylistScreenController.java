@@ -10,12 +10,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class editPlaylistScreenController {
     private Stage stage;
@@ -38,13 +40,13 @@ public class editPlaylistScreenController {
     public void initialize(){
         oldPlaylistName = App.playlistToEdit;
         playlists = PlaylistDatabase.getPlaylistCSVFile();
-        for(int i = 0; i < playlists.size(); i++){
-            if(App.playlistToEdit == playlists.get(i).get(0)){
+        for(int i = 1; i < playlists.size(); i++){
+            if(App.playlistToEdit.equals(playlists.get(i).get(0))){
                 index = i;
             }
         }
         textFieldPlaylistName.setText(App.playlistToEdit);
-        if(playlists.get(index).get(2) == "public"){
+        if(playlists.get(index).get(2).equals("public")){
             publicRadioBtn.setSelected(true);
             newVisibility = "public";
         }else{
@@ -113,5 +115,34 @@ public class editPlaylistScreenController {
         alert.setContentText("Playlist editado com sucesso!");
         alert.showAndWait();
         goBack(e);
+    }
+
+    @FXML
+    public void deletePlaylist(ActionEvent e) throws IOException {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Deletar Playlist");
+        confirmation.setHeaderText(null);
+        confirmation.setContentText("Deseja continuar? A playlist será deletada para sempre");
+        Optional<ButtonType> result = confirmation.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            if(App.admEditing){
+                App.lastScreenVisited = "admScreen.fxml";
+            }else{
+                App.lastScreenVisited = "initialScreen.fxml";
+            }
+            LogIn.user.deletePlaylist(PlaylistDatabase.getPlaylistCSVFile(), oldPlaylistName);
+            this.root = (Parent) FXMLLoader.load(this.getClass().getResource(App.lastScreenVisited));
+            this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+            this.scene = new Scene(this.root);
+            this.stage.setScene(this.scene);
+            Platform.runLater(() -> {
+                this.stage.setWidth(1200);
+                this.stage.setHeight(800);
+                this.stage.sizeToScene();
+            });;
+            this.stage.centerOnScreen();
+            this.stage.show();
+        }
+
     }
 }

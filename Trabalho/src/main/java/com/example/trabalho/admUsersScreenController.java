@@ -116,6 +116,7 @@ public class admUsersScreenController {
                     try {
                         final String username = name.getText();
                         App.userToEdit = username;
+                        App.idUserToEdit = id.getText();
                         switchToSceneEditUser(event);
                     } catch (IOException e) {
                         throw new RuntimeException(e);

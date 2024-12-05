@@ -105,7 +105,8 @@ public class musicConfigScreenController {
 
     @FXML
     public void changeGenreText(ActionEvent e) throws IOException {
-        
+        MenuItem item = (MenuItem) e.getSource();
+        genreMenu.setText(item.getText());
     }
 
     @FXML
@@ -115,16 +116,12 @@ public class musicConfigScreenController {
         }else{
             LogIn.artistUser.editMusic(MusicDatabase.getMusicCSVFile(), App.idMusicToEdit, musicName.getText(), genreMenu.getText());
         }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Editar Musica");
+        alert.setHeaderText(null);
+        alert.setContentText("Música editada com sucesso!");
+        alert.showAndWait();
         goBack(e);
-    }
-
-    @FXML
-    public void deleteMusics(ActionEvent e) throws IOException {
-        if(LogIn.user.getRole().equals("Gerente")){
-            LogIn.admUser.deleteMusic(MusicDatabase.getMusicCSVFile(), musicName.getText());
-        }else{
-            LogIn.artistUser.deleteMusic(MusicDatabase.getMusicCSVFile(), musicName.getText());
-        }
     }
 
 }

@@ -16,9 +16,11 @@ public class App extends Application {
     public static String idMusicToAdd;
     public static String idMusicToEdit;
     public static String musicToEdit;
+    public static String idUserToEdit;
     public static String userToEdit;
     public static String playlistToEdit;
     public static boolean admEditing = false;
+    public static boolean top10 = false;
 
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoaderLogin = new FXMLLoader(App.class.getResource("loginScreen.fxml"));

@@ -11,6 +11,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -24,8 +25,11 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 public class artistMusicsScreenController {
@@ -49,6 +53,7 @@ public class artistMusicsScreenController {
             musicsDataBtn.setDisable(true);
         }
         musics = MusicDatabase.getMusicCSVFile();
+        musics.remove(0);
         addSong();
     }
 
@@ -68,17 +73,6 @@ public class artistMusicsScreenController {
     }
 
     @FXML
-    public void switchToSceneMusicsData(ActionEvent e) throws IOException {
-        App.lastScreenVisited = "artistMusicsScreen.fxml";
-        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("musicsDataScreen.fxml"));
-        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        this.scene = new Scene(this.root);
-        this.stage.setScene(this.scene);
-        this.stage.centerOnScreen();
-        this.stage.show();
-    }
-
-    @FXML
     public void switchToSceneAddMusic(ActionEvent e) throws IOException {
         App.lastScreenVisited = "artistMusicsScreen.fxml";
         this.root = (Parent) FXMLLoader.load(this.getClass().getResource("uploadMusicScreen.fxml"));
@@ -87,6 +81,29 @@ public class artistMusicsScreenController {
         this.stage.setScene(this.scene);
         this.stage.centerOnScreen();
         this.stage.show();
+    }
+
+    @FXML
+    public void musicData(ActionEvent e){
+        JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle("Selecione uma pasta");
+        jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jf.setAcceptAllFileFilterUsed(false);
+        int result = jf.showOpenDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            String path = jf.getSelectedFile().toString() + "/";
+            try {
+                LogIn.artistUser.seeAllOwnMusics(path);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Relatório criado com sucesso");
+                alert.setTitle("Relatório");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+
+        }
     }
 
     public void addSong() {

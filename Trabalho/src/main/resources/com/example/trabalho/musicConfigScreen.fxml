@@ -56,9 +56,12 @@
       </Button>
       <MenuButton fx:id="genreMenu" disable="true" layoutX="168.0" layoutY="174.0" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: none;" text="Gênero" textFill="WHITE">
          <items>
-            <MenuItem mnemonicParsing="false" text="Rap" />
-            <MenuItem mnemonicParsing="false" text="Funk" />
-            <MenuItem mnemonicParsing="false" text="Rock" />
+            <MenuItem mnemonicParsing="false" onAction="#changeGenreText" text="Rap" />
+            <MenuItem mnemonicParsing="false" onAction="#changeGenreText" text="Funk" />
+            <MenuItem mnemonicParsing="false" onAction="#changeGenreText" text="Rock" />
+            <MenuItem mnemonicParsing="false" onAction="#changeGenreText" text="Pop" />
+            <MenuItem mnemonicParsing="false" onAction="#changeGenreText" text="Classica" />
+            <MenuItem mnemonicParsing="false" onAction="#changeGenreText" text="Eletronica" />
          </items>
          <font>
             <Font name="System Bold" size="25.0" />
@@ -80,7 +83,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="120.0" layoutY="293.0" mnemonicParsing="false" onAction="#goBack" prefHeight="43.0" style="-fx-background-color: #F44336;" text="Descartar" textFill="#1b1c1f">
+      <Button layoutX="120.0" layoutY="293.0" mnemonicParsing="false" onAction="#goBack" prefHeight="43.0" style="-fx-background-color: #cc041b;" text="Descartar" textFill="#1b1c1f">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

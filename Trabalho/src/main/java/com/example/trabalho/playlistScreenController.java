@@ -101,7 +101,13 @@ public class playlistScreenController {
             durationSliderClick(mouseEvent);
         });
         musics = MusicDatabase.getMusicCSVFile();
-        List<List<String>> playlists = PlaylistDatabase.getPlaylistCSVFile();
+        List<List<String>> playlists;
+        if(!App.top10){
+            playlists = PlaylistDatabase.getPlaylistCSVFile();
+        }else{
+            playlists = PlaylistDatabase.generateTop10Playlists(MusicDatabase.getMusicCSVFile());
+            App.top10 = false;
+        }
         for(List<String> findPlaylist : playlists) {
             if(findPlaylist.get(0).equals(playlistName)) {
                 playlist = findPlaylist;
@@ -141,12 +147,15 @@ public class playlistScreenController {
         List<String[]> musicsToAdd = new ArrayList<>();
         for(String[] music : musics){
             boolean hasMusic = false;
-                for(int j = 3; j < playlist.size(); j++){
-                    if(playlist.get(j).equals(music[0])){
-                        hasMusic = true;
-                        break;
+                if(playlist != null && !playlist.isEmpty()){
+                    for(int j = 3; j < playlist.size(); j++){
+                        if(playlist.get(j).equals(music[0])){
+                            hasMusic = true;
+                            break;
+                        }
                     }
                 }
+
             if(hasMusic){
                 File defaultFile = new File("Musics/" + music[5]);
                 if(defaultFile.exists()){

@@ -1,14 +1,18 @@
 package com.example.trabalho;
 
+import com.example.trabalho.BackEnd.LogIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.nio.file.Path;
 
 public class admScreenController {
 
@@ -68,35 +72,56 @@ public class admScreenController {
     }
 
     @FXML
-    public void switchToSceneMusicsData(ActionEvent e) throws IOException {
-        App.lastScreenVisited = "admScreen.fxml";
-        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("musicsDataScreen.fxml"));
-        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        this.scene = new Scene(this.root);
-        this.stage.setScene(this.scene);
-        this.stage.centerOnScreen();
-        this.stage.show();
+    public void musicData(ActionEvent e) throws IOException {
+        JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle("Selecione uma pasta");
+        jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jf.setAcceptAllFileFilterUsed(false);
+        int result = jf.showOpenDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            String path = jf.getSelectedFile().toString() + "/";
+            LogIn.admUser.seeAllMusics(path);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Relatório criado com sucesso");
+            alert.setTitle("Relatório");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        }
     }
 
     @FXML
-    public void switchToSceneUserData(ActionEvent e) throws IOException {
-        App.lastScreenVisited = "admScreen.fxml";
-        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("userDataScreen.fxml"));
-        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        this.scene = new Scene(this.root);
-        this.stage.setScene(this.scene);
-        this.stage.centerOnScreen();
-        this.stage.show();
+    public void userData(ActionEvent e) throws IOException {
+        JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle("Selecione uma pasta");
+        jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jf.setAcceptAllFileFilterUsed(false);
+        int result = jf.showOpenDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            String path = jf.getSelectedFile().toString() + "/";
+            LogIn.admUser.seeAllUsers(path);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Relatório criado com sucesso");
+            alert.setTitle("Relatório");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        }
     }
 
     @FXML
-    public void switchToScenePlaylistData(ActionEvent e) throws IOException {
-        App.lastScreenVisited = "admScreen.fxml";
-        this.root = (Parent) FXMLLoader.load(this.getClass().getResource("playlistDataScreen.fxml"));
-        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        this.scene = new Scene(this.root);
-        this.stage.setScene(this.scene);
-        this.stage.centerOnScreen();
-        this.stage.show();
+    public void playlistData(ActionEvent e) throws IOException {
+        JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle("Selecione uma pasta");
+        jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jf.setAcceptAllFileFilterUsed(false);
+        int result = jf.showOpenDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            String path = jf.getSelectedFile().toString() + "/";
+            LogIn.admUser.seeAllPlaylists(path);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Relatório criado com sucesso");
+            alert.setTitle("Relatório");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        }
     }
 }

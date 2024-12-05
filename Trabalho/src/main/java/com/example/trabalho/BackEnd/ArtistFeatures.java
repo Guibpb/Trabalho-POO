@@ -1,12 +1,13 @@
 package com.example.trabalho.BackEnd;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 interface ArtistFeatures {
     default int uploadMusic(List<String[]> musicCSVFileList, String artistName, String musicName, String musicGenre, File musicFile){
@@ -33,7 +34,7 @@ interface ArtistFeatures {
 
         } catch (FileAlreadyExistsException e) {
             return 1;
-            //erro especifico pra caso a musica ja tenha sido registrada, fazer alguma outra coisa sla, ou nois bota q pode upar musicas iguais (complica mais ainda)?
+            //erro especifico pra caso a musica ja tenha sido registrada
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -70,5 +71,23 @@ interface ArtistFeatures {
         }
         MusicDatabase.updateMusicCSVFile(musicCSVFileList);
         return 0;
+    }
+
+    default void seeAllOwnMusics(String FILE_PATH)throws FileNotFoundException{
+        String name = LogIn.artistUser.getName();
+        List<String[]> musics;
+        musics = MusicDatabase.getMusicCSVFile();
+        musics.remove(0);
+        String formatData = String.format("Relatório Estatístico de %s: Músicas\n\n", name);
+
+        for(String[] musicInfo : musics){
+            if(musicInfo[1].equals(name)){
+                String info = String.format("Id de Música: %s\nNome da Música: %s\nVizualizações: %s\nGênero: %s\nNome do Arquivo: %s\n\n", musicInfo[0], musicInfo[2], musicInfo[3], musicInfo[4], musicInfo[5]);
+                formatData += info;
+            }
+        }
+
+        FILE_PATH += String.format("RelatórioMúsicas%s.txt", name);
+        RecordUser.replaceInFile(formatData, FILE_PATH);
     }
 }

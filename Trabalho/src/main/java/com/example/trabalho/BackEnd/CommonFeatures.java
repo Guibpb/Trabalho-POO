@@ -126,15 +126,47 @@ interface CommonFeatures {
         updateFollowers(""); //apaga o usuario de todas as pastas
 
         String fileToBeDeleted = String.format("Followers/FollowersOfUser%s.csv", id);
-        File followersFile = new File(fileToBeDeleted);
-        followersFile.delete();//apaga a pasta de seguidores
+
+        try {
+            File followersFile = new File(fileToBeDeleted);
+            followersFile.delete();//apaga a pasta de seguidores
+        } catch (Exception e) {
+        }
+
 
         fileToBeDeleted = String.format("Followings/FollowingsOfUser%s.csv", id);
-        File followingsFile = new File(fileToBeDeleted);
-        followingsFile.delete();//apaga a pasta de seguidos
+
+        try {
+            File followingsFile = new File(fileToBeDeleted);
+            followingsFile.delete();//apaga a pasta de seguidos
+        } catch (Exception e) {
+        }
     }
 
-    default int editSelf(String newName, String newEmail, String newPassword, String newPassword2, String newPicture, boolean compareName, boolean compareEmail, boolean comparePassword) throws FileNotFoundException{//função comum
+    default void deleteSelf(User user) throws FileNotFoundException{
+        String id = user.getId();
+
+        ModifyUser.modUser(FileInfo.getRawData("Database/Banco.csv"), user.getFormatData(), "", "Database/Banco.csv");
+        updateFollowers(""); //apaga o usuario de todas as pastas
+
+        String fileToBeDeleted = String.format("Followers/FollowersOfUser%s.csv", id);
+
+        try {
+            File followersFile = new File(fileToBeDeleted);
+            followersFile.delete();//apaga a pasta de seguidores
+        } catch (Exception e) {
+        }
+
+        fileToBeDeleted = String.format("Followings/FollowingsOfUser%s.csv", id);
+
+        try {
+            File followingsFile = new File(fileToBeDeleted);
+            followingsFile.delete();//apaga a pasta de seguidos
+        } catch (Exception e) {
+        }
+    }
+
+    default int editSelf(String newName, String newEmail, String newPassword, String newPassword2, boolean compareName, boolean compareEmail, boolean comparePassword) throws FileNotFoundException{//função comum
         String tempName = newName;
         String tempEmail = newEmail;
         String tempPassword = newPassword;
@@ -157,13 +189,13 @@ interface CommonFeatures {
         String oldData = LogIn.user.getFormatData();
         String oldUserInfo[] = LogIn.user.getData();
 
-        String newUserData = String.format("\n%s,%s,%s,%s,%s,%s", oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4], newPicture);
+        String newUserData = String.format("\n%s,%s,%s,%s,%s", oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4]);
         ModifyUser.modUser(FileInfo.getRawData("Database/Banco.csv"), oldData, newUserData, "Database/Banco.csv");
 
         newUserData = String.format("\n%s,%s", newName, oldUserInfo[0]);
         updateFollowers(newUserData);
 
-        String [] newUserInfo = {oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4], newPicture};
+        String [] newUserInfo = {oldUserInfo[0], newName, newEmail, newPassword, oldUserInfo[4]};
         LogIn.defUser(newUserInfo);
 
         return 0;

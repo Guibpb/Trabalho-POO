@@ -52,7 +52,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="135.0" layoutY="271.0" mnemonicParsing="false" onAction="#goBack" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #f21832;" text="Descartar" textFill="#1b1c1f">
+      <Button layoutX="135.0" layoutY="271.0" mnemonicParsing="false" onAction="#goBack" prefHeight="42.0" style="-fx-background-color: #f21832;" text="Descartar" textFill="#1b1c1f">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

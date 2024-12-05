@@ -27,6 +27,9 @@
           <MenuItem mnemonicParsing="false" onAction="#changeMenuText" text="Rap" />
           <MenuItem mnemonicParsing="false" onAction="#changeMenuText" text="Funk" />
             <MenuItem mnemonicParsing="false" onAction="#changeMenuText" text="Rock" />
+            <MenuItem mnemonicParsing="false" text="Pop" />
+            <MenuItem mnemonicParsing="false" text="Classica" />
+            <MenuItem mnemonicParsing="false" onAction="#changeMenuText" text="Eletronica" />
         </items>
          <font>
             <Font name="System Bold" size="19.0" />

@@ -42,6 +42,7 @@ public class allSongsScreenController {
     @FXML
     public void initialize(){
         musics = MusicDatabase.getMusicCSVFile();
+        musics.remove(0);
         addSong("");
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             addSong(newValue);

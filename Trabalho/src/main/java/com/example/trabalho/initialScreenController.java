@@ -2,6 +2,7 @@ package com.example.trabalho;
 
 import com.example.trabalho.BackEnd.FileInfo;
 import com.example.trabalho.BackEnd.LogIn;
+import com.example.trabalho.BackEnd.MusicDatabase;
 import com.example.trabalho.BackEnd.PlaylistDatabase;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -33,8 +34,9 @@ public class initialScreenController {
     private Stage stage;
     private Parent root;
     private Scene scene;
-    private Image playlistImage = new Image(getClass().getResourceAsStream("imagens/empty_image.jpg"));
+    private Image playlistImage = new Image(getClass().getResourceAsStream("imagens/playlistIcon.png"));
     private List<List<String>> playlists;
+    private List<List<String>> playlistsTop10;
     private ArrayList<String[]> users;
 
     @FXML
@@ -43,12 +45,22 @@ public class initialScreenController {
     Label username;
     @FXML
     Button createMusicButton;
+    @FXML
+    ImageView admIcon;
 
     @FXML
     public void initialize() throws FileNotFoundException {
+
+        if(LogIn.user.getRole().equals("Gerente")){
+            admIcon.setVisible(true);
+        }else{
+            admIcon.setVisible(false);
+        }
         username.setText(LogIn.user.getName());
         playlists = PlaylistDatabase.getPlaylistCSVFile();
+        playlistsTop10 = PlaylistDatabase.generateTop10Playlists(MusicDatabase.getMusicCSVFile());
         addPlaylist(null);
+        addTop10();
         users = FileInfo.getMatrixInfo("Database/Banco.csv");
         String role = "";
         for(String[]user : users) {
@@ -136,13 +148,12 @@ public class initialScreenController {
     @FXML
     public void addPlaylist(ActionEvent e){
         for(List<String> playlist : playlists){
-            if(playlist.get(1).equals(LogIn.user.getName())){
+            if(playlist.get(1).equals(LogIn.user.getName()) || playlist.get(1).equals("USPfy")){
                 boolean createNewHBox = true;
                 Pane pane = new Pane();
                 Label label = new Label(playlist.get(0));
                 ImageView imageView = new ImageView(playlistImage);
                 imageView.preserveRatioProperty().set(true);
-
                 pane.setCursor(Cursor.HAND);
                 pane.setOnMouseClicked(mouseEvent -> {
                     Pane paneDefault = (Pane) mouseEvent.getSource();
@@ -160,7 +171,7 @@ public class initialScreenController {
                 label.setPrefWidth(284);
                 label.setPrefHeight(35);
                 label.setLayoutX(17);
-                label.setLayoutY(146);
+                label.setLayoutY(155);
                 label.setAlignment(Pos.CENTER);
                 label.setTextFill(Color.WHITE);
                 label.setFont(Font.font("System", FontWeight.BOLD, 20));
@@ -168,7 +179,7 @@ public class initialScreenController {
 
                 imageView.setFitWidth(200);
                 imageView.setFitHeight(150);
-                imageView.setLayoutX(59);
+                imageView.setLayoutX(85);
                 imageView.setLayoutY(0);
 
                 pane.getChildren().addAll(imageView, label);
@@ -189,7 +200,65 @@ public class initialScreenController {
                     vbox.getChildren().add(hbox);
                 }
             }
+        }
+    }
 
+    @FXML
+    public void addTop10(){
+        for(List<String> playlist : playlistsTop10){
+            if(playlist != null && (playlist.get(1).equals(LogIn.user.getName()) || playlist.get(1).equals("USPfy"))){
+                boolean createNewHBox = true;
+                Pane pane = new Pane();
+                Label label = new Label(playlist.get(0));
+                ImageView imageView = new ImageView(playlistImage);
+                imageView.preserveRatioProperty().set(true);
+                pane.setCursor(Cursor.HAND);
+                pane.setOnMouseClicked(mouseEvent -> {
+                    App.top10 = true;
+                    Pane paneDefault = (Pane) mouseEvent.getSource();
+                    List<Node> nodes = paneDefault.getChildren();
+                    Label labelDefault = (Label) nodes.get(1);
+                    playlistScreenController.playlistName = labelDefault.getText();
+                    playlistScreenController.playlistOwner = "USPfy";
+                    try {
+                        switchToScenePlaylist(mouseEvent);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+                label.setPrefWidth(284);
+                label.setPrefHeight(35);
+                label.setLayoutX(17);
+                label.setLayoutY(155);
+                label.setAlignment(Pos.CENTER);
+                label.setTextFill(Color.WHITE);
+                label.setFont(Font.font("System", FontWeight.BOLD, 20));
+
+
+                imageView.setFitWidth(200);
+                imageView.setFitHeight(150);
+                imageView.setLayoutX(85);
+                imageView.setLayoutY(0);
+
+                pane.getChildren().addAll(imageView, label);
+
+                List<Node> nodes = vbox.getChildren();
+                for(int i = 0; i < nodes.size(); i++){
+                    HBox hbox = (HBox) nodes.get(i);
+                    if(hbox.getChildren().size() < 3){
+                        hbox.getChildren().add(pane);
+                        createNewHBox = false;
+                        break;
+                    }
+                }
+
+                if(createNewHBox){
+                    HBox hbox = new HBox();
+                    hbox.getChildren().add(pane);
+                    vbox.getChildren().add(hbox);
+                }
+            }
         }
     }
 }

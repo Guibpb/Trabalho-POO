@@ -140,7 +140,7 @@ public class configurationScreenController {
     @FXML
     public void confirmEdit(ActionEvent e){
         try {
-            int response = LogIn.user.editSelf(username.getText(), email.getText(), password.getText(), passwordConfirm.getText(), userIcon.getImage().getUrl(), username.isEditable(), email.isEditable(), password.isEditable());
+            int response = LogIn.user.editSelf(username.getText(), email.getText(), password.getText(), passwordConfirm.getText(), username.isEditable(), email.isEditable(), password.isEditable());
             if(response == 0){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Editar");
